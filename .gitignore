@@ -25,3 +25,7 @@ RemoteSystemTempFiles/
 .classpath
 .settings
 .idea/*
+
+# HP's strange Intellij stuff
+LegoMindstorms/src/META-INF/
+LegoMindstorms/src/ProgramStarter.java
