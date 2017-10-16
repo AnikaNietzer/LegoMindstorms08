@@ -1,0 +1,27 @@
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+# *.jar # we need some local libraries
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# IDE stuff
+.metadata/
+RemoteSystemTempFiles/
+.project
+.classpath
+.settings
+.idea/*
