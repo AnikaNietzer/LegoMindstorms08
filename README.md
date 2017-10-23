@@ -1,6 +1,8 @@
 # Lego Mindstorms 08
 
-Lego Mindstorms Praktikum am KIT im WS 17/18.
+*Lego Mindstorms Basispraktikum* am KIT im WS 17/18. 
+
+> Ziel dieses Praktikums in 4er-Gruppen ist der Entwurf und die Programmierung eines Lego-Mindstorms-Roboters zur Durchquerung eines vielseitigen Hindernisparcours.
 
 ## Termin 1 (16.10.2017)
 
@@ -11,13 +13,13 @@ Lego Mindstorms Praktikum am KIT im WS 17/18.
 * Überlegung, einen rotierenden Ultraschallsensor zu benutzen
 * Bau des Fahrgestells, aber keine Zeit mehr zum Testen der Fahreigenschaft
 
-<img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/2017-10-16.jpg" height="400"> <img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/model-day1.png" height="400">
+<img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/2017-10-16.jpg" height="200"> <img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/model-day1.png" height="200">
 
 ## Übungsblatt
 
 * Planen der Anbringung weiterer Sensoren an das Fahrgestell
 
-<img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/model-draft-1.png" height="400"> <img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/model-draft-2.png" height="400"> <img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/model-draft-3.png" height="400">
+<img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/model-draft-1.png" height="200"> <img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/model-draft-2.png" height="200"> <img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/model-draft-3.png" height="200">
 
 ## Termin 2 (23.10.2017)
 
