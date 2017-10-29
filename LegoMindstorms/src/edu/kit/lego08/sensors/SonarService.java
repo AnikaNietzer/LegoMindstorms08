@@ -1,3 +1,5 @@
+package edu.kit.lego08.sensors;
+
 import lejos.hardware.Sound;
 import lejos.hardware.motor.EV3MediumRegulatedMotor;
 import lejos.hardware.port.MotorPort;
@@ -5,10 +7,10 @@ import lejos.robotics.RegulatedMotor;
 
 public class SonarService extends Thread {
     private boolean isRunning = true;
-    private RegulatedMotor m;
+    private RegulatedMotor motor;
 
     public SonarService() {
-        m = new EV3MediumRegulatedMotor(MotorPort.B);
+        motor = new EV3MediumRegulatedMotor(MotorPort.B);
     }
 
     public void stopService() {
@@ -16,14 +18,18 @@ public class SonarService extends Thread {
     }
 
     private void initPosition() {
-        m.setSpeed(150);
+        motor.setSpeed(150);
 
-        m.backward();
-        while (!SensorUtils.isTouchSonarPressed()) { }
-        m.stop();
-        m.forward();
-        while (SensorUtils.isTouchSonarPressed()) { }
-        m.rotate(10);
+        motor.backward();
+        while (!SensorUtils.isTouchSonarPressed()) {
+            // Move until sensor is pressed
+        }
+        motor.stop();
+        motor.forward();
+        while (SensorUtils.isTouchSonarPressed()) {
+            // Move until sensor is released
+        }
+        motor.rotate(10);
     }
 
     @Override
@@ -33,7 +39,7 @@ public class SonarService extends Thread {
 
             for (int i = 0; i < 5; i++) {
                 measure(i);
-                m.rotate(32);
+                motor.rotate(32);
             }
             measure(5);
         }
