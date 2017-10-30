@@ -1,5 +1,6 @@
 package edu.kit.lego08.states;
 
+import edu.kit.lego08.sensors.SensorUtils;
 import lejos.hardware.Button;
 
 public abstract class State {
@@ -18,7 +19,7 @@ public abstract class State {
     abstract public void mainLoop();
 
     void checkEnterToMainMenu() {
-        if (Button.ENTER.isDown()) {
+        if (SensorUtils.isKeyPressedAndReleased(Button.ENTER)) {
             requestNextState(MainMenuState.getInstance());
         }
     }

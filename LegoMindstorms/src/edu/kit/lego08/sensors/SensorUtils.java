@@ -1,7 +1,10 @@
 package edu.kit.lego08.sensors;
 
+import lejos.hardware.Button;
+import lejos.hardware.Key;
 import lejos.hardware.port.SensorPort;
 import lejos.hardware.sensor.EV3TouchSensor;
+import lejos.utility.Delay;
 
 public class SensorUtils {
     private SensorUtils() {
@@ -14,5 +17,17 @@ public class SensorUtils {
         touch.fetchSample(sample, 0);
         touch.close();
         return sample[0] == 1;
+    }
+
+    public static boolean isKeyPressedAndReleased(Key k) {
+        if (k.isDown()) {
+            while (Button.ENTER.isDown()) {
+                // Wait for button release
+                Delay.msDelay(10);
+            }
+            return true;
+        } else {
+            return false;
+        }
     }
 }

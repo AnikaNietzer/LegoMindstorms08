@@ -1,5 +1,6 @@
 package edu.kit.lego08.states;
 
+import edu.kit.lego08.sensors.SensorUtils;
 import edu.kit.lego08.utils.Tuple;
 import lejos.hardware.Button;
 import lejos.hardware.lcd.LCD;
@@ -42,11 +43,12 @@ public class MainMenuState extends State {
     public void mainLoop() {
         LCD.clear();
 
+        LCD.drawString("Hauptmenü", 0, 0);
         for (int i = 0; i < menuEntries.size(); i++) {
             if (selectedState == i) {
-                LCD.drawString(" " + menuEntries.get(i).x, 0, i*5);
+                LCD.drawString(" " + menuEntries.get(i).x, 0, i + 2);
             } else {
-                LCD.drawString(">" + menuEntries.get(i).x, 0, i*5);
+                LCD.drawString(">" + menuEntries.get(i).x, 0, i + 2);
             }
         }
 
@@ -54,12 +56,7 @@ public class MainMenuState extends State {
             selectedState = (selectedState - 1) % menuEntries.size();
         } else if (Button.RIGHT.isDown()) {
             selectedState = (selectedState + 1) % menuEntries.size();
-        } else if (Button.ENTER.isDown()) {
-
-            while (Button.ENTER.isDown()) {
-                // Wait for button release
-                Delay.msDelay(10);
-            }
+        } else if (SensorUtils.isKeyPressedAndReleased(Button.ENTER)) {
             requestNextState(menuEntries.get(selectedState).y);
         }
     }
