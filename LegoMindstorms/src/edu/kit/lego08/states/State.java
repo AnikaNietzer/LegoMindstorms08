@@ -6,7 +6,7 @@ import lejos.hardware.Button;
 public abstract class State {
     private State nextState = null;
 
-    void requestNextState(State nextState) {
+    protected void requestNextState(State nextState) {
         this.nextState = nextState;
     }
 
@@ -18,7 +18,7 @@ public abstract class State {
     abstract public void onExit();
     abstract public void mainLoop();
 
-    void checkEnterToMainMenu() {
+    protected void checkEnterToMainMenu() {
         if (SensorUtils.isKeyPressedAndReleased(Button.ENTER)) {
             requestNextState(MainMenuState.getInstance());
         }

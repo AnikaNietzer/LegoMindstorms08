@@ -3,7 +3,9 @@ package edu.kit.lego08.sensors;
 import lejos.hardware.Button;
 import lejos.hardware.Key;
 import lejos.hardware.port.SensorPort;
+import lejos.hardware.sensor.EV3ColorSensor;
 import lejos.hardware.sensor.EV3TouchSensor;
+import lejos.robotics.Color;
 import lejos.utility.Delay;
 
 public class SensorUtils {
@@ -29,5 +31,12 @@ public class SensorUtils {
         } else {
             return false;
         }
+    }
+
+    public static boolean isColorBlack() {
+        EV3ColorSensor colorSensor = new EV3ColorSensor(SensorPort.S1);
+        int colorId = colorSensor.getColorID();
+        colorSensor.close();
+        return colorId == Color.BLACK;
     }
 }
