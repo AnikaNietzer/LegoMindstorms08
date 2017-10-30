@@ -52,9 +52,9 @@ public class MainMenuState extends State {
             }
         }
 
-        if (Button.LEFT.isDown()) {
+        if (SensorUtils.isKeyPressedAndReleased(Button.LEFT)) {
             selectedState = (selectedState - 1) % menuEntries.size();
-        } else if (Button.RIGHT.isDown()) {
+        } else if (SensorUtils.isKeyPressedAndReleased(Button.RIGHT)) {
             selectedState = (selectedState + 1) % menuEntries.size();
         } else if (SensorUtils.isKeyPressedAndReleased(Button.ENTER)) {
             requestNextState(menuEntries.get(selectedState).y);
