@@ -4,16 +4,16 @@ import edu.kit.lego08.sensors.SensorUtils;
 import edu.kit.lego08.states.State;
 import lejos.hardware.lcd.LCD;
 
-public class LineFollowLeftState extends State {
-    private static LineFollowLeftState instance = null;
+public class TurnRightState extends State {
+    private static TurnRightState instance = null;
 
-    private LineFollowLeftState() {
+    private TurnRightState() {
         // States shall be used as singleton
     }
 
-    public static LineFollowLeftState getInstance() {
+    public static TurnRightState getInstance() {
         if (instance == null) {
-            instance = new LineFollowLeftState();
+            instance = new TurnRightState();
         }
         return instance;
     }
@@ -36,7 +36,7 @@ public class LineFollowLeftState extends State {
         LCD.drawString("Linienfolgen: Links", 0, 5);
 
         if (!SensorUtils.isColorBlack()) {
-            requestNextState(LineFollowRightState.getInstance());
+            //requestNextState(LineFollowRightState.getInstance());
         }
     }
 }
