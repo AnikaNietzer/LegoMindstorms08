@@ -33,7 +33,7 @@ public class FindLineState extends State {
     public void mainLoop() {
         checkEnterToMainMenu();
         LCD.clear();
-        LCD.drawString("Linienfolgen: Links", 0, 5);
+        LCD.drawString("Find Line", 0, 5);
 
         if (!SensorUtils.isColorBlack()) {
             //requestNextState(LineFollowRightState.getInstance());

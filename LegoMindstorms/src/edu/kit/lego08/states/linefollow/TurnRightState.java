@@ -1,11 +1,14 @@
 package edu.kit.lego08.states.linefollow;
 
+import edu.kit.lego08.motors.MotorControl;
 import edu.kit.lego08.sensors.SensorUtils;
 import edu.kit.lego08.states.State;
 import lejos.hardware.lcd.LCD;
 
 public class TurnRightState extends State {
     private static TurnRightState instance = null;
+    private MotorControl motorControl = new MotorControl();
+    private int angle = 0;
 
     private TurnRightState() {
         // States shall be used as singleton
@@ -21,22 +24,28 @@ public class TurnRightState extends State {
     @Override
     public void onEnter() {
         requestNextState(null); // Stay in current state
-        //TODO: Move left
+        // TODO: Move left
     }
 
     @Override
     public void onExit() {
-        //TODO: Stop moving left
+        // TODO: Stop moving left
     }
 
     @Override
     public void mainLoop() {
         checkEnterToMainMenu();
         LCD.clear();
-        LCD.drawString("Linienfolgen: Links", 0, 5);
+        LCD.drawString("Turn Rights", 0, 5);
 
-        if (!SensorUtils.isColorBlack()) {
-            //requestNextState(LineFollowRightState.getInstance());
+        if (SensorUtils.isColorBlack() && angle < 100) {
+            motorControl.turnRight(5);
+            angle += 5;
+        } else if (!SensorUtils.isColorBlack()) {
+            requestNextState(LineFollowState.getInstance());
+        } else {
+            motorControl.turnLeft(angle);
+            requestNextState(TurnLeftState.getInstance());
         }
     }
 }
