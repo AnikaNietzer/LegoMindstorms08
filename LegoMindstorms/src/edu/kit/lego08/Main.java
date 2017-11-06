@@ -9,6 +9,7 @@ public class Main {
         System.out.println("Started main loop");
 
         State currentState = MainMenuState.getInstance();
+        currentState.onEnter();
         while (true) {
             currentState.mainLoop();
 

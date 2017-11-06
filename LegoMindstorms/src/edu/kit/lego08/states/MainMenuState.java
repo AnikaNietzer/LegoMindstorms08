@@ -18,7 +18,7 @@ public class MainMenuState extends State {
 
         menuEntries.add(new Tuple<String, State>("Linienfolgen", LineFollowState.getInstance()));
         menuEntries.add(new Tuple<String, State>("Labyrinth", MazeState.getInstance()));
-        menuEntries.add(new Tuple<String, State>("Hindernisse verschieben", MoveObjectsState.getInstance()));
+        menuEntries.add(new Tuple<String, State>("Verschieben", MoveObjectsState.getInstance()));
         menuEntries.add(new Tuple<String, State>("Bruecke", BridgeState.getInstance()));
     }
 
