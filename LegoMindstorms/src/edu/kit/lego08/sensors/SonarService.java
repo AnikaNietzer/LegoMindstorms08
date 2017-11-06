@@ -51,6 +51,7 @@ public class SonarService extends Thread {
                 motor.rotate(160/NUM_MEASUREMENTS);
             }
             measure(5);
+            printDistances();
         }
     }
 
@@ -63,7 +64,7 @@ public class SonarService extends Thread {
         LCD.clear();
 
         for (int i = 0; i < NUM_MEASUREMENTS; i++) {
-            LCD.drawString(i+": "+distances[i], 0, i);
+            LCD.drawString(String.format("%d: %.4f", i, distances[i]), 0, i);
         }
     }
 }
