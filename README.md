@@ -4,6 +4,14 @@
 
 > Ziel dieses Praktikums in 4er-Gruppen ist der Entwurf und die Programmierung eines Lego-Mindstorms-Roboters zur Durchquerung eines vielseitigen Hindernisparcours.
 
+## Parcours
+
+* Labyrinth (Linie verfolgen mit Abzweigungen)
+* Linie verfolgen (mit Lücken)
+* Brücke
+
+<img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/parcours-1.jpg" height="200"> <img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/parcours-2.png" height="200">
+
 ## Termin 1 (16.10.2017)
 
 * Vorstellung der Ziele des Praktikums
@@ -35,3 +43,11 @@
   * Roboter kann sich in bestimmten Winkeln drehen
     * Dies ist aber abhängig von Motorgeschwindigkeit und Drehrichtung: Ungenauigkeit der Motoren
 * Absprache über die Softwarearchitektur
+
+## Termin 3 (06.11.2017)
+* Linie verfolgen nahezu fertig
+* Motor-Regelung
+* Ultraschall-Messung fertig
+* Beginn der Verfolgung der Brücke
+
+<img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/2017-11-06-1.png" height="200"> <img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/2017-11-06-2.png" height="200"> <img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/2017-11-06-3.png" height="200"> <img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/2017-11-06-4.png" height="200">
