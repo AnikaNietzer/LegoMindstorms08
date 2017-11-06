@@ -10,7 +10,7 @@ public class SonarService extends Thread {
     private RegulatedMotor motor;
 
     public SonarService() {
-        motor = new EV3MediumRegulatedMotor(MotorPort.B);
+        //motor = new EV3MediumRegulatedMotor(MotorPort.B);
     }
 
     public void stopService() {

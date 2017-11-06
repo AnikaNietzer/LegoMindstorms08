@@ -19,7 +19,7 @@ public class MainMenuState extends State {
         menuEntries.add(new Tuple<String, State>("Linienfolgen", LineFollowState.getInstance()));
         menuEntries.add(new Tuple<String, State>("Labyrinth", MazeState.getInstance()));
         menuEntries.add(new Tuple<String, State>("Hindernisse verschieben", MoveObjectsState.getInstance()));
-        menuEntries.add(new Tuple<String, State>("Brücke", BridgeState.getInstance()));
+        menuEntries.add(new Tuple<String, State>("Bruecke", BridgeState.getInstance()));
     }
 
     public static MainMenuState getInstance() {
@@ -32,6 +32,7 @@ public class MainMenuState extends State {
     @Override
     public void onEnter() {
         requestNextState(null); // Stay in current state
+        redraw();
     }
 
     @Override
@@ -41,23 +42,29 @@ public class MainMenuState extends State {
 
     @Override
     public void mainLoop() {
-        LCD.clear();
-
-        LCD.drawString("Hauptmenü", 0, 0);
-        for (int i = 0; i < menuEntries.size(); i++) {
-            if (selectedState == i) {
-                LCD.drawString(" " + menuEntries.get(i).x, 0, i + 2);
-            } else {
-                LCD.drawString(">" + menuEntries.get(i).x, 0, i + 2);
-            }
-        }
-
-        if (SensorUtils.isKeyPressedAndReleased(Button.LEFT)) {
-            selectedState = (selectedState - 1) % menuEntries.size();
-        } else if (SensorUtils.isKeyPressedAndReleased(Button.RIGHT)) {
+        if (SensorUtils.isKeyPressedAndReleased(Button.UP)) {
+            selectedState = (selectedState - 1 + menuEntries.size()) % menuEntries.size();
+            redraw();
+        } else if (SensorUtils.isKeyPressedAndReleased(Button.DOWN)) {
             selectedState = (selectedState + 1) % menuEntries.size();
+            redraw();
         } else if (SensorUtils.isKeyPressedAndReleased(Button.ENTER)) {
             requestNextState(menuEntries.get(selectedState).y);
+        } else if (SensorUtils.isKeyPressedAndReleased(Button.ESCAPE)) {
+            System.exit(0);
+        }
+    }
+
+    private void redraw() {
+        LCD.clear();
+        LCD.drawString("Hauptmenue", 0, 0);
+
+        for (int i = 0; i < menuEntries.size(); i++) {
+            if (selectedState == i) {
+                LCD.drawString(">" + menuEntries.get(i).x, 0, i + 2);
+            } else {
+                LCD.drawString(" " + menuEntries.get(i).x, 0, i + 2);
+            }
         }
     }
 }

@@ -33,6 +33,6 @@ public class BridgeState extends State {
     public void mainLoop() {
         checkEnterToMainMenu();
         LCD.clear();
-        LCD.drawString("State: Brücke", 0, 5);
+        LCD.drawString("State: Bruecke", 0, 5);
     }
 }

@@ -23,7 +23,7 @@ public class SensorUtils {
 
     public static boolean isKeyPressedAndReleased(Key k) {
         if (k.isDown()) {
-            while (Button.ENTER.isDown()) {
+            while (k.isDown()) {
                 // Wait for button release
                 Delay.msDelay(10);
             }

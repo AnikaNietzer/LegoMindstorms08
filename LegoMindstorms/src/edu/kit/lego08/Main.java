@@ -6,8 +6,9 @@ import edu.kit.lego08.states.State;
 public class Main {
     public static void main(String[] args) {
 
-        State currentState = MainMenuState.getInstance();
+        System.out.println("Started main loop");
 
+        State currentState = MainMenuState.getInstance();
         while (true) {
             currentState.mainLoop();
 
