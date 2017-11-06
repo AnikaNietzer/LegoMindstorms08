@@ -35,3 +35,5 @@ LegoMindstorms/.idea/*
 *.iml
 LegoMindstorms/out/*
 LegoMindstorms/src/echo-empty.sh
+
+LegoMindstorms/src/edu/kit/lego08/Config.java

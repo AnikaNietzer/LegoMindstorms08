@@ -1,5 +1,6 @@
 package edu.kit.lego08.states;
 
+import edu.kit.lego08.Config;
 import edu.kit.lego08.sensors.SensorUtils;
 import edu.kit.lego08.states.linefollow.LineFollowState;
 import edu.kit.lego08.utils.Tuple;
@@ -57,7 +58,7 @@ public class MainMenuState extends State {
 
     private void redraw() {
         LCD.clear();
-        LCD.drawString("Hauptmenue", 0, 0);
+        LCD.drawString("Hauptmenue (" + Config.USER + ")", 0, 0);
 
         for (int i = 0; i < menuEntries.size(); i++) {
             if (selectedState == i) {
