@@ -1,5 +1,6 @@
 package edu.kit.lego08.states;
 
+import edu.kit.lego08.motorControl.MotorControl;
 import lejos.hardware.lcd.LCD;
 
 public class MazeState extends State {
@@ -19,6 +20,9 @@ public class MazeState extends State {
     @Override
     public void onEnter() {
         requestNextState(null); // Stay in current state
+        MotorControl m = new MotorControl();
+        m.forward(3000);
+        m.turnRight(1080);
     }
 
     @Override
