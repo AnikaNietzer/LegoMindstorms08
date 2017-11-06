@@ -10,6 +10,9 @@
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
+# JSON in recommenders
+.recommenders/caches/*
+
 # Package Files #
 # *.jar # we need some local libraries
 *.war
