@@ -14,15 +14,17 @@
 .recommenders/caches/*
 
 # Package Files #
-# *.jar # we need some local libraries
+*.jar # we need some local libraries
 *.war
 *.ear
 *.zip
 *.tar.gz
 *.rar
 
+
 # IDE stuff
 .metadata/
+.recommenders/
 RemoteSystemTempFiles/
 .project
 .classpath
