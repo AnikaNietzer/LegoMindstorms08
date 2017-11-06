@@ -1,12 +1,17 @@
 package edu.kit.lego08.states.bridge;
 
+import edu.kit.lego08.motor_control.MotorControl;
 import edu.kit.lego08.sensors.SonarService;
+import edu.kit.lego08.states.MainMenuState;
 import edu.kit.lego08.states.State;
+import lejos.hardware.Sound;
 import lejos.hardware.lcd.LCD;
+import lejos.utility.Delay;
 
 public class BridgeForwardState extends State {
     private static BridgeForwardState instance = null;
     private SonarService sonarService;
+    private MotorControl motorControl = new MotorControl();
 
     private BridgeForwardState() {
         // States shall be used as singleton
@@ -37,5 +42,13 @@ public class BridgeForwardState extends State {
     @Override
     public void mainLoop() {
         checkEnterToMainMenu();
+
+        motorControl.forward(1000);
+        Delay.msDelay(1000);
+
+        if (sonarService.getDistance(3) > 0.25) {
+            requestNextState(MainMenuState.getInstance());
+            Sound.playTone(500, 400);
+        }
     }
 }
