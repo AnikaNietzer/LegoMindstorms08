@@ -10,7 +10,7 @@
 * Linie verfolgen (mit Lücken)
 * Brücke
 
-<img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/parcours-1.jpg" height="200"> <img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/parcours-2.jpg" height="200">
+<img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/parcours-1.jpg" height="150"> <img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/parcours-2.jpg" height="150">
 
 ## Termin 1 (16.10.2017)
 
@@ -21,13 +21,13 @@
 * Überlegung, einen rotierenden Ultraschallsensor zu benutzen
 * Bau des Fahrgestells, aber keine Zeit mehr zum Testen der Fahreigenschaft
 
-<img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/2017-10-16.jpg" height="200"> <img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/model-day1.png" height="200">
+<img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/2017-10-16.jpg" height="150"> <img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/model-day1.png" height="150">
 
 ## Übungsblatt
 
 * Planen der Anbringung weiterer Sensoren an das Fahrgestell
 
-<img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/model-draft-1.png" height="200"> <img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/model-draft-2.png" height="200"> <img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/model-draft-3.png" height="200">
+<img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/model-draft-1.png" height="150"> <img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/model-draft-2.png" height="150"> <img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/model-draft-3.png" height="150">
 
 ## Termin 2 (23.10.2017)
 
@@ -50,4 +50,4 @@
 * Ultraschall-Messung fertig
 * Beginn der Verfolgung der Brücke
 
-<img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/2017-11-06-1.jpg" height="200"> <img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/2017-11-06-2.jpg" height="200"> <img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/2017-11-06-3.jpg" height="200"> <img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/2017-11-06-4.jpg" height="200">
+<img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/2017-11-06-1.jpg" height="150"> <img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/2017-11-06-2.jpg" height="150"> <img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/2017-11-06-3.jpg" height="150"> <img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/2017-11-06-4.jpg" height="150">
