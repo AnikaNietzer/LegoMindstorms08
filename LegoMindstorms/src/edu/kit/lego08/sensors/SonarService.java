@@ -1,6 +1,7 @@
 package edu.kit.lego08.sensors;
 
 import lejos.hardware.Sound;
+import lejos.hardware.lcd.LCD;
 import lejos.hardware.motor.EV3MediumRegulatedMotor;
 import lejos.hardware.port.MotorPort;
 import lejos.robotics.RegulatedMotor;
@@ -56,5 +57,13 @@ public class SonarService extends Thread {
     private void measure(int position) {
         Sound.playTone(800 + 50*position, 50);
         distances[position] = SensorUtils.getDistance();
+    }
+
+    public void printDistances() {
+        LCD.clear();
+
+        for (int i = 0; i < NUM_MEASUREMENTS; i++) {
+            LCD.drawString(i+": "+distances[i], 0, i);
+        }
     }
 }
