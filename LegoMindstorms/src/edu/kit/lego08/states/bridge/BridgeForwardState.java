@@ -1,19 +1,20 @@
-package edu.kit.lego08.states;
+package edu.kit.lego08.states.bridge;
 
 import edu.kit.lego08.sensors.SonarService;
+import edu.kit.lego08.states.State;
 import lejos.hardware.lcd.LCD;
 
-public class BridgeState extends State {
-    private static BridgeState instance = null;
+public class BridgeForwardState extends State {
+    private static BridgeForwardState instance = null;
     private SonarService sonarService;
 
-    private BridgeState() {
+    private BridgeForwardState() {
         // States shall be used as singleton
     }
 
-    public static BridgeState getInstance() {
+    public static BridgeForwardState getInstance() {
         if (instance == null) {
-            instance = new BridgeState();
+            instance = new BridgeForwardState();
         }
         return instance;
     }

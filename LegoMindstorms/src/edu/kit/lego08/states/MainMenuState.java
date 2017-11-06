@@ -2,6 +2,7 @@ package edu.kit.lego08.states;
 
 import edu.kit.lego08.Config;
 import edu.kit.lego08.sensors.SensorUtils;
+import edu.kit.lego08.states.bridge.BridgeForwardState;
 import edu.kit.lego08.states.linefollow.LineFollowState;
 import edu.kit.lego08.states.maze.MazeFindState;
 import edu.kit.lego08.utils.Tuple;
@@ -23,7 +24,7 @@ public class MainMenuState extends State {
         menuEntries.add(new Tuple<String, State>("Test", TestState.getInstance()));
         menuEntries.add(new Tuple<String, State>("Labyrinth", MazeFindState.getInstance()));
         menuEntries.add(new Tuple<String, State>("Verschieben", MoveObjectsState.getInstance()));
-        menuEntries.add(new Tuple<String, State>("Bruecke", BridgeState.getInstance()));
+        menuEntries.add(new Tuple<String, State>("Bruecke", BridgeForwardState.getInstance()));
     }
 
     public static MainMenuState getInstance() {
