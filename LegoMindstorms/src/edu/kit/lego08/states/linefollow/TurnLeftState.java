@@ -1,6 +1,6 @@
 package edu.kit.lego08.states.linefollow;
 
-import edu.kit.lego08.motors.MotorControl;
+import edu.kit.lego08.motor_control.MotorControl;
 import edu.kit.lego08.sensors.SensorUtils;
 import edu.kit.lego08.states.State;
 import lejos.hardware.lcd.LCD;

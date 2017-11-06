@@ -1,5 +1,5 @@
-package edu.kit.lego08.motorControl;
-import edu.kit.lego08.motorControl.PController;
+package edu.kit.lego08.motor_control;
+import edu.kit.lego08.motor_control.PController;
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
 import lejos.hardware.port.MotorPort;
 import lejos.robotics.RegulatedMotor;
@@ -7,20 +7,18 @@ import lejos.utility.Delay;
 
 public class MotorControl {
 
-    private EV3LargeRegulatedMotor motorRight;
-    private EV3LargeRegulatedMotor motorLeft;
+    private static EV3LargeRegulatedMotor motorRight = new EV3LargeRegulatedMotor(MotorPort.A);
+    private static EV3LargeRegulatedMotor motorLeft = new EV3LargeRegulatedMotor(MotorPort.D);
 
     public MotorControl() {
-        motorRight = new EV3LargeRegulatedMotor(MotorPort.A);
         motorRight.setSpeed(360);
-        motorLeft = new EV3LargeRegulatedMotor(MotorPort.D);
         motorLeft.setSpeed(360);
     }
 
     public void turnRight(int angle) {
         // 5.95 is factor for how much the motors have to rotate to rotate the roboter 1 degree
-        PController leftMotorController = new PController(motorLeft, motorLeft.getSpeed());
-        PController rightMotorController = new PController(motorRight, motorRight.getSpeed());
+        PController leftMotorController = new PController(motorLeft);
+        PController rightMotorController = new PController(motorRight);
         motorRight.rotate(-(int)((double)angle * 5.95), true);
         motorLeft.rotate((int)((double)angle * 5.95), true);
         int time = 0;
@@ -35,8 +33,8 @@ public class MotorControl {
     
     public void turnLeft(int angle) {
      // 5.95 is factor for how much the motors have to rotate to rotate the roboter 1 degree
-        PController leftMotorController = new PController(motorLeft, motorLeft.getSpeed());
-        PController rightMotorController = new PController(motorRight, motorRight.getSpeed());
+        PController leftMotorController = new PController(motorLeft);
+        PController rightMotorController = new PController(motorRight);
         motorRight.rotate((int)((double)angle * 5.9), true);
         motorLeft.rotate(-(int)((double)angle * 5.9), true);
         int time = 0;
@@ -49,8 +47,8 @@ public class MotorControl {
     }
     
     public void forward(int millis) {
-        PController leftMotorController = new PController(motorLeft, motorLeft.getSpeed());
-        PController rightMotorController = new PController(motorRight, motorRight.getSpeed());
+        PController leftMotorController = new PController(motorLeft);
+        PController rightMotorController = new PController(motorRight);
         motorRight.forward();
         motorLeft.forward();
         int time = 0;
@@ -72,8 +70,8 @@ public class MotorControl {
     }
     
     public void backward(int millis) {
-        PController leftMotorController = new PController(motorLeft, motorLeft.getSpeed());
-        PController rightMotorController = new PController(motorRight, motorRight.getSpeed());
+        PController leftMotorController = new PController(motorLeft);
+        PController rightMotorController = new PController(motorRight);
         motorRight.backward();
         motorLeft.backward();
         Delay.msDelay(millis);
