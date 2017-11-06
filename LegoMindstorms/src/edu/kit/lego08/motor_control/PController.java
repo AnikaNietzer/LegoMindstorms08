@@ -1,4 +1,4 @@
-package edu.kit.lego08.motorControl;
+package edu.kit.lego08.motor_control;
 
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
 
@@ -8,9 +8,9 @@ public class PController {
     private double degreesPerMs;
     private int speed;
     
-    public PController (EV3LargeRegulatedMotor motor, int speed) {
+    public PController (EV3LargeRegulatedMotor motor) {
         this.motor = motor;
-        this.speed = speed;
+        this.speed = motor.getSpeed();
         this.degreesPerMs = ((double) speed / 1000.0);
         motor.resetTachoCount();
     }

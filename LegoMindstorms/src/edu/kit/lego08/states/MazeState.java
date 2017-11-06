@@ -1,6 +1,6 @@
 package edu.kit.lego08.states;
 
-import edu.kit.lego08.motorControl.MotorControl;
+import edu.kit.lego08.motor_control.MotorControl;
 import lejos.hardware.lcd.LCD;
 
 public class MazeState extends State {
