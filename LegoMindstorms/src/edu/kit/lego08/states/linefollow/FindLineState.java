@@ -4,23 +4,24 @@ import edu.kit.lego08.sensors.SensorUtils;
 import edu.kit.lego08.states.State;
 import lejos.hardware.lcd.LCD;
 
-public class LineFollowState extends State {
-    private static LineFollowState instance = null;
+public class FindLineState extends State {
+    private static FindLineState instance = null;
 
-    private LineFollowState() {
+    private FindLineState() {
         // States shall be used as singleton
     }
 
-    public static LineFollowState getInstance() {
+    public static FindLineState getInstance() {
         if (instance == null) {
-            instance = new LineFollowState();
+            instance = new FindLineState();
         }
         return instance;
     }
 
     @Override
     public void onEnter() {
-        requestNextState(null);
+        requestNextState(null); // Stay in current state
+        //TODO: Move left
     }
 
     @Override
@@ -35,7 +36,6 @@ public class LineFollowState extends State {
         LCD.drawString("Linienfolgen: Links", 0, 5);
 
         if (!SensorUtils.isColorBlack()) {
-            //MotorControl.
             //requestNextState(LineFollowRightState.getInstance());
         }
     }
