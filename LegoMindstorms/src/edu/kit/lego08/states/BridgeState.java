@@ -5,7 +5,7 @@ import lejos.hardware.lcd.LCD;
 
 public class BridgeState extends State {
     private static BridgeState instance = null;
-    private SonarService sonarService = new SonarService();
+    private SonarService sonarService;
 
     private BridgeState() {
         // States shall be used as singleton
@@ -21,7 +21,11 @@ public class BridgeState extends State {
     @Override
     public void onEnter() {
         requestNextState(null); // Stay in current state
+        sonarService = new SonarService();
         sonarService.start();
+
+        LCD.clear();
+        LCD.drawString("State: Bruecke", 0, 5);
     }
 
     @Override
@@ -32,7 +36,5 @@ public class BridgeState extends State {
     @Override
     public void mainLoop() {
         checkEnterToMainMenu();
-        LCD.clear();
-        LCD.drawString("State: Bruecke", 0, 5);
     }
 }
