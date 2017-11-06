@@ -1,3 +1,4 @@
+package edu.kit.lego08.motors;
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
 import lejos.hardware.port.MotorPort;
 import lejos.robotics.RegulatedMotor;
@@ -5,13 +6,11 @@ import lejos.utility.Delay;
 
 public class MotorControl {
 
-    private RegulatedMotor motorRight;
-    private RegulatedMotor motorLeft;
+    private static RegulatedMotor motorRight = new EV3LargeRegulatedMotor(MotorPort.A);
+    private static RegulatedMotor motorLeft = new EV3LargeRegulatedMotor(MotorPort.D);
 
     public MotorControl() {
-        motorRight = new EV3LargeRegulatedMotor(MotorPort.A);
         motorRight.setSpeed(360);
-        motorLeft = new EV3LargeRegulatedMotor(MotorPort.D);
         motorLeft.setSpeed(360);
     }
 

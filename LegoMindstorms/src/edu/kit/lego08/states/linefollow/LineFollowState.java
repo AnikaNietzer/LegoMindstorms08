@@ -1,11 +1,14 @@
 package edu.kit.lego08.states.linefollow;
 
+import edu.kit.lego08.motors.MotorControl;
 import edu.kit.lego08.sensors.SensorUtils;
 import edu.kit.lego08.states.State;
 import lejos.hardware.lcd.LCD;
 
+
 public class LineFollowState extends State {
     private static LineFollowState instance = null;
+    private MotorControl motorControl = new MotorControl();
 
     private LineFollowState() {
         // States shall be used as singleton
@@ -32,11 +35,13 @@ public class LineFollowState extends State {
     public void mainLoop() {
         checkEnterToMainMenu();
         LCD.clear();
-        LCD.drawString("Linienfolgen: Links", 0, 5);
+        LCD.drawString("LineFollow", 0, 5);
 
         if (!SensorUtils.isColorBlack()) {
-            //MotorControl.
-            //requestNextState(LineFollowRightState.getInstance());
+            motorControl.forward(1000);
+        } else {
+            requestNextState(TurnRightState.getInstance());
         }
+        
     }
 }

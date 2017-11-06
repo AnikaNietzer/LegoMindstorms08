@@ -1,6 +1,7 @@
 package edu.kit.lego08.sensors;
 
 import lejos.hardware.Key;
+import lejos.hardware.lcd.LCD;
 import lejos.hardware.port.SensorPort;
 import lejos.hardware.sensor.EV3ColorSensor;
 import lejos.hardware.sensor.EV3TouchSensor;
@@ -39,7 +40,8 @@ public class SensorUtils {
 
     public static boolean isColorBlack() {
         int colorId = colorSensor.getColorID();
-        return colorId == Color.BLACK;
+        LCD.drawString("Color" + colorId, 0, 5);
+        return colorId == Color.BLACK || colorId == Color.NONE;
     }
 
     public static float getDistance() {
