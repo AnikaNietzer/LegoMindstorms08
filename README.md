@@ -10,7 +10,7 @@
 * Linie verfolgen (mit Lücken)
 * Brücke
 
-<img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/parcours-1.jpg" height="200"> <img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/parcours-2.png" height="200">
+<img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/parcours-1.jpg" height="200"> <img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/parcours-2.jpg" height="200">
 
 ## Termin 1 (16.10.2017)
 
@@ -50,4 +50,4 @@
 * Ultraschall-Messung fertig
 * Beginn der Verfolgung der Brücke
 
-<img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/2017-11-06-1.png" height="200"> <img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/2017-11-06-2.png" height="200"> <img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/2017-11-06-3.png" height="200"> <img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/2017-11-06-4.png" height="200">
+<img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/2017-11-06-1.jpg" height="200"> <img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/2017-11-06-2.jpg" height="200"> <img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/2017-11-06-3.jpg" height="200"> <img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/2017-11-06-4.jpg" height="200">
