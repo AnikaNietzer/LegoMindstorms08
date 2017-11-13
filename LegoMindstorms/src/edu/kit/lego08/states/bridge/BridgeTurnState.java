@@ -5,20 +5,19 @@ import edu.kit.lego08.sensors.SonarService;
 import edu.kit.lego08.states.State;
 import lejos.hardware.Sound;
 import lejos.hardware.lcd.LCD;
-import lejos.utility.Delay;
 
-public class BridgeLeftState extends State {
-    private static BridgeLeftState instance = null;
+public class BridgeTurnState extends State {
+    private static BridgeTurnState instance = null;
     private SonarService sonarService;
     private MotorControl motorControl = new MotorControl();
 
-    private BridgeLeftState() {
+    private BridgeTurnState() {
         // States shall be used as singleton
     }
 
-    public static BridgeLeftState getInstance() {
+    public static BridgeTurnState getInstance() {
         if (instance == null) {
-            instance = new BridgeLeftState();
+            instance = new BridgeTurnState();
         }
         return instance;
     }
@@ -31,6 +30,7 @@ public class BridgeLeftState extends State {
 
         LCD.clear();
         LCD.drawString("State: Bruecke", 0, 5);
+        motorControl.backward(500);
     }
 
     @Override
@@ -40,14 +40,14 @@ public class BridgeLeftState extends State {
 
     @Override
     public void mainLoop() {
-        checkEnterToMainMenu();
+        motorControl.turnLeft(30);
+        sonarService.measureAll();
 
-        motorControl.turnLeft(10);
-        Delay.msDelay(1000);
-
-        if (sonarService.getDistance(3) < 0.2 && sonarService.getDistance(3) < Float.MAX_VALUE) {
-            requestNextState(BridgeForwardState.getInstance());
+        if (sonarService.getDistance(2) < 0.3) {
             Sound.playTone(500, 400);
+            requestNextState(BridgeForwardState.getInstance());
         }
+
+        checkEnterToMainMenu();
     }
 }
