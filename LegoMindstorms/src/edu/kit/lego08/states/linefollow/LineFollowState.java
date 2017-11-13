@@ -2,9 +2,9 @@ package edu.kit.lego08.states.linefollow;
 
 import edu.kit.lego08.motor_control.MotorControl;
 import edu.kit.lego08.sensors.SensorUtils;
+import edu.kit.lego08.states.MainMenuState;
 import edu.kit.lego08.states.State;
 import lejos.hardware.lcd.LCD;
-
 
 public class LineFollowState extends State {
     private static LineFollowState instance = null;
@@ -24,24 +24,26 @@ public class LineFollowState extends State {
     @Override
     public void onEnter() {
         requestNextState(null);
+        LCD.clear();
+        LCD.drawString("Follow Line", 0, 5);
     }
 
     @Override
     public void onExit() {
-        //TODO: Stop moving left
+
     }
 
     @Override
     public void mainLoop() {
-        checkEnterToMainMenu();
-        LCD.clear();
-        LCD.drawString("LineFollow", 0, 5);
-
-        if (!SensorUtils.isColorBlack()) {
-            motorControl.forward(1000);
+        if (SensorUtils.isColorLine()) {
+            motorControl.forward(500);
+        } else if (SensorUtils.isColorBackground()) {
+            requestNextState(RotateState.getInstance());
+        } else if (SensorUtils.isColorMarker()) {
+            requestNextState(MainMenuState.getInstance());
         } else {
-            requestNextState(TurnRightState.getInstance());
+            throw new IllegalStateException("Color is not one of the expected colors" + SensorUtils.getColorId());
         }
-        
+        checkEnterToMainMenu();
     }
 }

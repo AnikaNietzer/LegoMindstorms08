@@ -2,6 +2,7 @@ package edu.kit.lego08.states.linefollow;
 
 import edu.kit.lego08.motor_control.MotorControl;
 import edu.kit.lego08.sensors.SensorUtils;
+import edu.kit.lego08.states.MainMenuState;
 import edu.kit.lego08.states.State;
 import lejos.hardware.lcd.LCD;
 
@@ -24,50 +25,44 @@ public class BridgeGapState extends State {
 
     @Override
     public void onEnter() {
-        requestNextState(null); // Stay in current state
-        //TODO: Move left
+        requestNextState(null);
+        LCD.clear();
+        LCD.drawString("Bride Gap", 0, 5);
     }
 
     @Override
     public void onExit() {
-        //TODO: Stop moving left
+        stateCounter = 0;
     }
 
     @Override
     public void mainLoop() {
-        checkEnterToMainMenu();
-        LCD.clear();
-        LCD.drawString("Bride Gap", 0, 5);
-
-        if (SensorUtils.isColorBlack()) {
+        if (SensorUtils.isColorBackground()) {
             move();
-            stateCounter ++;
-        } else {
+            stateCounter++;
+        } else if (SensorUtils.isColorLine()) {
             requestNextState(LineFollowState.getInstance());
+        } else if (SensorUtils.isColorMarker()) {
+            requestNextState(MainMenuState.getInstance());
+        } else {
+            throw new IllegalStateException("Color is not one of the expected colors" + SensorUtils.getColorId());
         }
+        checkEnterToMainMenu();
     }
-    
+
     private void move() {
-        switch(stateCounter % 6) {
-        
+        switch (stateCounter % 4) {
         case 0:
-            motorControl.forward(2000);
+            motorControl.forward(1000);
             break;
         case 1:
-            motorControl.turnRight(5);
+            motorControl.turnRight(10);
             break;
         case 2:
-            motorControl.turnRight(5);
+            motorControl.turnLeft(20);
             break;
         case 3:
-            motorControl.turnLeft(15);
-            break;
-        case 4:
-            motorControl.turnLeft(5);
-            break;
-        case 5:
             motorControl.turnRight(10);
-            motorControl.forward(2000);
             break;
         }
     }

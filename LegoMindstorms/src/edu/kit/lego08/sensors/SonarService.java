@@ -4,7 +4,6 @@ import lejos.hardware.Sound;
 import lejos.hardware.motor.EV3MediumRegulatedMotor;
 import lejos.hardware.port.MotorPort;
 import lejos.robotics.RegulatedMotor;
-import lejos.utility.Delay;
 
 public class SonarService extends Thread {
     private boolean isRunning = true;
