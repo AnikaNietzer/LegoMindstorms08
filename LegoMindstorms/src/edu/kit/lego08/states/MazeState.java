@@ -21,7 +21,7 @@ public class MazeState extends State {
     public void onEnter() {
         requestNextState(null); // Stay in current state
         MotorControl m = new MotorControl();
-        m.forward(3000);
+        m.forwardTimed(3000, true);
         m.turnRight(1080);
     }
 

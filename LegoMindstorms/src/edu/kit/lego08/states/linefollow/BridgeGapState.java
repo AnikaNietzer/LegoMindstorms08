@@ -53,7 +53,8 @@ public class BridgeGapState extends State {
     private void move() {
         switch (stateCounter % 4) {
         case 0:
-            motorControl.forward(1000);
+
+            motorControl.forwardTimed(1000, true);
             break;
         case 1:
             motorControl.turnRight(10);
@@ -63,6 +64,7 @@ public class BridgeGapState extends State {
             break;
         case 3:
             motorControl.turnRight(10);
+
             break;
         }
     }
