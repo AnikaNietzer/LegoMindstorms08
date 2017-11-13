@@ -35,8 +35,9 @@ public class LineFollowState extends State {
 
     @Override
     public void mainLoop() {
+
         if (SensorUtils.isColorLine()) {
-            motorControl.forward(500);
+            motorControl.forwardTimed(500, true);
         } else if (SensorUtils.isColorBackground()) {
             requestNextState(RotateState.getInstance());
         } else if (SensorUtils.isColorMarker()) {
