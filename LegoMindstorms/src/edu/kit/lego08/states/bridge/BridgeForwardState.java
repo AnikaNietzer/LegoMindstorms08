@@ -46,7 +46,7 @@ public class BridgeForwardState extends State {
         motorControl.forward(1000);
         Delay.msDelay(1000);
 
-        if (sonarService.getDistance(3) > 0.25) {
+        if (sonarService.getDistance(3) > 0.25 && sonarService.getDistance(3) < Float.MAX_VALUE) {
             requestNextState(MainMenuState.getInstance());
             Sound.playTone(500, 400);
         }
