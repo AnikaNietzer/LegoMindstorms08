@@ -4,24 +4,22 @@ import edu.kit.lego08.motor_control.MotorControl;
 import edu.kit.lego08.sensors.SonarService;
 import edu.kit.lego08.states.MainMenuState;
 import edu.kit.lego08.states.State;
-import edu.kit.lego08.states.linefollow.TurnLeftState;
-import edu.kit.lego08.states.linefollow.TurnRightState;
 import lejos.hardware.Sound;
 import lejos.hardware.lcd.LCD;
 import lejos.utility.Delay;
 
-public class BridgeForwardState extends State {
-    private static BridgeForwardState instance = null;
+public class BridgeRightState extends State {
+    private static BridgeRightState instance = null;
     private SonarService sonarService;
     private MotorControl motorControl = new MotorControl();
 
-    private BridgeForwardState() {
+    private BridgeRightState() {
         // States shall be used as singleton
     }
 
-    public static BridgeForwardState getInstance() {
+    public static BridgeRightState getInstance() {
         if (instance == null) {
-            instance = new BridgeForwardState();
+            instance = new BridgeRightState();
         }
         return instance;
     }
@@ -45,17 +43,12 @@ public class BridgeForwardState extends State {
     public void mainLoop() {
         checkEnterToMainMenu();
 
-        motorControl.forward(1000);
+        motorControl.turnRight(10);
         Delay.msDelay(1000);
 
-        if (sonarService.getDistance(3) > 0.2) {
-            if (sonarService.getDistance(1) < 0.2) {
-                requestNextState(BridgeLeftState.getInstance());
-                Sound.playTone(500, 400);
-            } else if (sonarService.getDistance(5) < 0.2) {
-                requestNextState(BridgeRightState.getInstance());
-                Sound.playTone(500, 400);
-            }
+        if (sonarService.getDistance(3) < 0.2 && sonarService.getDistance(3) < Float.MAX_VALUE) {
+            requestNextState(BridgeForwardState.getInstance());
+            Sound.playTone(500, 400);
         }
     }
 }

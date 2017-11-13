@@ -21,7 +21,7 @@ public class SonarService extends Thread {
     }
 
     private void initPosition() {
-        motor.setSpeed(150);
+        motor.setSpeed(60);
 
         motor.backward();
         while (!SensorUtils.isTouchSonarPressed()) {
