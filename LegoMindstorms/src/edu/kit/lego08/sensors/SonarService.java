@@ -55,7 +55,7 @@ public class SonarService extends Thread {
     }
 
     private void measure(int position) {
-        Sound.playTone(200, 20);
+        //Sound.playTone(200, 20);
         distances[position] = SensorUtils.getDistance();
     }
 
