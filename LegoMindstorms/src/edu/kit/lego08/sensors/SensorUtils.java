@@ -6,6 +6,7 @@ import lejos.hardware.port.SensorPort;
 import lejos.hardware.sensor.EV3ColorSensor;
 import lejos.hardware.sensor.EV3TouchSensor;
 import lejos.hardware.sensor.EV3UltrasonicSensor;
+import lejos.hardware.sensor.SensorMode;
 import lejos.hardware.sensor.SensorModes;
 import lejos.robotics.Color;
 import lejos.robotics.SampleProvider;
@@ -38,10 +39,26 @@ public class SensorUtils {
         }
     }
 
-    public static boolean isColorBlack() {
+    public static boolean isColorBackground() {
         int colorId = colorSensor.getColorID();
-        LCD.drawString("Color" + colorId, 0, 5);
-        return colorId == Color.BLACK || colorId == Color.NONE;
+        LCD.drawString("Color" + colorId + " ", 0, 3);
+        return colorId == Color.BLACK || colorId == Color.NONE || colorId == Color.BROWN || colorId == Color.DARK_GRAY;
+    }
+
+    public static boolean isColorLine() {
+        int colorId = colorSensor.getColorID();
+        LCD.drawString("Color" + colorId + " ", 0, 3);
+        return colorId == Color.YELLOW || colorId == Color.WHITE || colorId == Color.LIGHT_GRAY || colorId == Color.BLUE;
+    }
+
+    public static boolean isColorMarker() {
+        int colorId = colorSensor.getColorID();
+        LCD.drawString("Color" + colorId + " ", 0, 3);
+        return colorId == Color.RED || colorId == Color.MAGENTA || colorId == Color.PINK || colorId == Color.ORANGE;
+    }
+
+    public static int getColorId() {
+        return colorSensor.getColorID();
     }
 
     public static float getDistance() {
