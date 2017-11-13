@@ -1,5 +1,6 @@
 package edu.kit.lego08.sensors;
 
+import lejos.hardware.Sound;
 import lejos.hardware.lcd.LCD;
 import lejos.hardware.motor.EV3MediumRegulatedMotor;
 import lejos.hardware.port.MotorPort;
@@ -8,8 +9,7 @@ import lejos.robotics.RegulatedMotor;
 public class SonarService extends Thread {
     private boolean isRunning = true;
     private RegulatedMotor motor;
-    private static final int NUM_MEASUREMENTS = 6;
-    private float distances[] = new float[NUM_MEASUREMENTS];
+    private float distances[] = new float[3];
 
     public SonarService() {
         motor = new EV3MediumRegulatedMotor(MotorPort.B);
@@ -20,8 +20,8 @@ public class SonarService extends Thread {
         motor.close();
     }
 
-    private void initPosition() {
-        motor.setSpeed(60);
+    public void initPosition() {
+        motor.setSpeed(100);
 
         motor.backward();
         while (!SensorUtils.isTouchSonarPressed()) {
@@ -32,31 +32,37 @@ public class SonarService extends Thread {
         while (SensorUtils.isTouchSonarPressed()) {
             // Move until sensor is released
         }
-        motor.rotate(10);
+        motor.rotate(90);
     }
 
     @Override
     public void run() {
-        while (isRunning) {
-            initPosition();
+        //while (isRunning) {
+        //    measureAll();
+        //}
+    }
 
-            for (int i = 0; i < NUM_MEASUREMENTS; i++) {
-                measure(i);
-                motor.rotate(160/NUM_MEASUREMENTS);
-            }
-            measure(5);
-            printDistances();
-        }
+    public void measureAll() {
+        //initPosition();
+
+        //measure(0);
+        //motor.rotate(90);
+        //measure(1);
+        //motor.rotate(90);
+        measure(2);
+
+        //printDistances();
     }
 
     private void measure(int position) {
+        Sound.playTone(200, 20);
         distances[position] = SensorUtils.getDistance();
     }
 
     public void printDistances() {
         LCD.clear();
 
-        for (int i = 0; i < NUM_MEASUREMENTS; i++) {
+        for (int i = 0; i < distances.length; i++) {
             LCD.drawString(String.format("%d: %.4f", i, distances[i]), 0, i);
         }
     }
