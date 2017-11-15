@@ -51,3 +51,10 @@
 * Beginn der Verfolgung der Brücke
 
 <img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/2017-11-06-1.jpg" height="150"> <img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/2017-11-06-2.jpg" height="150"> <img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/2017-11-06-3.jpg" height="150"> <img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/2017-11-06-4.jpg" height="150">
+
+## Termin 4 (13.11.2017)
+* Weitere Verbesserungen der Linienfolgung
+* Motorensteuerung überarbeitet
+* Realisierung, dass Ultraschall gerade auftreffen muss
+  * Sensor zeigt jetzt gerade nach unten
+* Verschiedene Versuche zu Brückenverfolgung
