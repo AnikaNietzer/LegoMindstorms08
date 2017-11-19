@@ -29,7 +29,7 @@ public class BridgeTurnState extends State {
         LCD.clear();
         LCD.drawString("State: Bruecke", 0, 5);
         motorControl.backwardTimed(500, true);
-        motorControl.fwdLeft();
+        motorControl.rightTrackForward();
     }
 
     @Override

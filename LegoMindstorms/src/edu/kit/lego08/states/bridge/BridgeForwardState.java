@@ -28,7 +28,7 @@ public class BridgeForwardState extends State {
 
         LCD.clear();
         LCD.drawString("State: Bruecke", 0, 5);
-        motorControl.fwdRight();
+        motorControl.leftTrackForward();
     }
 
     @Override
