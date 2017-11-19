@@ -15,6 +15,20 @@ public class MotorControl {
         motorLeft.setSpeed(360);
     }
 
+    public void leftTrackForward() {
+        stop(false);
+        
+        motorLeft.forward();
+           
+    }
+    
+    public void rightTrackForward() {
+        stop(false);
+        
+        motorRight.forward();
+           
+    }
+    
     public void turnRight(int angle) {
         // 5.95 is factor for how much the motors have to rotate to rotate the roboter 1 degree
         stop(false);
@@ -73,8 +87,12 @@ public class MotorControl {
         }
     }
     
-    private void stop(boolean waitForStop) {
-        if (motorLeft.isMoving() || motorLeft.isMoving()) {
+    public void stop(boolean waitForStop) {
+        if (motorLeft.isMoving() && !motorRight.isMoving()) {
+            motorLeft.stop(!waitForStop);
+        } else if (!motorLeft.isMoving() && motorRight.isMoving()) {
+            motorRight.stop(!waitForStop);
+        } else {
             motorRight.stop(true);
             motorLeft.stop(!waitForStop);
         }
