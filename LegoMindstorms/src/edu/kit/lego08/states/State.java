@@ -21,6 +21,8 @@ public abstract class State {
     protected void checkEnterToMainMenu() {
         if (SensorUtils.isKeyPressedAndReleased(Button.ENTER)) {
             requestNextState(MainMenuState.getInstance());
+        } else if (SensorUtils.isKeyPressedAndReleased(Button.ESCAPE)) {
+            requestNextState(MainMenuState.getInstance());
         }
     }
 }

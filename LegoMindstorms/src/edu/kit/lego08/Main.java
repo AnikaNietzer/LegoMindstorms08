@@ -1,6 +1,5 @@
 package edu.kit.lego08;
 
-import edu.kit.lego08.motor_control.MotorControl;
 import edu.kit.lego08.states.MainMenuState;
 import edu.kit.lego08.states.State;
 
