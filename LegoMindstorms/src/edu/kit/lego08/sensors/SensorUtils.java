@@ -86,10 +86,6 @@ public class SensorUtils {
         SampleProvider distance = ultrasonicSensor.getMode("Distance");
         float[] sample = new float[distance.sampleSize()];
         distance.fetchSample(sample, 0);
-
-        for (int i = 0; i < 5 && Float.isInfinite(sample[0]); i++) {
-            distance.fetchSample(sample, 0); // Try again
-        }
         return sample[0];
     }
 }

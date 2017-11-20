@@ -39,7 +39,7 @@ public class BridgeForwardState extends State {
     @Override
     public void mainLoop() {
         if (SensorUtils.getDistance() > 0.2) {
-            Sound.playTone(500, 400);
+            //Sound.playTone(500, 400);
             requestNextState(BridgeTurnState.getInstance());
         }
 
