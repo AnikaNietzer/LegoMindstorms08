@@ -1,6 +1,7 @@
 package edu.kit.lego08.sensors;
 
 import lejos.hardware.Key;
+import lejos.hardware.Sound;
 import lejos.hardware.lcd.LCD;
 import lejos.hardware.port.SensorPort;
 import lejos.hardware.sensor.EV3ColorSensor;
@@ -53,10 +54,11 @@ public class SensorUtils {
 
     public static boolean isKeyPressedAndReleased(Key k) {
         if (k.isDown()) {
+            Sound.playTone(500, 20);
             while (k.isDown()) {
                 // Wait for button release
-                Delay.msDelay(10);
             }
+            Sound.playTone(600, 20);
             return true;
         } else {
             return false;
