@@ -1,6 +1,7 @@
 package edu.kit.lego08.states.maze;
 
 import edu.kit.lego08.motor_control.MotorControl;
+import edu.kit.lego08.sensors.ColorEnum;
 import edu.kit.lego08.sensors.SensorUtils;
 import edu.kit.lego08.states.State;
 import lejos.hardware.Sound;
@@ -26,7 +27,7 @@ public class MazeScanState extends State {
     public void onEnter() {
         requestNextState(null);
         LCD.clear();
-        LCD.drawString("State: Scan", 0, 5);
+        LCD.drawString("State: Maze scan", 0, 5);
 
         measure();
     }
@@ -35,16 +36,16 @@ public class MazeScanState extends State {
         int rotateAngle = 70;
 
         motorControl.forwardTimed(500, true);
-        hasForward = SensorUtils.isColorLine() || SensorUtils.isColorMarker();
-        Sound.playTone(600 + (hasForward?100:0), 100);
+        hasForward = SensorUtils.getColor() == ColorEnum.LINE || SensorUtils.getColor() == ColorEnum.MARKER;
+        Sound.playTone(600 + (hasForward ? 100 : 0), 100);
 
         motorControl.turnLeftAndWait(rotateAngle);
-        hasLeft = SensorUtils.isColorLine() || SensorUtils.isColorMarker();
-        Sound.playTone(600 + (hasLeft?100:0), 100);
+        hasLeft = SensorUtils.getColor() == ColorEnum.LINE || SensorUtils.getColor() == ColorEnum.MARKER;
+        Sound.playTone(600 + (hasLeft ? 100 : 0), 100);
 
-        motorControl.turnRightAndWait(2*rotateAngle);
-        hasRight = SensorUtils.isColorLine() || SensorUtils.isColorMarker();
-        Sound.playTone(600 + (hasRight?100:0), 100);
+        motorControl.turnRightAndWait(2 * rotateAngle);
+        hasRight = SensorUtils.getColor() == ColorEnum.LINE || SensorUtils.getColor() == ColorEnum.MARKER;
+        Sound.playTone(600 + (hasRight ? 100 : 0), 100);
         motorControl.turnLeftAndWait(rotateAngle);
     }
 

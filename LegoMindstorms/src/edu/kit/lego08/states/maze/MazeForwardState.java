@@ -1,6 +1,7 @@
 package edu.kit.lego08.states.maze;
 
 import edu.kit.lego08.motor_control.MotorControl;
+import edu.kit.lego08.sensors.ColorEnum;
 import edu.kit.lego08.sensors.SensorUtils;
 import edu.kit.lego08.states.MainMenuState;
 import edu.kit.lego08.states.State;
@@ -27,7 +28,7 @@ public class MazeForwardState extends State {
         requestNextState(null);
         motorControl.forward();
         LCD.clear();
-        LCD.drawString("State: Labyrinth", 0, 5);
+        LCD.drawString("State: Maze", 0, 5);
     }
 
     @Override
@@ -39,9 +40,9 @@ public class MazeForwardState extends State {
     public void mainLoop() {
         checkEnterToMainMenu();
 
-        if (SensorUtils.isColorMarker()) {
+        if (SensorUtils.getColor() == ColorEnum.MARKER) {
             requestNextState(MazeScanState.getInstance());
-        } else if (SensorUtils.isColorBackground()) {
+        } else if (SensorUtils.getColor() == ColorEnum.BACKGROUND) {
             requestNextState(MainMenuState.getInstance());
             Sound.playTone(300, 200);
         }
