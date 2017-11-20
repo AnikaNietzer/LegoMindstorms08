@@ -22,9 +22,9 @@ public class SensorUtils {
     }
 
     public static void init() {
-        ultrasonicSensor = new EV3UltrasonicSensor(SensorPort.S1);
+        //ultrasonicSensor = new EV3UltrasonicSensor(SensorPort.S1);
         colorSensor = new EV3ColorSensor(SensorPort.S3);
-        touch = new EV3TouchSensor(SensorPort.S2);
+        //touch = new EV3TouchSensor(SensorPort.S2);
     }
 
     public static boolean isTouchSonarPressed() {
