@@ -48,6 +48,20 @@ public class MotorControl {
 
     }
 
+    public void turnLeftAndWait(int angle) {
+        turnLeft(angle);
+        while (isMoving()) {
+            Delay.msDelay(10);
+        }
+    }
+
+    public void turnRightAndWait(int angle) {
+        turnRight(angle);
+        while (isMoving()) {
+            Delay.msDelay(10);
+        }
+    }
+
     public void forward() {
         stop(true);
 
