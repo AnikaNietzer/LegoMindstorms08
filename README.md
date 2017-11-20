@@ -58,3 +58,20 @@
 * Realisierung, dass Ultraschall gerade auftreffen muss
   * Sensor zeigt jetzt gerade nach unten
 * Verschiedene Versuche zu Brückenverfolgung
+
+## Termin 5 (20.11.2017)
+* Benutzen von eigenen Akkus, die ohne Laden den ganzen Vormittag halten
+* Brückenverfolgung mit drehbarem Ultraschall funktioniert nicht
+  * Entweder zu langsam / Zu viele Messungen oder es misst sowieso nur eine Richtung
+  * Entscheidung, den Sensor direkt vorne anzubringen
+  * Dazu **Umbau des Roboters**, der noch nicht fertiggestellt ist
+* Motorsteuerung überarbeitet
+  * Motoren haben manchmal undefinierte Dinge getan
+  * Ansteuerung hat mehr auf Probieren beruht
+  * Verwendung der mitgelieferten Pilot Klasse, die sich um die Regelung kümmert
+* Linienverfolgung verbessert
+  * Drehrichtung wird gespeichert, um schnelleres Verfolgen zu ermöglichen
+* Labyrinth begonnen
+  * Erkennung von Abzweigungen
+  * Algorithmus momentan zufällig
+  * Probleme mit der zuverlässigen Rotation, da die neuen Motorklassen noch nicht integriert sind
