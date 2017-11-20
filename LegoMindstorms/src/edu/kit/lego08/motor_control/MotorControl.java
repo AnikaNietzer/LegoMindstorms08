@@ -1,4 +1,5 @@
 package edu.kit.lego08.motor_control;
+
 import edu.kit.lego08.motor_control.PController;
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
 import lejos.hardware.port.MotorPort;
@@ -16,60 +17,61 @@ public class MotorControl {
     }
 
     public void leftTrackForward() {
-        stop(false);
-        
+        stop(true);
+
         motorLeft.forward();
-           
+
     }
-    
+
     public void rightTrackForward() {
-        stop(false);
-        
+        stop(true);
+
         motorRight.forward();
-           
+
     }
-    
+
     public void turnRight(int angle) {
-        // 5.95 is factor for how much the motors have to rotate to rotate the roboter 1 degree
-        stop(false);
-        motorRight.rotate(-(int)((double)angle * 5.95), true);
-        motorLeft.rotate((int)((double)angle * 5.95), true);
-        
-        
+        // 5.95 is factor for how much the motors have to rotate to rotate the
+        // roboter 1 degree
+        stop(true);
+        motorRight.rotate(-(int) ((double) angle * 5.95), true);
+        motorLeft.rotate((int) ((double) angle * 5.95), true);
+
     }
-    
+
     public void turnLeft(int angle) {
-     // 5.95 is factor for how much the motors have to rotate to rotate the roboter 1 degree
-        stop(false);
-        motorRight.rotate((int)((double)angle * 5.9), true);
-        motorLeft.rotate(-(int)((double)angle * 5.9), true);
-        
+        // 5.95 is factor for how much the motors have to rotate to rotate the
+        // roboter 1 degree
+        stop(true);
+        motorRight.rotate((int) ((double) angle * 5.9), true);
+        motorLeft.rotate(-(int) ((double) angle * 5.9), true);
+
     }
-    
+
     public void forward() {
-        stop(false);
-        
+        stop(true);
+
         motorRight.forward();
         motorLeft.forward();
-           
+
     }
+
     public void forwardTimed(int millis, boolean waitForStop) {
-        
-        stop(false);
+
+        stop(true);
         motorRight.forward();
         motorLeft.forward();
         Delay.msDelay(millis);
         stop(waitForStop);
     }
-    
+
     public void backward() {
-        stop(false);
-        
+        stop(true);
+
         motorRight.backward();
         motorLeft.backward();
-       
+
     }
-    
 
     public void backwardTimed(int millis, boolean waitForStop) {
         stop(false);
@@ -78,15 +80,16 @@ public class MotorControl {
         Delay.msDelay(millis);
         stop(waitForStop);
     }
-    
+
     public boolean isMoving() {
+        Delay.msDelay(5);
         if (motorLeft.isMoving() || motorRight.isMoving()) {
             return true;
         } else {
             return false;
         }
     }
-    
+
     public void stop(boolean waitForStop) {
         if (motorLeft.isMoving() && !motorRight.isMoving()) {
             motorLeft.stop(!waitForStop);

@@ -47,22 +47,19 @@ public class SensorUtils {
         }
     }
 
-    public static boolean isColorBackground() {
+    public static ColorEnum getColor() {
         int colorId = colorSensor.getColorID();
         LCD.drawString("Color" + colorId + " ", 0, 3);
-        return colorId == Color.BLACK || colorId == Color.NONE || colorId == Color.BROWN || colorId == Color.DARK_GRAY;
-    }
-
-    public static boolean isColorLine() {
-        int colorId = colorSensor.getColorID();
-        LCD.drawString("Color" + colorId + " ", 0, 3);
-        return colorId == Color.YELLOW || colorId == Color.WHITE || colorId == Color.LIGHT_GRAY || colorId == Color.BLUE;
-    }
-
-    public static boolean isColorMarker() {
-        int colorId = colorSensor.getColorID();
-        LCD.drawString("Color" + colorId + " ", 0, 3);
-        return colorId == Color.RED || colorId == Color.MAGENTA || colorId == Color.PINK || colorId == Color.ORANGE;
+        if (colorId == Color.BLACK || colorId == Color.NONE || colorId == Color.BROWN || colorId == Color.DARK_GRAY) {
+            return ColorEnum.BACKGROUND;
+        } else if (colorId == Color.YELLOW || colorId == Color.WHITE || colorId == Color.LIGHT_GRAY
+                || colorId == Color.BLUE) {
+            return ColorEnum.LINE;
+        } else if (colorId == Color.RED || colorId == Color.MAGENTA || colorId == Color.PINK
+                || colorId == Color.ORANGE) {
+            return ColorEnum.MARKER;
+        }
+        return null;
     }
 
     public static int getColorId() {
