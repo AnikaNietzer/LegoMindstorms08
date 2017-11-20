@@ -7,19 +7,20 @@ import edu.kit.lego08.states.MainMenuState;
 import edu.kit.lego08.states.State;
 import lejos.hardware.lcd.LCD;
 
-public class LineFollowState extends State {
-    private static LineFollowState instance = null;
-    private MotorControl motorControl = new MotorControl();
-    private State lastSuccState = TurnRightState.getInstance(TurnLeftState.getInstance(GapState.getInstance()));
-    
-    private LineFollowState() {
+public class GapState extends State {
+    private static GapState instance = null;
+    private static MotorControl motorControl;
+    int stateCounter = 0;
+
+    private GapState() {
         // States shall be used as singleton
     }
 
-    public static LineFollowState getInstance() {
+    public static GapState getInstance() {
         if (instance == null) {
-            instance = new LineFollowState();
+            instance = new GapState();
         }
+        motorControl = new MotorControl();
         return instance;
     }
 
@@ -27,29 +28,26 @@ public class LineFollowState extends State {
     public void onEnter() {
         requestNextState(null);
         LCD.clear();
-        LCD.drawString("Follow Line", 0, 5);
-        motorControl.forward();
+        LCD.drawString("Bride Gap", 0, 5);
+        motorControl.forwardTimed(1000, true);
     }
 
     @Override
     public void onExit() {
-
+        stateCounter = 0;
     }
 
     @Override
     public void mainLoop() {
         ColorEnum color = SensorUtils.getColor();
         if (color == ColorEnum.LINE) {
-
+            requestNextState(LineFollowState.getInstance());
         } else if (color == ColorEnum.BACKGROUND) {
-            requestNextState(lastSuccState);
+            requestNextState(TurnRightState.getInstance(TurnLeftState.getInstance(GapState.getInstance())));
         } else if (color == ColorEnum.MARKER) {
             requestNextState(MainMenuState.getInstance());
         }
         checkEnterToMainMenu();
     }
-    
-    public void setLastSuccDir(State state) {
-        this.lastSuccState = state;
-    }
+
 }
