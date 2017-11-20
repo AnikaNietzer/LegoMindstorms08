@@ -28,8 +28,7 @@ public class BridgeTurnState extends State {
 
         LCD.clear();
         LCD.drawString("State: Bruecke", 0, 5);
-        motorControl.backwardTimed(500, true);
-        motorControl.rightTrackForward();
+        //motorControl.backwardTimed(500, true);
     }
 
     @Override
@@ -39,8 +38,9 @@ public class BridgeTurnState extends State {
 
     @Override
     public void mainLoop() {
+        motorControl.turnLeft(10);
         if (SensorUtils.getDistance() < 0.3) {
-            Sound.playTone(500, 400);
+            //Sound.playTone(500, 400);
             requestNextState(BridgeForwardState.getInstance());
         }
 
