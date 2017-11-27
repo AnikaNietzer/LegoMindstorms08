@@ -43,7 +43,7 @@ public class MazeRightState extends State {
 
         if (SensorUtils.getColor() == ColorEnum.BACKGROUND) {
             requestNextState(MazeLeftState.getInstance());
-        } if (SensorUtils.getColor() == ColorEnum.BLUEMARKER) {
+        } else if (SensorUtils.getColor() == ColorEnum.BLUEMARKER) {
             Sound.playTone(100, 1000);
             requestNextState(MainMenuState.getInstance());
         }
