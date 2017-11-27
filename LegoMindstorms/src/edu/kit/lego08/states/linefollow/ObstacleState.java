@@ -6,22 +6,21 @@ import edu.kit.lego08.sensors.SensorUtils;
 import edu.kit.lego08.states.MainMenuState;
 import edu.kit.lego08.states.State;
 import lejos.hardware.lcd.LCD;
-import lejos.utility.Delay;
 
-public class TurnRightState extends State {
-    private static TurnRightState instance = null;
-    private MotorControl motorControl = new MotorControl();
-    private State nextState;
+public class ObstacleState extends State {
+    private static ObstacleState instance = null;
+    private static MotorControl motorControl;
+    int stateCounter = 0;
 
-    private TurnRightState() {
+    private ObstacleState() {
         // States shall be used as singleton
     }
 
-    public static TurnRightState getInstance(State state) {
+    public static ObstacleState getInstance() {
         if (instance == null) {
-            instance = new TurnRightState();
+            instance = new ObstacleState();
         }
-        instance.nextState = state;
+        motorControl = new MotorControl();
         return instance;
     }
 
@@ -29,35 +28,46 @@ public class TurnRightState extends State {
     public void onEnter() {
         requestNextState(null);
         LCD.clear();
-        LCD.drawString("Turn Right", 0, 5);
+        LCD.drawString("Break through obstacle", 0, 5);
+        motorControl.backwardTimed(1000, true);
+        waitForStop();
         motorControl.turnRight(90);
+        waitForStop();
+        motorControl.forwardTimed(3000, true);
+        waitForStop();
+        motorControl.turnLeft(90);
+        waitForStop();
+        motorControl.forwardTimed(3000, true);
+        waitForStop();
+        motorControl.turnLeft(90);
+        waitForStop();
+        motorControl.forward();
+    }
+
+    private void waitForStop() {
+        while (motorControl.isMoving()) {
+            if (SensorUtils.isTouchSonarPressed()) {
+                requestNextState(ObstacleState.getInstance());
+            }
+        }
     }
 
     @Override
     public void onExit() {
-
+        stateCounter = 0;
     }
 
     @Override
     public void mainLoop() {
         ColorEnum color = SensorUtils.getColor();
-        if (color == ColorEnum.BACKGROUND && motorControl.isMoving()) {
-
-        } else if (color == ColorEnum.LINE) {
+        if (color == ColorEnum.LINE) {
             LineFollowState.getInstance()
                     .setLastSuccDir(TurnRightState.getInstance(TurnLeftState.getInstance(GapState.getInstance())));
             requestNextState(LineFollowState.getInstance());
-        } else if (color == ColorEnum.BACKGROUND && !motorControl.isMoving()) {
-            motorControl.turnLeft(90);
-            while (motorControl.isMoving()) {
-                Delay.msDelay(5);
-            }
-            requestNextState(nextState);
         } else if (color == ColorEnum.BLUEMARKER) {
-            motorControl.stop(true);
             requestNextState(MainMenuState.getInstance());
         } else if (SensorUtils.isTouchSonarPressed()) {
-            ObstacleState.getInstance();
+            requestNextState(ObstacleState.getInstance());
         }
         checkEnterToMainMenu();
     }

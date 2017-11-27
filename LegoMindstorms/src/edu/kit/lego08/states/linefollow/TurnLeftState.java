@@ -44,7 +44,8 @@ public class TurnLeftState extends State {
         if (color == ColorEnum.BACKGROUND && motorControl.isMoving()) {
 
         } else if (color == ColorEnum.LINE) {
-            LineFollowState.getInstance().setLastSuccDir(TurnLeftState.getInstance(TurnRightState.getInstance(GapState.getInstance())));
+            LineFollowState.getInstance()
+                    .setLastSuccDir(TurnLeftState.getInstance(TurnRightState.getInstance(GapState.getInstance())));
             requestNextState(LineFollowState.getInstance());
         } else if (color == ColorEnum.BACKGROUND && !motorControl.isMoving()) {
             motorControl.turnRight(90);
@@ -52,9 +53,11 @@ public class TurnLeftState extends State {
                 Delay.msDelay(5);
             }
             requestNextState(nextState);
-        } else if (color == ColorEnum.MARKER) {
+        } else if (color == ColorEnum.BLUEMARKER) {
             motorControl.stop(true);
             requestNextState(MainMenuState.getInstance());
+        } else if (SensorUtils.isTouchSonarPressed()) {
+            ObstacleState.getInstance();
         }
         checkEnterToMainMenu();
     }

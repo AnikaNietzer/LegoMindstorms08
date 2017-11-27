@@ -36,15 +36,15 @@ public class MazeScanState extends State {
         int rotateAngle = 70;
 
         motorControl.forwardTimed(500, true);
-        hasForward = SensorUtils.getColor() == ColorEnum.LINE || SensorUtils.getColor() == ColorEnum.MARKER;
+        hasForward = SensorUtils.getColor() == ColorEnum.LINE || SensorUtils.getColor() == ColorEnum.MAZEMARKER;
         Sound.playTone(600 + (hasForward ? 100 : 0), 100);
 
         motorControl.turnLeftAndWait(rotateAngle);
-        hasLeft = SensorUtils.getColor() == ColorEnum.LINE || SensorUtils.getColor() == ColorEnum.MARKER;
+        hasLeft = SensorUtils.getColor() == ColorEnum.LINE || SensorUtils.getColor() == ColorEnum.MAZEMARKER;
         Sound.playTone(600 + (hasLeft ? 100 : 0), 100);
 
         motorControl.turnRightAndWait(2 * rotateAngle);
-        hasRight = SensorUtils.getColor() == ColorEnum.LINE || SensorUtils.getColor() == ColorEnum.MARKER;
+        hasRight = SensorUtils.getColor() == ColorEnum.LINE || SensorUtils.getColor() == ColorEnum.MAZEMARKER;
         Sound.playTone(600 + (hasRight ? 100 : 0), 100);
         motorControl.turnLeftAndWait(rotateAngle);
     }

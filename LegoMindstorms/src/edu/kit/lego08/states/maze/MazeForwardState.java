@@ -40,7 +40,7 @@ public class MazeForwardState extends State {
     public void mainLoop() {
         checkEnterToMainMenu();
 
-        if (SensorUtils.getColor() == ColorEnum.MARKER) {
+        if (SensorUtils.getColor() == ColorEnum.MAZEMARKER) {
             requestNextState(MazeScanState.getInstance());
         } else if (SensorUtils.getColor() == ColorEnum.BACKGROUND) {
             requestNextState(MainMenuState.getInstance());

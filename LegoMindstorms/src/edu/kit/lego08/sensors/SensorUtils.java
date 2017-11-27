@@ -35,8 +35,9 @@ public class SensorUtils {
     }
     
     public static float getGyroAngle() {
-        float[] sample = new float[gyro.sampleSize()];
-        gyro.fetchSample(sample, 0);
+        SampleProvider prov = gyro.getAngleMode();
+        float[] sample = new float[prov.sampleSize()];
+        prov.fetchSample(sample, 0);
         return sample[0];
     }
 
@@ -70,7 +71,9 @@ public class SensorUtils {
             return ColorEnum.LINE;
         } else if (colorId == Color.RED || colorId == Color.MAGENTA || colorId == Color.PINK
                 || colorId == Color.ORANGE) {
-            return ColorEnum.MARKER;
+            return ColorEnum.MAZEMARKER;
+        } else if (colorId == Color.BLUE || colorId == Color.CYAN) {
+            return ColorEnum.BLUEMARKER;
         }
         return null;
     }
