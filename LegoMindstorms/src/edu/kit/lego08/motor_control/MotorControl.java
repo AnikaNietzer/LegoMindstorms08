@@ -50,6 +50,7 @@ public class MotorControl {
         while (Math.abs(SensorUtils.getGyroAngle()) < angle) {
             Delay.msDelay(10);
         }
+        stop(true);
         
     }
 
@@ -60,6 +61,7 @@ public class MotorControl {
         while (Math.abs(SensorUtils.getGyroAngle()) < angle) {
             Delay.msDelay(10);
         }
+        stop(true);
     }
 
     public void forward() {

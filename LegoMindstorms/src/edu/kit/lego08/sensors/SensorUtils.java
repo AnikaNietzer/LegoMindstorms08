@@ -35,8 +35,9 @@ public class SensorUtils {
     }
     
     public static float getGyroAngle() {
-        float[] sample = new float[gyro.sampleSize()];
-        gyro.fetchSample(sample, 0);
+        SampleProvider prov = gyro.getAngleMode();
+        float[] sample = new float[prov.sampleSize()];
+        prov.fetchSample(sample, 0);
         return sample[0];
     }
 
