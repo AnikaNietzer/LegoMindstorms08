@@ -30,7 +30,7 @@ public class MotorControl {
     public void turnRight() {
         stop(true);
         SensorUtils.resetGyro();
-        pilot.rotateRight();
+        pilot.rotateLeft();
     }
 
     public void turnRight(int angle) {
@@ -43,7 +43,7 @@ public class MotorControl {
     public void turnLeft() {
         stop(true);
         SensorUtils.resetGyro();
-        pilot.rotateLeft();
+        pilot.rotateRight();
     }
     
     public void turnLeft(int angle) {
