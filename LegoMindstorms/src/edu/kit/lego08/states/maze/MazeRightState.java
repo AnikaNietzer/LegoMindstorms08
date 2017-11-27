@@ -8,17 +8,17 @@ import edu.kit.lego08.states.State;
 import lejos.hardware.Sound;
 import lejos.hardware.lcd.LCD;
 
-public class MazeForwardState extends State {
-    private static MazeForwardState instance = null;
+public class MazeRightState extends State {
+    private static MazeRightState instance = null;
     private static MotorControl motorControl = new MotorControl();
 
-    private MazeForwardState() {
+    private MazeRightState() {
         // States shall be used as singleton
     }
 
-    public static MazeForwardState getInstance() {
+    public static MazeRightState getInstance() {
         if (instance == null) {
-            instance = new MazeForwardState();
+            instance = new MazeRightState();
         }
         return instance;
     }
@@ -28,7 +28,9 @@ public class MazeForwardState extends State {
         requestNextState(null);
         motorControl.forward();
         LCD.clear();
-        LCD.drawString("State: Maze", 0, 5);
+        LCD.drawString("State: Right", 0, 5);
+
+        motorControl.leftTrackForward();
     }
 
     @Override
@@ -38,13 +40,13 @@ public class MazeForwardState extends State {
 
     @Override
     public void mainLoop() {
-        checkEnterToMainMenu();
 
-        if (SensorUtils.getColor() == ColorEnum.MAZEMARKER) {
-            requestNextState(MazeScanState.getInstance());
-        } else if (SensorUtils.getColor() == ColorEnum.BACKGROUND) {
+        if (SensorUtils.getColor() == ColorEnum.BACKGROUND) {
+            requestNextState(MazeLeftState.getInstance());
+        } if (SensorUtils.getColor() == ColorEnum.BLUEMARKER) {
+            Sound.playTone(100, 1000);
             requestNextState(MainMenuState.getInstance());
-            Sound.playTone(300, 200);
         }
+        checkEnterToMainMenu();
     }
 }
