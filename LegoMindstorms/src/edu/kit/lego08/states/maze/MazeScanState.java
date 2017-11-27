@@ -33,10 +33,12 @@ public class MazeScanState extends State {
     }
 
     private void measure() {
-        int rotateAngle = 70;
+        int rotateAngle = 90;
 
-        motorControl.forwardTimed(500, true);
+        motorControl.forwardDistance(7);
         hasForward = SensorUtils.getColor() == ColorEnum.LINE || SensorUtils.getColor() == ColorEnum.MAZEMARKER;
+
+
         Sound.playTone(600 + (hasForward ? 100 : 0), 100);
 
         motorControl.turnLeftAndWait(rotateAngle);
