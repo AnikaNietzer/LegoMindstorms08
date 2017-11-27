@@ -2,9 +2,7 @@ package edu.kit.lego08.states.bridge;
 
 import edu.kit.lego08.motor_control.MotorControl;
 import edu.kit.lego08.sensors.SensorUtils;
-import edu.kit.lego08.sensors.SonarService;
 import edu.kit.lego08.states.State;
-import lejos.hardware.Sound;
 import lejos.hardware.lcd.LCD;
 
 public class BridgeForwardState extends State {
@@ -28,7 +26,7 @@ public class BridgeForwardState extends State {
 
         LCD.clear();
         LCD.drawString("State: Bruecke", 0, 5);
-        motorControl.leftTrackForward();
+        motorControl.forward();
     }
 
     @Override
