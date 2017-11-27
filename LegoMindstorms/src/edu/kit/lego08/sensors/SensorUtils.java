@@ -59,27 +59,6 @@ public class SensorUtils {
         }
     }
 
-    public static ColorEnum getColorBlue() {
-        ColorEnum c;
-        float blue = SensorUtils.getBlueSample();
-        if (blue > 0.09) {
-            c = ColorEnum.LINE;
-        } else if(blue < 0.04) {
-            c = ColorEnum.BACKGROUND;
-        } else {
-            c = ColorEnum.BLUEMARKER;
-        }
-        LCD.drawString(c.name() + " ", 0, 3);
-        return c;
-    }
-
-    private static float getBlueSample() {
-        SampleProvider prov = colorSensor.getRGBMode();
-        float[] sample = new float[prov.sampleSize()];
-        prov.fetchSample(sample, 0);
-        return sample[2];
-    }
-
     public static ColorEnum getColor() {
         int colorId = colorSensor.getColorID();
         LCD.drawString("Color" + colorId + " ", 0, 3);
