@@ -45,7 +45,7 @@ public class ObstacleState extends State {
     }
 
     private void waitForStop() {
-        while (motorControl.isMoving()) {
+        while ((Math.abs(SensorUtils.getGyroAngle())) < 90) {
             if (SensorUtils.isTouchSonarPressed()) {
                 requestNextState(ObstacleState.getInstance());
             }
