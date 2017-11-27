@@ -1,5 +1,6 @@
 package edu.kit.lego08.motor_control;
 
+import edu.kit.lego08.sensors.SensorUtils;
 import lejos.hardware.motor.Motor;
 import lejos.robotics.navigation.DifferentialPilot;
 import lejos.utility.Delay;
@@ -27,6 +28,7 @@ public class MotorControl {
 
     public void turnRight(int angle) {
         stop(true);
+        SensorUtils.resetGyro();
         pilot.rotate(2*angle, true);
 
     }
@@ -35,18 +37,29 @@ public class MotorControl {
         // 5.95 is factor for how much the motors have to rotate to rotate the
         // roboter 1 degree
         stop(true);
+
+        SensorUtils.resetGyro();
         pilot.rotate(-2*angle, true);
 
     }
 
     public void turnLeftAndWait(int angle) {
         stop(true);
-        pilot.rotate(-2*angle);
+        SensorUtils.resetGyro();
+        pilot.rotateLeft();
+        while (Math.abs(SensorUtils.getGyroAngle()) < angle) {
+            Delay.msDelay(10);
+        }
+        
     }
 
     public void turnRightAndWait(int angle) {
         stop(true);
-        pilot.rotate(2*angle);
+        SensorUtils.resetGyro();
+        pilot.rotateRight();
+        while (Math.abs(SensorUtils.getGyroAngle()) < angle) {
+            Delay.msDelay(10);
+        }
     }
 
     public void forward() {
