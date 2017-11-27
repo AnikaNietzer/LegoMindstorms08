@@ -6,11 +6,11 @@ import edu.kit.lego08.sensors.SensorUtils;
 import edu.kit.lego08.states.MainMenuState;
 import edu.kit.lego08.states.State;
 import lejos.hardware.Sound;
-import lejos.hardware.lcd.LCD;
 
 public class MazeRightState extends State {
     private static MazeRightState instance = null;
     private static MotorControl motorControl = new MotorControl();
+    private int blueCount = 0;
 
     private MazeRightState() {
         // States shall be used as singleton
@@ -26,10 +26,8 @@ public class MazeRightState extends State {
     @Override
     public void onEnter() {
         requestNextState(null);
-        LCD.clear();
-        LCD.drawString("State: Right", 0, 5);
-
-        //motorControl.leftTrackForward();
+        motorControl.leftTrackForward();
+        blueCount = 0;
     }
 
     @Override
@@ -39,11 +37,18 @@ public class MazeRightState extends State {
 
     @Override
     public void mainLoop() {
-        if (SensorUtils.getColorBlue() == ColorEnum.BLUEMARKER) {
-            Sound.playTone(100, 1000);
-            requestNextState(MainMenuState.getInstance());
-        } else if (SensorUtils.getColorBlue() == ColorEnum.BACKGROUND) {
+        ColorEnum color = SensorUtils.getColor();
+        if (color == ColorEnum.BLUEMARKER) {
+            blueCount++;
+            if (blueCount > 50) {
+                Sound.playTone(100, 1000);
+                requestNextState(MainMenuState.getInstance());
+            }
+        } else if (color == ColorEnum.BACKGROUND) {
+            blueCount = 0;
             requestNextState(MazeLeftState.getInstance());
+        } else {
+            blueCount = 0;
         }
         checkEnterToMainMenu();
     }

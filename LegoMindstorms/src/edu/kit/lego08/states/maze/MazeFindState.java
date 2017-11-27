@@ -4,18 +4,19 @@ import edu.kit.lego08.motor_control.MotorControl;
 import edu.kit.lego08.sensors.ColorEnum;
 import edu.kit.lego08.sensors.SensorUtils;
 import edu.kit.lego08.states.State;
+import lejos.hardware.lcd.LCD;
 
-public class MazeLeftState extends State {
-    private static MazeLeftState instance = null;
+public class MazeFindState extends State {
+    private static MazeFindState instance = null;
     private static MotorControl motorControl = new MotorControl();
 
-    private MazeLeftState() {
+    private MazeFindState() {
         // States shall be used as singleton
     }
 
-    public static MazeLeftState getInstance() {
+    public static MazeFindState getInstance() {
         if (instance == null) {
-            instance = new MazeLeftState();
+            instance = new MazeFindState();
         }
         return instance;
     }
@@ -23,6 +24,9 @@ public class MazeLeftState extends State {
     @Override
     public void onEnter() {
         requestNextState(null);
+        LCD.clear();
+        LCD.drawString("State: Maze", 0, 5);
+
         motorControl.rightTrackForward();
     }
 
