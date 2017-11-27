@@ -16,14 +16,14 @@ public class MotorControl {
 
     public void leftTrackForward() {
         stop(true);
-
-        pilot.steer(75);
+        pilot.setRotateSpeed(pilot.getMaxRotateSpeed());
+        pilot.steer(120);
     }
 
     public void rightTrackForward() {
         stop(true);
-
-        pilot.steer(-75);
+        pilot.setRotateSpeed(pilot.getMaxRotateSpeed());
+        pilot.steer(-120);
 
     }
 

@@ -60,15 +60,15 @@ public class MazeScanState extends State {
     public void mainLoop() {
         if (hasRight) {
             motorControl.turnRightAndWait(90);
-            requestNextState(MazeForwardState.getInstance());
+            requestNextState(MazeRightState.getInstance());
         } else if (hasForward) {
-            requestNextState(MazeForwardState.getInstance());
+            requestNextState(MazeRightState.getInstance());
         } else if (hasLeft) {
             motorControl.turnLeftAndWait(90);
-            requestNextState(MazeForwardState.getInstance());
+            requestNextState(MazeRightState.getInstance());
         } else {
             motorControl.turnRightAndWait(180);
-            requestNextState(MazeForwardState.getInstance());
+            requestNextState(MazeRightState.getInstance());
         }
         checkEnterToMainMenu();
     }
