@@ -45,8 +45,8 @@ public class MazeScanState extends State {
 
         motorControl.turnRightAndWait(2 * rotateAngle);
         hasRight = SensorUtils.getColor() == ColorEnum.LINE || SensorUtils.getColor() == ColorEnum.MAZEMARKER;
-        Sound.playTone(600 + (hasRight ? 100 : 0), 100);
-        motorControl.turnLeftAndWait(rotateAngle);
+
+    
     }
 
     @Override

@@ -24,9 +24,7 @@ public class SensorUtils {
     }
 
     public static void init() {
-        //ultrasonicSensor = new EV3UltrasonicSensor(SensorPort.S1);
         colorSensor = new EV3ColorSensor(SensorPort.S3);
-        //touch = new EV3TouchSensor(SensorPort.S2);
         gyro = new EV3GyroSensor(SensorPort.S1);
     }
     
@@ -42,6 +40,7 @@ public class SensorUtils {
     }
 
     public static boolean isTouchSonarPressed() {
+        touch = new EV3TouchSensor(SensorPort.S4);
         float[] sample = new float[touch.sampleSize()];
         touch.fetchSample(sample, 0);
         return sample[0] == 1;
@@ -66,8 +65,7 @@ public class SensorUtils {
         LCD.drawString("Color" + colorId + " ", 0, 3);
         if (colorId == Color.BLACK || colorId == Color.NONE || colorId == Color.BROWN || colorId == Color.DARK_GRAY) {
             return ColorEnum.BACKGROUND;
-        } else if (colorId == Color.YELLOW || colorId == Color.WHITE || colorId == Color.LIGHT_GRAY
-                || colorId == Color.BLUE) {
+        } else if (colorId == Color.YELLOW || colorId == Color.WHITE || colorId == Color.LIGHT_GRAY) {
             return ColorEnum.LINE;
         } else if (colorId == Color.RED || colorId == Color.MAGENTA || colorId == Color.PINK
                 || colorId == Color.ORANGE) {
