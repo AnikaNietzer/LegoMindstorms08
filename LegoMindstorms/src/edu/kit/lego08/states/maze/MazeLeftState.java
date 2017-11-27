@@ -26,7 +26,6 @@ public class MazeLeftState extends State {
     @Override
     public void onEnter() {
         requestNextState(null);
-        motorControl.forward();
         LCD.clear();
         LCD.drawString("State: Left", 0, 5);
 
@@ -41,7 +40,7 @@ public class MazeLeftState extends State {
     @Override
     public void mainLoop() {
 
-        if (SensorUtils.getColor() == ColorEnum.LINE) {
+        if (SensorUtils.getColorBlue() == ColorEnum.LINE) {
             requestNextState(MazeRightState.getInstance());
         }
         checkEnterToMainMenu();

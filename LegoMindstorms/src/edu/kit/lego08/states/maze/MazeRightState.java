@@ -26,11 +26,10 @@ public class MazeRightState extends State {
     @Override
     public void onEnter() {
         requestNextState(null);
-        motorControl.forward();
         LCD.clear();
         LCD.drawString("State: Right", 0, 5);
 
-        motorControl.leftTrackForward();
+        //motorControl.leftTrackForward();
     }
 
     @Override
@@ -40,12 +39,11 @@ public class MazeRightState extends State {
 
     @Override
     public void mainLoop() {
-
-        if (SensorUtils.getColor() == ColorEnum.BACKGROUND) {
-            requestNextState(MazeLeftState.getInstance());
-        } else if (SensorUtils.getColor() == ColorEnum.BLUEMARKER) {
+        if (SensorUtils.getColorBlue() == ColorEnum.BLUEMARKER) {
             Sound.playTone(100, 1000);
             requestNextState(MainMenuState.getInstance());
+        } else if (SensorUtils.getColorBlue() == ColorEnum.BACKGROUND) {
+            requestNextState(MazeLeftState.getInstance());
         }
         checkEnterToMainMenu();
     }
