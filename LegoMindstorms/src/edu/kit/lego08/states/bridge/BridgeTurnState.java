@@ -1,10 +1,7 @@
 package edu.kit.lego08.states.bridge;
 
 import edu.kit.lego08.motor_control.MotorControl;
-import edu.kit.lego08.sensors.SensorUtils;
-import edu.kit.lego08.sensors.SonarService;
 import edu.kit.lego08.states.State;
-import lejos.hardware.Sound;
 import lejos.hardware.lcd.LCD;
 
 public class BridgeTurnState extends State {
@@ -38,12 +35,9 @@ public class BridgeTurnState extends State {
 
     @Override
     public void mainLoop() {
-        motorControl.turnLeft(10);
-        if (SensorUtils.getDistance() < 0.3) {
-            //Sound.playTone(500, 400);
-            requestNextState(BridgeForwardState.getInstance());
-        }
-
+        motorControl.backwardDistance(5);
+        motorControl.turnLeft(90);
+        requestNextState(BridgeForwardState.getInstance());
         checkEnterToMainMenu();
     }
 }
