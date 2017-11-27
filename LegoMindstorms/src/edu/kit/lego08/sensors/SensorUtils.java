@@ -5,6 +5,7 @@ import lejos.hardware.Sound;
 import lejos.hardware.lcd.LCD;
 import lejos.hardware.port.SensorPort;
 import lejos.hardware.sensor.EV3ColorSensor;
+import lejos.hardware.sensor.EV3GyroSensor;
 import lejos.hardware.sensor.EV3TouchSensor;
 import lejos.hardware.sensor.EV3UltrasonicSensor;
 import lejos.hardware.sensor.SensorModes;
@@ -16,6 +17,7 @@ public class SensorUtils {
     private static SensorModes ultrasonicSensor = null;
     private static EV3ColorSensor colorSensor = null;
     private static EV3TouchSensor touch = null;
+    private static EV3GyroSensor gyro = null;
 
     private SensorUtils() {
         // Utility classes should not be instantiated
@@ -25,6 +27,17 @@ public class SensorUtils {
         //ultrasonicSensor = new EV3UltrasonicSensor(SensorPort.S1);
         colorSensor = new EV3ColorSensor(SensorPort.S3);
         //touch = new EV3TouchSensor(SensorPort.S2);
+        gyro = new EV3GyroSensor(SensorPort.S1);
+    }
+    
+    public static void resetGyro() {
+        gyro.reset();
+    }
+    
+    public static float getGyroAngle() {
+        float[] sample = new float[gyro.sampleSize()];
+        gyro.fetchSample(sample, 0);
+        return sample[0];
     }
 
     public static boolean isTouchSonarPressed() {
