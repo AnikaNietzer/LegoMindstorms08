@@ -48,7 +48,7 @@ public class MotorControl {
         SensorUtils.resetGyro();
         pilot.rotateLeft();
         while (Math.abs(SensorUtils.getGyroAngle()) < angle) {
-            Delay.msDelay(10);
+            
         }
         stop(true);
         
@@ -59,7 +59,7 @@ public class MotorControl {
         SensorUtils.resetGyro();
         pilot.rotateRight();
         while (Math.abs(SensorUtils.getGyroAngle()) < angle) {
-            Delay.msDelay(10);
+            
         }
         stop(true);
     }
