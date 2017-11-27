@@ -75,3 +75,19 @@
   * Erkennung von Abzweigungen
   * Algorithmus momentan zufällig
   * Probleme mit der zuverlässigen Rotation, da die neuen Motorklassen noch nicht integriert sind
+
+## Termin 6 (27.11.2017)
+* Eigene Akkus halten nicht den ganzen Vormittag, weil sie nicht geladen wurden.
+* Roboter wird nochmal etwas umgebaut
+  * Weniger breite Ketten, damit die Wellen nicht so durchhängen
+  * Fixierung der Sensoren
+  * Kabelmanagement
+* Linie folgen fertig
+  * Inklusive Umfahren eines Hindernisses
+* Labyrinth fertig
+  * Idee: Folge immer der rechten Kante
+  * Probleme traten auf, weil auf der Platte manchmal blau erkannt wird
+    * Stoppe nur, wenn 50 Samples nacheinander blau sind
+* Motorsteuerung verbessert
+  * Motoren fahren zuverlässig und benutzen Gyroskop für die Winkelbestimmung
+
