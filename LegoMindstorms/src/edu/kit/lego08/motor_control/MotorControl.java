@@ -10,7 +10,15 @@ public class MotorControl {
     private static DifferentialPilot pilot = new DifferentialPilot(3.5f, 12.0f, Motor.A, Motor.D);
 
     public MotorControl() {
+<<<<<<< HEAD
         pilot.setTravelSpeed(25);
+=======
+<<<<<<< HEAD
+        pilot.setTravelSpeed(25);
+=======
+        pilot.setTravelSpeed(20);
+>>>>>>> add code for obstacle
+>>>>>>> 3b97c7a... Add stopMethods
     }
 
     public void leftTrackForward() {
@@ -28,7 +36,10 @@ public class MotorControl {
 
     public void turnRight(int angle) {
         stop(true);
+<<<<<<< HEAD
         SensorUtils.resetGyro();
+=======
+>>>>>>> 3b97c7a... Add stopMethods
         pilot.rotate(2*angle, true);
 
     }
@@ -37,8 +48,11 @@ public class MotorControl {
         // 5.95 is factor for how much the motors have to rotate to rotate the
         // roboter 1 degree
         stop(true);
+<<<<<<< HEAD
 
         SensorUtils.resetGyro();
+=======
+>>>>>>> 3b97c7a... Add stopMethods
         pilot.rotate(-2*angle, true);
 
     }

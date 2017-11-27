@@ -10,7 +10,7 @@ import lejos.hardware.lcd.LCD;
 public class LineFollowState extends State {
     private static LineFollowState instance = null;
     private MotorControl motorControl = new MotorControl();
-    private State lastSuccState = TurnRightState.getInstance(TurnLeftState.getInstance(GapState.getInstance()));
+    private State lastSuccState = TurnRightState.getInstance(TurnLeftState.getInstance(ObstacleState.getInstance()));
     
     private LineFollowState() {
         // States shall be used as singleton
@@ -43,8 +43,10 @@ public class LineFollowState extends State {
 
         } else if (color == ColorEnum.BACKGROUND) {
             requestNextState(lastSuccState);
-        } else if (color == ColorEnum.MARKER) {
+        } else if (color == ColorEnum.BLUEMARKER) {
             requestNextState(MainMenuState.getInstance());
+        } else if (SensorUtils.isTouchSonarPressed()) {
+            ObstacleState.getInstance();
         }
         checkEnterToMainMenu();
     }
