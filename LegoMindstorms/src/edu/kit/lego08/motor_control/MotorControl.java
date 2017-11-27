@@ -1,60 +1,56 @@
 package edu.kit.lego08.motor_control;
 
-import edu.kit.lego08.motor_control.PController;
-import lejos.hardware.motor.EV3LargeRegulatedMotor;
 import lejos.hardware.motor.Motor;
-import lejos.hardware.port.MotorPort;
-import lejos.robotics.RegulatedMotor;
 import lejos.robotics.navigation.DifferentialPilot;
 import lejos.utility.Delay;
 
 public class MotorControl {
 
-    private static DifferentialPilot pilot = new DifferentialPilot(4.0f, 20.0f, Motor.A, Motor.D);
+    private static DifferentialPilot pilot = new DifferentialPilot(3.5f, 12.0f, Motor.A, Motor.D);
 
     public MotorControl() {
-        pilot.setTravelSpeed(10);
+        pilot.setTravelSpeed(20);
     }
 
     public void leftTrackForward() {
         stop(true);
 
-        pilot.steer(100);
+        pilot.steer(75);
     }
 
     public void rightTrackForward() {
         stop(true);
 
-        pilot.steer(-100);
+        pilot.steer(-75);
 
     }
 
     public void turnRight(int angle) {
-        stop(true);
-        pilot.rotate(angle, true);
+        //stop(true);
+        pilot.rotate(2*angle, true);
 
     }
 
     public void turnLeft(int angle) {
         // 5.95 is factor for how much the motors have to rotate to rotate the
         // roboter 1 degree
-        stop(true);
-        pilot.rotate(-angle, true);
+        //stop(true);
+        pilot.rotate(-2*angle, true);
 
     }
 
     public void turnLeftAndWait(int angle) {
         stop(true);
-        pilot.rotate(-angle);
+        pilot.rotate(-2*angle);
     }
 
     public void turnRightAndWait(int angle) {
         stop(true);
-        pilot.rotate(angle);
+        pilot.rotate(2*angle);
     }
 
     public void forward() {
-        stop(true);
+        //stop(true);
 
         pilot.forward();
     }
@@ -78,7 +74,7 @@ public class MotorControl {
     }
 
     public void backward() {
-        stop(true);
+        //stop(true);
         pilot.backward();
 
     }
@@ -96,7 +92,7 @@ public class MotorControl {
     }
 
     public void stop(boolean waitForStop) {
-        pilot.stop();
+        pilot.quickStop();
     }
 
 }
