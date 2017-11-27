@@ -28,7 +28,6 @@ public class MotorControl {
     public void turnRight(int angle) {
         stop(true);
         pilot.rotate(2*angle, true);
-        
 
     }
 
