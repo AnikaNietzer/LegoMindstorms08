@@ -1,16 +1,12 @@
 package edu.kit.lego08.motor_control;
 
-import edu.kit.lego08.motor_control.PController;
-import lejos.hardware.motor.EV3LargeRegulatedMotor;
 import lejos.hardware.motor.Motor;
-import lejos.hardware.port.MotorPort;
-import lejos.robotics.RegulatedMotor;
 import lejos.robotics.navigation.DifferentialPilot;
 import lejos.utility.Delay;
 
 public class MotorControl {
 
-    private static DifferentialPilot pilot = new DifferentialPilot(4.0f, 20.0f, Motor.A, Motor.D);
+    private static DifferentialPilot pilot = new DifferentialPilot(3.5f, 12.0f, Motor.A, Motor.D);
 
     public MotorControl() {
         pilot.setTravelSpeed(10);
@@ -31,7 +27,7 @@ public class MotorControl {
 
     public void turnRight(int angle) {
         stop(true);
-        pilot.rotate(angle, true);
+        pilot.rotate(2*angle, true);
 
     }
 
@@ -39,18 +35,18 @@ public class MotorControl {
         // 5.95 is factor for how much the motors have to rotate to rotate the
         // roboter 1 degree
         stop(true);
-        pilot.rotate(-angle, true);
+        pilot.rotate(-2*angle, true);
 
     }
 
     public void turnLeftAndWait(int angle) {
         stop(true);
-        pilot.rotate(-angle);
+        pilot.rotate(-2*angle);
     }
 
     public void turnRightAndWait(int angle) {
         stop(true);
-        pilot.rotate(angle);
+        pilot.rotate(2*angle);
     }
 
     public void forward() {
