@@ -41,15 +41,15 @@ public class TurnLeftState extends State {
     @Override
     public void mainLoop() {
         ColorEnum color = SensorUtils.getColor();
-        if (color == ColorEnum.BACKGROUND && motorControl.isMoving()) {
+        if (color == ColorEnum.BACKGROUND && (Math.abs(SensorUtils.getGyroAngle()))< 90) {
 
         } else if (color == ColorEnum.LINE) {
             LineFollowState.getInstance()
                     .setLastSuccDir(TurnLeftState.getInstance(TurnRightState.getInstance(GapState.getInstance())));
             requestNextState(LineFollowState.getInstance());
-        } else if (color == ColorEnum.BACKGROUND && !motorControl.isMoving()) {
+        } else if (color == ColorEnum.BACKGROUND && (Math.abs(SensorUtils.getGyroAngle())) >= 90) {
             motorControl.turnRight(90);
-            while (motorControl.isMoving()) {
+            while ((Math.abs(SensorUtils.getGyroAngle())) < 90) {
                 Delay.msDelay(5);
             }
             requestNextState(nextState);
