@@ -11,7 +11,8 @@
 .mtj.tmp/
 
 # Package Files #
-*.jar
+#*.jar
+LegoMindstorms/Main.jar
 *.war
 *.ear
 *.zip
