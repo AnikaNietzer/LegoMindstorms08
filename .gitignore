@@ -32,7 +32,7 @@ RemoteSystemTempFiles/
 # HP's strange Intellij stuff
 LegoMindstorms/src/META-INF/
 LegoMindstorms/src/ProgramStarter.java
-LegoMindstorms/.idea/*
+**/.idea/*
 *.iml
 LegoMindstorms/out/*
 LegoMindstorms/src/echo-empty.sh

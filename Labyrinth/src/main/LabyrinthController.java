@@ -19,7 +19,7 @@ public class LabyrinthController extends RobotController {
 	 * @param lightSensorGreenValue Value of the green channel from the lightsensor
 	 * All light values are given in rgb pixel values (0-255)
 	 */
-	public double[] getControlAction(int lightSensorRedValue, int lightSensorGreenValue, int lightSensorBlueValue)
+	public double[] getControlAction(int lightSensorRedValue, int lightSensorBlueValue, int lightSensorGreenValue)
 	{
 		
 		//speed in pixel per cycle
@@ -29,9 +29,13 @@ public class LabyrinthController extends RobotController {
 		//robot kinematics is as follows:
 		//center of rotation is one third in, seen from the front
 		//the light sensor is mounted on the center of the front 
-		
-		// Insert Code here
-		
+
+		if (lightSensorRedValue > 200) {
+			motorSpeedRight = 5;
+		} else if(lightSensorBlueValue < 200) {
+			motorSpeedLeft = 5;
+		}
+
 		 
 		double[] motorSpeeds = {motorSpeedLeft, motorSpeedRight};
 		return motorSpeeds;
