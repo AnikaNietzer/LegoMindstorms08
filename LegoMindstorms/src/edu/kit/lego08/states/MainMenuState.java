@@ -4,7 +4,6 @@ import edu.kit.lego08.Config;
 import edu.kit.lego08.sensors.SensorUtils;
 import edu.kit.lego08.states.linefollow.LineFollowState;
 import edu.kit.lego08.states.maze.MazeFindState;
-import edu.kit.lego08.states.maze.MazeRightState;
 import edu.kit.lego08.utils.Tuple;
 import lejos.hardware.Button;
 import lejos.hardware.lcd.LCD;
