@@ -27,12 +27,14 @@ public class MazeFindState extends State {
         LCD.clear();
         LCD.drawString("State: Maze", 0, 5);
 
-        motorControl.rightTrackForward();
+        motorControl.setSlowSpeed();
+        motorControl.forward();
     }
 
     @Override
     public void onExit() {
         motorControl.stop(true);
+        motorControl.setFastSpeed();
     }
 
     @Override
