@@ -26,12 +26,14 @@ public class BridgeRightState extends State {
 
         LCD.clear();
         LCD.drawString("State: Bruecke", 0, 5);
+        motorControl.setSlowSpeed();
         motorControl.steerRightBackward();
     }
 
     @Override
     public void onExit() {
         motorControl.stop(true);
+        motorControl.setFastSpeed();
     }
 
     @Override

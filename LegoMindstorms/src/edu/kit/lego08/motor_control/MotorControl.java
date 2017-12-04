@@ -10,8 +10,7 @@ public class MotorControl {
     private static DifferentialPilot pilot = new DifferentialPilot(3.5f, 12.0f, Motor.A, Motor.D);
 
     public MotorControl() {
-
-        pilot.setTravelSpeed(30);
+        setFastSpeed();
     }
     
     public void setFastSpeed() {
@@ -34,12 +33,12 @@ public class MotorControl {
 
     public void steerRightBackward() {
         stop(true);
-        pilot.steerBackward(-120);
+        pilot.steerBackward(-130);
     }
 
     public void steerLeftBackward() {
         stop(true);
-        pilot.steerBackward(120);
+        pilot.steerBackward(130);
     }
     
     public void turnRight() {
