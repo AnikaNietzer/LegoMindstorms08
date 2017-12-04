@@ -100,3 +100,10 @@
 * Simulation der Labyrinth-Verfolgung am PC 
 
 <img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/simulation.png" height="150">
+
+## Termin 7 (04.12.2017)
+* Experimente mit dem Suchen von Objekten
+  * Momentan zufälliges Abfahren des Bereichs
+* Implementierung der Brückenüberquerung
+  * Dazu erneuter Umbau des Roboters, Ultraschallsensor ist jetzt seitlich angebracht
+* Fertigstellung der Objektumfahrung bei der Linienverfolgung
