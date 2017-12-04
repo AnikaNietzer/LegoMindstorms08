@@ -3,6 +3,8 @@ package edu.kit.lego08.states.bridge;
 import edu.kit.lego08.motor_control.MotorControl;
 import edu.kit.lego08.sensors.SensorUtils;
 import edu.kit.lego08.states.State;
+import edu.kit.lego08.utils.LedPattern;
+import lejos.hardware.Button;
 import lejos.hardware.lcd.LCD;
 
 public class BridgeRightState extends State {
@@ -28,6 +30,7 @@ public class BridgeRightState extends State {
         LCD.drawString("State: Bruecke", 0, 5);
         motorControl.setSlowSpeed();
         motorControl.steerRightBackward();
+        Button.LEDPattern(LedPattern.STATIC_GREEN);
     }
 
     @Override

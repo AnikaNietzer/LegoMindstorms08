@@ -4,6 +4,8 @@ import edu.kit.lego08.motor_control.MotorControl;
 import edu.kit.lego08.sensors.ColorEnum;
 import edu.kit.lego08.sensors.SensorUtils;
 import edu.kit.lego08.states.State;
+import edu.kit.lego08.utils.LedPattern;
+import lejos.hardware.Button;
 import lejos.hardware.lcd.LCD;
 
 public class MazeFindState extends State {
@@ -29,6 +31,7 @@ public class MazeFindState extends State {
 
         motorControl.setSlowSpeed();
         motorControl.forward();
+        Button.LEDPattern(LedPattern.BLINK_FAST_YELLOW);
     }
 
     @Override

@@ -5,6 +5,8 @@ import edu.kit.lego08.sensors.ColorEnum;
 import edu.kit.lego08.sensors.SensorUtils;
 import edu.kit.lego08.states.MainMenuState;
 import edu.kit.lego08.states.State;
+import edu.kit.lego08.utils.LedPattern;
+import lejos.hardware.Button;
 import lejos.hardware.lcd.LCD;
 import lejos.utility.Delay;
 
@@ -31,6 +33,7 @@ public class TurnRightState extends State {
         LCD.clear();
         LCD.drawString("Turn Right", 0, 5);
         motorControl.turnRight();
+        Button.LEDPattern(LedPattern.STATIC_GREEN);
     }
 
     @Override

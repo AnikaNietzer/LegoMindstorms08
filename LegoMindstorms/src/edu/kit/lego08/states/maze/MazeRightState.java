@@ -5,6 +5,8 @@ import edu.kit.lego08.sensors.ColorEnum;
 import edu.kit.lego08.sensors.SensorUtils;
 import edu.kit.lego08.states.MainMenuState;
 import edu.kit.lego08.states.State;
+import edu.kit.lego08.utils.LedPattern;
+import lejos.hardware.Button;
 
 public class MazeRightState extends State {
     private static MazeRightState instance = null;
@@ -27,6 +29,7 @@ public class MazeRightState extends State {
         requestNextState(null);
         motorControl.steerRight();
         blueCount = 0;
+        Button.LEDPattern(LedPattern.STATIC_GREEN);
     }
 
     @Override
