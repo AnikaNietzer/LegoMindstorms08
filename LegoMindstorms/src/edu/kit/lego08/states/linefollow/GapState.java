@@ -5,6 +5,8 @@ import edu.kit.lego08.sensors.ColorEnum;
 import edu.kit.lego08.sensors.SensorUtils;
 import edu.kit.lego08.states.MainMenuState;
 import edu.kit.lego08.states.State;
+import edu.kit.lego08.utils.LedPattern;
+import lejos.hardware.Button;
 import lejos.hardware.lcd.LCD;
 
 public class GapState extends State {
@@ -30,6 +32,7 @@ public class GapState extends State {
         LCD.clear();
         LCD.drawString("Bride Gap", 0, 5);
         motorControl.forwardDistance(8);
+        Button.LEDPattern(LedPattern.BLINK_FAST_YELLOW);
     }
 
     @Override

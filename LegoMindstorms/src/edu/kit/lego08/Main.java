@@ -3,6 +3,8 @@ package edu.kit.lego08;
 import edu.kit.lego08.sensors.SensorUtils;
 import edu.kit.lego08.states.MainMenuState;
 import edu.kit.lego08.states.State;
+import edu.kit.lego08.utils.LedPattern;
+import lejos.hardware.Button;
 import lejos.hardware.Sound;
 import lejos.hardware.lcd.LCD;
 import lejos.utility.Delay;
@@ -32,6 +34,7 @@ public class Main {
     };
 
     public static void main(String[] args) {
+        Button.LEDPattern(LedPattern.BLINK_FAST_YELLOW);
         LCD.drawString("Initializing...", 0, 0);
 
         Thread musicThread = new Thread() {

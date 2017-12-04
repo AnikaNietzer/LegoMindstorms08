@@ -6,6 +6,7 @@ import edu.kit.lego08.states.bridge.BridgeLeftState;
 import edu.kit.lego08.states.bridge.BridgeRightState;
 import edu.kit.lego08.states.linefollow.LineFollowState;
 import edu.kit.lego08.states.maze.MazeFindState;
+import edu.kit.lego08.utils.LedPattern;
 import edu.kit.lego08.utils.Tuple;
 import lejos.hardware.Button;
 import lejos.hardware.lcd.LCD;
@@ -39,6 +40,7 @@ public class MainMenuState extends State {
     public void onEnter() {
         requestNextState(null); // Stay in current state
         redraw();
+        Button.LEDPattern(LedPattern.OFF);
     }
 
     @Override
