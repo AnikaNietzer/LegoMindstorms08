@@ -5,17 +5,17 @@ import edu.kit.lego08.sensors.SensorUtils;
 import edu.kit.lego08.states.State;
 import lejos.hardware.lcd.LCD;
 
-public class BridgeForwardState extends State {
-    private static BridgeForwardState instance = null;
+public class BridgeRightState extends State {
+    private static BridgeRightState instance = null;
     private MotorControl motorControl = new MotorControl();
 
-    private BridgeForwardState() {
+    private BridgeRightState() {
         // States shall be used as singleton
     }
 
-    public static BridgeForwardState getInstance() {
+    public static BridgeRightState getInstance() {
         if (instance == null) {
-            instance = new BridgeForwardState();
+            instance = new BridgeRightState();
         }
         return instance;
     }
@@ -26,7 +26,7 @@ public class BridgeForwardState extends State {
 
         LCD.clear();
         LCD.drawString("State: Bruecke", 0, 5);
-        motorControl.forward();
+        motorControl.steerRightBackward();
     }
 
     @Override
@@ -36,11 +36,9 @@ public class BridgeForwardState extends State {
 
     @Override
     public void mainLoop() {
-        if (SensorUtils.getDistance() > 0.2) {
-            //Sound.playTone(500, 400);
-            requestNextState(BridgeTurnState.getInstance());
+        if (SensorUtils.getDistance() > BridgeLeftState.BRIDGE_DISTANCE) {
+            requestNextState(BridgeLeftState.getInstance());
         }
-
         checkEnterToMainMenu();
     }
 }
