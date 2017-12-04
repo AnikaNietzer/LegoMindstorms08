@@ -29,7 +29,7 @@ public class GapState extends State {
         requestNextState(null);
         LCD.clear();
         LCD.drawString("Bride Gap", 0, 5);
-        motorControl.forwardTimed(2000, true);
+        motorControl.forwardTimed(500, true);
     }
 
     @Override
@@ -44,7 +44,8 @@ public class GapState extends State {
             requestNextState(LineFollowState.getInstance());
         } else if (color == ColorEnum.BACKGROUND) {
             requestNextState(TurnRightState.getInstance(TurnLeftState.getInstance(GapState.getInstance())));
-        } else if (color == ColorEnum.BLUEMARKER) {
+        } else if (color == ColorEnum.MAZEMARKER) {
+            motorControl.stop(true);
             requestNextState(MainMenuState.getInstance());
         }
         checkEnterToMainMenu();

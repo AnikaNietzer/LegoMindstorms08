@@ -29,17 +29,14 @@ public class ObstacleState extends State {
         requestNextState(null);
         LCD.clear();
         LCD.drawString("Break through obstacle", 0, 5);
-        motorControl.backwardTimed(1000, true);
+        motorControl.backwardTimed(500, true);
+        motorControl.turnRight();
         waitForStop();
-        motorControl.turnRight(90);
+        motorControl.forwardTimed(2000, true);
+        motorControl.turnLeft();
         waitForStop();
-        motorControl.forwardTimed(3000, true);
-        waitForStop();
-        motorControl.turnLeft(90);
-        waitForStop();
-        motorControl.forwardTimed(3000, true);
-        waitForStop();
-        motorControl.turnLeft(90);
+        motorControl.forwardTimed(4000, true);
+        motorControl.turnLeft();
         waitForStop();
         motorControl.forward();
     }
@@ -64,7 +61,8 @@ public class ObstacleState extends State {
             LineFollowState.getInstance()
                     .setLastSuccDir(TurnRightState.getInstance(TurnLeftState.getInstance(GapState.getInstance())));
             requestNextState(LineFollowState.getInstance());
-        } else if (color == ColorEnum.BLUEMARKER) {
+        } else if (color == ColorEnum.MAZEMARKER) {
+            motorControl.stop(true);
             requestNextState(MainMenuState.getInstance());
         } else if (SensorUtils.isTouchSonarPressed()) {
             requestNextState(ObstacleState.getInstance());
