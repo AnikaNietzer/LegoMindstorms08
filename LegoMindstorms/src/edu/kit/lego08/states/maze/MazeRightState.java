@@ -41,7 +41,6 @@ public class MazeRightState extends State {
         if (color == ColorEnum.BLUEMARKER) {
             blueCount++;
             if (blueCount > 50) {
-                Sound.playTone(100, 1000);
                 requestNextState(MainMenuState.getInstance());
             }
         } else if (color == ColorEnum.BACKGROUND) {
