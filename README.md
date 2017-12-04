@@ -75,6 +75,9 @@
   * Erkennung von Abzweigungen
   * Algorithmus momentan zufällig
   * Probleme mit der zuverlässigen Rotation, da die neuen Motorklassen noch nicht integriert sind
+* Veränderter Parcours
+
+<img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/parcours-3.jpg" height="150"> <img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/parcours-4.jpg" height="150">
 
 ## Termin 6 (27.11.2017)
 * Eigene Akkus halten nicht den ganzen Vormittag, weil sie nicht geladen wurden.
@@ -91,3 +94,9 @@
 * Motorsteuerung verbessert
   * Motoren fahren zuverlässig und benutzen Gyroskop für die Winkelbestimmung
 
+<img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/2017-11-27-1.jpg" height="150"> <img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/2017-11-27-1.jpg" height="150">
+
+## Übungsblatt
+* Simulation der Labyrinth-Verfolgung am PC 
+
+<img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/simulation.png" height="150">
