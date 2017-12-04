@@ -10,14 +10,25 @@ import lejos.utility.Delay;
 public class Main {
     private static boolean initialized = false;
 
-    private static final int [] jeopardy = {
-            100,
-            400,
-            100,
-            50,
-            100,
-            400,
-            100,
+    private static final int [][] jeopardy = {
+            new int[] {392, 200},
+            new int[] {523, 200},
+            new int[] {392, 200},
+            new int[] {261, 100},
+            new int[] {261, 100},
+            new int[] {392, 200},
+            new int[] {523, 200},
+            new int[] {392, 400},
+            new int[] {392, 200},
+            new int[] {523, 200},
+            new int[] {392, 200},
+            new int[] {523, 200},
+            new int[] {659, 400},
+            new int[] {587, 100},
+            new int[] {523, 100},
+            new int[] {493, 100},
+            new int[] {440, 100},
+            new int[] {415, 100},
     };
 
     public static void main(String[] args) {
@@ -33,7 +44,8 @@ public class Main {
             public void run() {
                 int i = 0;
                 while (!initialized) {
-                    Sound.playTone(jeopardy[i % jeopardy.length], 100);
+                    int tone[] = jeopardy[i % jeopardy.length];
+                    Sound.playTone(tone[0], tone[1]);
                     Delay.msDelay(100);
                     i++;
                 }
