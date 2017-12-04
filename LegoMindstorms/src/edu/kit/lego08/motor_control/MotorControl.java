@@ -13,6 +13,14 @@ public class MotorControl {
 
         pilot.setTravelSpeed(30);
     }
+    
+    public void setFastSpeed() {
+        pilot.setTravelSpeed(30);
+    }
+    
+    public void setSlowSpeed() {
+        pilot.setTravelSpeed(10);
+    }
 
     public void leftTrackForward() {
         stop(true);
