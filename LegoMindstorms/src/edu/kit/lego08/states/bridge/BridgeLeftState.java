@@ -1,20 +1,22 @@
 package edu.kit.lego08.states.bridge;
 
 import edu.kit.lego08.motor_control.MotorControl;
+import edu.kit.lego08.sensors.SensorUtils;
 import edu.kit.lego08.states.State;
 import lejos.hardware.lcd.LCD;
 
-public class BridgeTurnState extends State {
-    private static BridgeTurnState instance = null;
+public class BridgeLeftState extends State {
+    private static BridgeLeftState instance = null;
     private MotorControl motorControl = new MotorControl();
+    static final float BRIDGE_DISTANCE = 0.1f;
 
-    private BridgeTurnState() {
+    private BridgeLeftState() {
         // States shall be used as singleton
     }
 
-    public static BridgeTurnState getInstance() {
+    public static BridgeLeftState getInstance() {
         if (instance == null) {
-            instance = new BridgeTurnState();
+            instance = new BridgeLeftState();
         }
         return instance;
     }
@@ -25,19 +27,21 @@ public class BridgeTurnState extends State {
 
         LCD.clear();
         LCD.drawString("State: Bruecke", 0, 5);
-        //motorControl.backwardTimed(500, true);
+        motorControl.steerLeftBackward();
     }
 
     @Override
     public void onExit() {
+        motorControl.backwardDistance(4);
         motorControl.stop(true);
     }
 
     @Override
     public void mainLoop() {
-        motorControl.backwardDistance(5);
-        motorControl.turnLeft(90);
-        requestNextState(BridgeForwardState.getInstance());
+        if (SensorUtils.getDistance() < BRIDGE_DISTANCE) {
+            requestNextState(BridgeRightState.getInstance());
+        }
+
         checkEnterToMainMenu();
     }
 }

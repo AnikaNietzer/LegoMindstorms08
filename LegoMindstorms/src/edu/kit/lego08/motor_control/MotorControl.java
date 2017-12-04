@@ -22,15 +22,24 @@ public class MotorControl {
         pilot.setTravelSpeed(10);
     }
 
-    public void leftTrackForward() {
+    public void steerRight() {
         stop(true);
         pilot.steer(120);
     }
 
-    public void rightTrackForward() {
+    public void steerLeft() {
         stop(true);
         pilot.steer(-120);
+    }
 
+    public void steerRightBackward() {
+        stop(true);
+        pilot.steerBackward(-120);
+    }
+
+    public void steerLeftBackward() {
+        stop(true);
+        pilot.steerBackward(120);
     }
     
     public void turnRight() {

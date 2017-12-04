@@ -23,7 +23,7 @@ public class MazeLeftState extends State {
     @Override
     public void onEnter() {
         requestNextState(null);
-        motorControl.rightTrackForward();
+        motorControl.steerLeft();
     }
 
     @Override

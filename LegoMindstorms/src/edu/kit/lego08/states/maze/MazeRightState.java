@@ -5,7 +5,6 @@ import edu.kit.lego08.sensors.ColorEnum;
 import edu.kit.lego08.sensors.SensorUtils;
 import edu.kit.lego08.states.MainMenuState;
 import edu.kit.lego08.states.State;
-import lejos.hardware.Sound;
 
 public class MazeRightState extends State {
     private static MazeRightState instance = null;
@@ -26,7 +25,7 @@ public class MazeRightState extends State {
     @Override
     public void onEnter() {
         requestNextState(null);
-        motorControl.leftTrackForward();
+        motorControl.steerRight();
         blueCount = 0;
     }
 
