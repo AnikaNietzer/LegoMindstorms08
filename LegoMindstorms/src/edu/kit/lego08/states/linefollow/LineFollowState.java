@@ -11,7 +11,7 @@ public class LineFollowState extends State {
     private static LineFollowState instance = null;
     private MotorControl motorControl = new MotorControl();
     private State lastSuccState = TurnRightState.getInstance(TurnLeftState.getInstance(ObstacleState.getInstance()));
-    
+
     private LineFollowState() {
         // States shall be used as singleton
     }
@@ -39,18 +39,18 @@ public class LineFollowState extends State {
     @Override
     public void mainLoop() {
         ColorEnum color = SensorUtils.getColor();
-        if (color == ColorEnum.LINE) {
-
-        } else if (color == ColorEnum.BACKGROUND) {
+        if (color == ColorEnum.BACKGROUND) {
             requestNextState(lastSuccState);
-        } else if (color == ColorEnum.BLUEMARKER) {
+        } else if (color == ColorEnum.MAZEMARKER) {
+            motorControl.stop(true);
             requestNextState(MainMenuState.getInstance());
         } else if (SensorUtils.isTouchSonarPressed()) {
-            ObstacleState.getInstance();
+            motorControl.stop(true);
+            requestNextState(ObstacleState.getInstance());
         }
         checkEnterToMainMenu();
     }
-    
+
     public void setLastSuccDir(State state) {
         this.lastSuccState = state;
     }

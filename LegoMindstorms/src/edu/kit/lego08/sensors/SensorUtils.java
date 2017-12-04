@@ -42,6 +42,9 @@ public class SensorUtils {
     public static boolean isTouchSonarPressed() {
         float[] sample = new float[touch.sampleSize()];
         touch.fetchSample(sample, 0);
+        if(sample[0] == 1) {
+            Sound.playTone(600, 20);
+        }
         return sample[0] == 1;
     }
 

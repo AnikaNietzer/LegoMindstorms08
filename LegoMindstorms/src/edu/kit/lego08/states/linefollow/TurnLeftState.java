@@ -30,7 +30,7 @@ public class TurnLeftState extends State {
         requestNextState(null);
         LCD.clear();
         LCD.drawString("Turn Left", 0, 5);
-        motorControl.turnLeft(90);
+        motorControl.turnLeft();
     }
 
     @Override
@@ -41,23 +41,22 @@ public class TurnLeftState extends State {
     @Override
     public void mainLoop() {
         ColorEnum color = SensorUtils.getColor();
-        if (color == ColorEnum.BACKGROUND && (Math.abs(SensorUtils.getGyroAngle()))< 90) {
-
-        } else if (color == ColorEnum.LINE) {
+       if (color == ColorEnum.LINE) {
             LineFollowState.getInstance()
                     .setLastSuccDir(TurnLeftState.getInstance(TurnRightState.getInstance(GapState.getInstance())));
             requestNextState(LineFollowState.getInstance());
         } else if (color == ColorEnum.BACKGROUND && (Math.abs(SensorUtils.getGyroAngle())) >= 90) {
-            motorControl.turnRight(90);
+            motorControl.turnRight();
             while ((Math.abs(SensorUtils.getGyroAngle())) < 90) {
                 Delay.msDelay(5);
             }
             requestNextState(nextState);
-        } else if (color == ColorEnum.BLUEMARKER) {
+        } else if (color == ColorEnum.MAZEMARKER) {
             motorControl.stop(true);
             requestNextState(MainMenuState.getInstance());
         } else if (SensorUtils.isTouchSonarPressed()) {
-            ObstacleState.getInstance();
+            motorControl.stop(true);
+            requestNextState(ObstacleState.getInstance());
         }
         checkEnterToMainMenu();
     }
