@@ -5,7 +5,6 @@ import edu.kit.lego08.sensors.SensorUtils;
 import edu.kit.lego08.states.State;
 import edu.kit.lego08.utils.LedPattern;
 import lejos.hardware.Button;
-import lejos.hardware.lcd.LCD;
 
 public class BridgeLeftState extends State {
     private static BridgeLeftState instance = null;
@@ -26,9 +25,6 @@ public class BridgeLeftState extends State {
     @Override
     public void onEnter() {
         requestNextState(null); // Stay in current state
-
-        LCD.clear();
-        LCD.drawString("State: Bruecke", 0, 5);
         motorControl.setSlowSpeed();
         motorControl.steerLeftBackward();
         Button.LEDPattern(LedPattern.STATIC_RED);

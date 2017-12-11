@@ -7,12 +7,10 @@ import edu.kit.lego08.states.MainMenuState;
 import edu.kit.lego08.states.State;
 import edu.kit.lego08.utils.LedPattern;
 import lejos.hardware.Button;
-import lejos.hardware.lcd.LCD;
 
 public class GapState extends State {
     private static GapState instance = null;
     private static MotorControl motorControl;
-    int stateCounter = 0;
 
     private GapState() {
         // States shall be used as singleton
@@ -29,15 +27,13 @@ public class GapState extends State {
     @Override
     public void onEnter() {
         requestNextState(null);
-        LCD.clear();
-        LCD.drawString("Bride Gap", 0, 5);
         motorControl.forwardDistance(8);
         Button.LEDPattern(LedPattern.STATIC_YELLOW);
     }
 
     @Override
     public void onExit() {
-        stateCounter = 0;
+
     }
 
     @Override

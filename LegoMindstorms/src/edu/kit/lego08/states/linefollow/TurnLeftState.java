@@ -7,7 +7,6 @@ import edu.kit.lego08.states.MainMenuState;
 import edu.kit.lego08.states.State;
 import edu.kit.lego08.utils.LedPattern;
 import lejos.hardware.Button;
-import lejos.hardware.lcd.LCD;
 import lejos.utility.Delay;
 
 public class TurnLeftState extends State {
@@ -30,8 +29,6 @@ public class TurnLeftState extends State {
     @Override
     public void onEnter() {
         requestNextState(null);
-        LCD.clear();
-        LCD.drawString("Turn Left", 0, 5);
         motorControl.turnLeft();
         Button.LEDPattern(LedPattern.STATIC_RED);
     }

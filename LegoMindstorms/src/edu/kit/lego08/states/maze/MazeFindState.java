@@ -26,9 +26,6 @@ public class MazeFindState extends State {
     @Override
     public void onEnter() {
         requestNextState(null);
-        LCD.clear();
-        LCD.drawString("State: Maze", 0, 5);
-
         motorControl.setSlowSpeed();
         motorControl.forward();
         Button.LEDPattern(LedPattern.STATIC_YELLOW);
