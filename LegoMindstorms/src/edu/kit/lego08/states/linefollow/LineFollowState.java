@@ -5,7 +5,6 @@ import edu.kit.lego08.sensors.ColorEnum;
 import edu.kit.lego08.sensors.SensorUtils;
 import edu.kit.lego08.states.MainMenuState;
 import edu.kit.lego08.states.State;
-import lejos.hardware.lcd.LCD;
 
 public class LineFollowState extends State {
     private static LineFollowState instance = null;
@@ -26,8 +25,6 @@ public class LineFollowState extends State {
     @Override
     public void onEnter() {
         requestNextState(null);
-        LCD.clear();
-        LCD.drawString("Follow Line", 0, 5);
         motorControl.forward();
     }
 

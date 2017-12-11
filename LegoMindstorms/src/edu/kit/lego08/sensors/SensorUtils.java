@@ -2,7 +2,6 @@ package edu.kit.lego08.sensors;
 
 import lejos.hardware.Key;
 import lejos.hardware.Sound;
-import lejos.hardware.lcd.LCD;
 import lejos.hardware.port.SensorPort;
 import lejos.hardware.sensor.EV3ColorSensor;
 import lejos.hardware.sensor.EV3GyroSensor;
@@ -83,7 +82,6 @@ public class SensorUtils {
 
     public static ColorEnum getColor() {
         int colorId = colorSensor.getColorID();
-        LCD.drawString("Color" + colorId + " ", 0, 3);
         if (colorId == Color.BLACK || colorId == Color.NONE || colorId == Color.BROWN || colorId == Color.DARK_GRAY) {
             return ColorEnum.BACKGROUND;
         } else if (colorId == Color.YELLOW || colorId == Color.WHITE || colorId == Color.LIGHT_GRAY) {

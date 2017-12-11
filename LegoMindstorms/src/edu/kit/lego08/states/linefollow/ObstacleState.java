@@ -7,12 +7,10 @@ import edu.kit.lego08.states.MainMenuState;
 import edu.kit.lego08.states.State;
 import edu.kit.lego08.utils.LedPattern;
 import lejos.hardware.Button;
-import lejos.hardware.lcd.LCD;
 
 public class ObstacleState extends State {
     private static ObstacleState instance = null;
     private static MotorControl motorControl;
-    int stateCounter = 0;
 
     private ObstacleState() {
         // States shall be used as singleton
@@ -30,8 +28,6 @@ public class ObstacleState extends State {
     public void onEnter() {
         Button.LEDPattern(LedPattern.STATIC_YELLOW);
         requestNextState(null);
-        LCD.clear();
-        LCD.drawString("Break through obstacle", 0, 5);
         motorControl.backwardDistance(5);
         motorControl.turnRight();
         waitForStop();
@@ -54,7 +50,7 @@ public class ObstacleState extends State {
 
     @Override
     public void onExit() {
-        stateCounter = 0;
+
     }
 
     @Override
