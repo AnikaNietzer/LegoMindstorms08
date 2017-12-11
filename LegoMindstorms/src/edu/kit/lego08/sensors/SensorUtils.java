@@ -25,15 +25,31 @@ public class SensorUtils {
     public static void init() {
         Thread t1 = new Thread() {
           public void run() {
-              colorSensor = new EV3ColorSensor(SensorPort.S3);
-              gyro = new EV3GyroSensor(SensorPort.S1);
+              try {
+                  colorSensor = new EV3ColorSensor(SensorPort.S3);
+              } catch (IllegalArgumentException e) {
+                  colorSensor = new EV3ColorSensor(SensorPort.S3);
+              }
+              try {
+                  gyro = new EV3GyroSensor(SensorPort.S1);
+              } catch (IllegalArgumentException e) {
+                  gyro = new EV3GyroSensor(SensorPort.S1);
+              }
           }
         };
         t1.start();
         Thread t2 = new Thread() {
             public void run() {
-                touch = new EV3TouchSensor(SensorPort.S2);
-                ultrasonicSensor = new EV3UltrasonicSensor(SensorPort.S4);
+                try {
+                    touch = new EV3TouchSensor(SensorPort.S2);
+                } catch (IllegalArgumentException e) {
+                    touch = new EV3TouchSensor(SensorPort.S2);
+                }
+                try {
+                    ultrasonicSensor = new EV3UltrasonicSensor(SensorPort.S4);
+                } catch (IllegalArgumentException e) {
+                    ultrasonicSensor = new EV3UltrasonicSensor(SensorPort.S4);
+                }
             }
         };
         t2.start();
@@ -43,6 +59,11 @@ public class SensorUtils {
             t2.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
+        }
+
+        if (ultrasonicSensor == null || gyro == null || touch == null || colorSensor == null) {
+            Sound.playTone(100, 1000);
+            System.exit(1);
         }
     }
     
