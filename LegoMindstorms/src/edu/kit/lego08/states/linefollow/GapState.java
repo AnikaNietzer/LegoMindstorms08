@@ -29,7 +29,7 @@ public class GapState extends State {
         requestNextState(null);
         LCD.clear();
         LCD.drawString("Bride Gap", 0, 5);
-        motorControl.forwardTimed(500, true);
+        motorControl.forwardDistance(8);
     }
 
     @Override

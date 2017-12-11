@@ -29,13 +29,13 @@ public class ObstacleState extends State {
         requestNextState(null);
         LCD.clear();
         LCD.drawString("Break through obstacle", 0, 5);
-        motorControl.backwardTimed(500, true);
+        motorControl.backwardDistance(5);
         motorControl.turnRight();
         waitForStop();
-        motorControl.forwardTimed(2000, true);
+        motorControl.forwardDistance(20);
         motorControl.turnLeft();
         waitForStop();
-        motorControl.forwardTimed(4000, true);
+        motorControl.forwardDistance(50);
         motorControl.turnLeft();
         waitForStop();
         motorControl.forward();
