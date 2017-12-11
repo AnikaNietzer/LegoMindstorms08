@@ -31,7 +31,7 @@ public class MazeFindState extends State {
 
         motorControl.setSlowSpeed();
         motorControl.forward();
-        Button.LEDPattern(LedPattern.BLINK_FAST_YELLOW);
+        Button.LEDPattern(LedPattern.STATIC_YELLOW);
     }
 
     @Override

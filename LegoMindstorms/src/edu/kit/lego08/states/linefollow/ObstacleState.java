@@ -5,6 +5,8 @@ import edu.kit.lego08.sensors.ColorEnum;
 import edu.kit.lego08.sensors.SensorUtils;
 import edu.kit.lego08.states.MainMenuState;
 import edu.kit.lego08.states.State;
+import edu.kit.lego08.utils.LedPattern;
+import lejos.hardware.Button;
 import lejos.hardware.lcd.LCD;
 
 public class ObstacleState extends State {
@@ -26,6 +28,7 @@ public class ObstacleState extends State {
 
     @Override
     public void onEnter() {
+        Button.LEDPattern(LedPattern.STATIC_YELLOW);
         requestNextState(null);
         LCD.clear();
         LCD.drawString("Break through obstacle", 0, 5);

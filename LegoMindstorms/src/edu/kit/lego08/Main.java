@@ -34,7 +34,7 @@ public class Main {
     };
 
     public static void main(String[] args) {
-        Button.LEDPattern(LedPattern.BLINK_FAST_YELLOW);
+        Button.LEDPattern(LedPattern.STATIC_YELLOW);
         LCD.drawString("Initializing...", 0, 0);
 
         Thread musicThread = new Thread() {

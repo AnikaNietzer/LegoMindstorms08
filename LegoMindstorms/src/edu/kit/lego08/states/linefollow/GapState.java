@@ -32,7 +32,7 @@ public class GapState extends State {
         LCD.clear();
         LCD.drawString("Bride Gap", 0, 5);
         motorControl.forwardDistance(8);
-        Button.LEDPattern(LedPattern.BLINK_FAST_YELLOW);
+        Button.LEDPattern(LedPattern.STATIC_YELLOW);
     }
 
     @Override
