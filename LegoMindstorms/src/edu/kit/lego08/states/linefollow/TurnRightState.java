@@ -7,7 +7,6 @@ import edu.kit.lego08.states.MainMenuState;
 import edu.kit.lego08.states.State;
 import edu.kit.lego08.utils.LedPattern;
 import lejos.hardware.Button;
-import lejos.utility.Delay;
 
 public class TurnRightState extends State {
     private static TurnRightState instance = null;
@@ -29,13 +28,14 @@ public class TurnRightState extends State {
     @Override
     public void onEnter() {
         requestNextState(null);
+        motorControl.resetGyro();
         motorControl.turnRight();
         Button.LEDPattern(LedPattern.STATIC_GREEN);
     }
 
     @Override
     public void onExit() {
-
+        motorControl.stop(true);
     }
 
     @Override
@@ -45,10 +45,13 @@ public class TurnRightState extends State {
             LineFollowState.getInstance()
                     .setLastSuccDir(TurnRightState.getInstance(TurnLeftState.getInstance(GapState.getInstance())));
             requestNextState(LineFollowState.getInstance());
-        } else if (color == ColorEnum.BACKGROUND && (Math.abs(SensorUtils.getGyroAngle())) >= 90) {
+        } else if (color == ColorEnum.BACKGROUND && SensorUtils.getGyroAngle() >= 87) {
             motorControl.turnLeft();
-            while ((Math.abs(SensorUtils.getGyroAngle())) < 90) {
-                Delay.msDelay(5);
+            while (SensorUtils.getGyroAngle() > 0) {
+                checkEnterToMainMenu();
+                if (getNextState() == MainMenuState.getInstance()) {
+                    return;
+                }
             }
             requestNextState(nextState);
         } else if (color == ColorEnum.MAZEMARKER) {

@@ -30,7 +30,7 @@ public class LineFollowState extends State {
 
     @Override
     public void onExit() {
-
+        motorControl.stop(true);
     }
 
     @Override

@@ -43,28 +43,28 @@ public class MotorControl {
     
     public void turnRight() {
         stop(true);
-        SensorUtils.resetGyro();
         pilot.rotateLeft();
     }
 
     public void turnRight(int angle) {
         stop(true);
-        SensorUtils.resetGyro();
         pilot.rotate(2*angle, true);
 
     }
     
     public void turnLeft() {
         stop(true);
-        SensorUtils.resetGyro();
         pilot.rotateRight();
+    }
+    
+    public void resetGyro() {
+        SensorUtils.resetGyro();
     }
     
     public void turnLeft(int angle) {
         // 5.95 is factor for how much the motors have to rotate to rotate the
         // roboter 1 degree
         stop(true);
-        SensorUtils.resetGyro();
         pilot.rotate(-2*angle, true);
 
     }

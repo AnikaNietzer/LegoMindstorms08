@@ -29,28 +29,21 @@ public class ObstacleState extends State {
         Button.LEDPattern(LedPattern.STATIC_YELLOW);
         requestNextState(null);
         motorControl.backwardDistance(5);
+        motorControl.resetGyro();
         motorControl.turnRight();
-        waitForStop();
-        motorControl.forwardDistance(20);
+        while (SensorUtils.getGyroAngle() < 50);
+        motorControl.forwardDistance(25);
         motorControl.turnLeft();
-        waitForStop();
+        while (SensorUtils.getGyroAngle() > 0);
         motorControl.forwardDistance(50);
         motorControl.turnLeft();
-        waitForStop();
+        while (SensorUtils.getGyroAngle() > -90);
         motorControl.forward();
-    }
-
-    private void waitForStop() {
-        while ((Math.abs(SensorUtils.getGyroAngle())) < 90) {
-            if (SensorUtils.isTouchSonarPressed()) {
-                requestNextState(ObstacleState.getInstance());
-            }
-        }
     }
 
     @Override
     public void onExit() {
-
+        motorControl.stop(true);
     }
 
     @Override

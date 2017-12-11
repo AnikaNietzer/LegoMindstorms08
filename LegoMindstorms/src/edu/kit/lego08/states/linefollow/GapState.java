@@ -33,7 +33,7 @@ public class GapState extends State {
 
     @Override
     public void onExit() {
-
+        motorControl.stop(true);
     }
 
     @Override
