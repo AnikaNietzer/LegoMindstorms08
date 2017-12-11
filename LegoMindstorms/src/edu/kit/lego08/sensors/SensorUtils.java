@@ -24,10 +24,27 @@ public class SensorUtils {
     }
 
     public static void init() {
-        colorSensor = new EV3ColorSensor(SensorPort.S3);
-        gyro = new EV3GyroSensor(SensorPort.S1);
-        touch = new EV3TouchSensor(SensorPort.S2);
-        ultrasonicSensor = new EV3UltrasonicSensor(SensorPort.S4);
+        Thread t1 = new Thread() {
+          public void run() {
+              colorSensor = new EV3ColorSensor(SensorPort.S3);
+              gyro = new EV3GyroSensor(SensorPort.S1);
+          }
+        };
+        t1.start();
+        Thread t2 = new Thread() {
+            public void run() {
+                touch = new EV3TouchSensor(SensorPort.S2);
+                ultrasonicSensor = new EV3UltrasonicSensor(SensorPort.S4);
+            }
+        };
+        t2.start();
+
+        try {
+            t1.join();
+            t2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
     
     public static void resetGyro() {
