@@ -45,7 +45,8 @@ public class MainMenuState extends State {
 
     @Override
     public void onExit() {
-
+        LCD.clear();
+        LCD.drawString(menuEntries.get(selectedState).x, 2, 2);
     }
 
     @Override
