@@ -18,12 +18,12 @@ public class Main {
             new int[] {261, 100},
             new int[] {392, 200},
             new int[] {523, 200},
-            new int[] {392, 400},
+            new int[] {392, 500},
             new int[] {392, 200},
             new int[] {523, 200},
             new int[] {392, 200},
             new int[] {523, 200},
-            new int[] {659, 400},
+            new int[] {659, 500},
             new int[] {587, 100},
             new int[] {523, 100},
             new int[] {493, 100},
@@ -34,33 +34,27 @@ public class Main {
     public static void main(String[] args) {
         LCD.drawString("Initializing...", 0, 0);
 
-        final Thread initThread = new Thread() {
-            public void run() {
-                SensorUtils.init();
-                initialized = true;
-            }
-        };
         Thread musicThread = new Thread() {
             public void run() {
                 int i = 0;
+                final float speed = 1.5f;
                 while (!initialized) {
                     int tone[] = jeopardy[i % jeopardy.length];
-                    Sound.playTone(tone[0], tone[1]);
-                    Delay.msDelay(100);
+                    Sound.playTone(tone[0], (int) (speed * tone[1]));
+                    Delay.msDelay((long) (speed * 100));
                     i++;
                 }
             }
         };
+
+        Sound.setVolume(4);
         musicThread.start();
-        initThread.start();
-        try {
-            initThread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        SensorUtils.init();
+        initialized = true;
 
         State currentState = MainMenuState.getInstance();
         currentState.onEnter();
+        Sound.setVolume(100);
         Sound.playTone(600, 20);
         while (true) {
             currentState.mainLoop();
