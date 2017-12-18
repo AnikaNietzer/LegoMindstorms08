@@ -19,7 +19,7 @@ public class MainMenuState extends State {
     private static MainMenuState instance = null;
     private ArrayList<Tuple<String, State>> menuEntries = new ArrayList<>();
     private int selectedState = 0;
-    private int autoModeState = 0;
+    private int autoModeState = -1;
 
     private MainMenuState() {
         // States shall be used as singleton
@@ -59,22 +59,27 @@ public class MainMenuState extends State {
             selectedState = (selectedState + 1) % menuEntries.size();
             redraw();
         } else if (SensorUtils.isKeyPressedAndReleased(Button.ENTER)) {
-            requestNextState(menuEntries.get(selectedState).y);
+            autoModeState = selectedState;
+            if (!Config.AUTO_MODE) {
+                requestNextState(menuEntries.get(selectedState).y);
+            }
         } else if (SensorUtils.isKeyPressedAndReleased(Button.ESCAPE)) {
             System.exit(0);
         }
 
-        if (Config.AUTO_MODE && autoModeState < menuEntries.size()) {
-            Sound.playTone(500, 500);
-            Sound.playTone(700, 500);
-            Sound.playTone(900, 500);
-            requestNextState(menuEntries.get(autoModeState).y);
-            selectedState = autoModeState;
-            autoModeState++;
-        } else if (Config.AUTO_MODE) {
-            Sound.playTone(800, 1000);
-            Sound.playTone(500, 3000);
-            System.exit(0);
+        if (autoModeState != -1) {
+            if (Config.AUTO_MODE && autoModeState < menuEntries.size()) {
+                Sound.playTone(500, 500);
+                Sound.playTone(700, 500);
+                Sound.playTone(900, 500);
+                requestNextState(menuEntries.get(autoModeState).y);
+                selectedState = autoModeState;
+                autoModeState++;
+            } else if (Config.AUTO_MODE) {
+                Sound.playTone(800, 500);
+                Sound.playTone(500, 1000);
+                autoModeState = -1;
+            }
         }
     }
 

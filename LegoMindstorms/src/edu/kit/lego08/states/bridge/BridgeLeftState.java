@@ -46,7 +46,7 @@ public class BridgeLeftState extends State {
         if (SensorUtils.getDistance() < BridgeStartState.BRIDGE_DISTANCE) {
             requestNextState(BridgeRightState.getInstance());
         } else if (SensorUtils.getDistance() < BridgeStartState.BRIDGE_DISTANCE &&
-                thingsDone > 12 && BridgeStartState.isGoingDown) {
+                thingsDone >= 10 && BridgeStartState.isGoingDown) {
             requestNextState(BridgeEndState.getInstance());
         }
         if (Math.abs(SensorUtils.getGyroAngle()) >= 180 && !BridgeStartState.isGoingDown) {
