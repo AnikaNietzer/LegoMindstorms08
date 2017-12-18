@@ -5,11 +5,12 @@ import edu.kit.lego08.sensors.SensorUtils;
 import edu.kit.lego08.states.State;
 import edu.kit.lego08.utils.LedPattern;
 import lejos.hardware.Button;
+import lejos.hardware.Sound;
+import lejos.hardware.lcd.LCD;
 
 public class BridgeLeftState extends State {
     private static BridgeLeftState instance = null;
     private MotorControl motorControl = new MotorControl();
-    static final float BRIDGE_DISTANCE = 0.1f;
 
     private BridgeLeftState() {
         // States shall be used as singleton
@@ -28,6 +29,7 @@ public class BridgeLeftState extends State {
         motorControl.setSlowSpeed();
         motorControl.steerLeftBackward();
         Button.LEDPattern(LedPattern.STATIC_RED);
+        thingsDone++;
     }
 
     @Override
@@ -37,10 +39,20 @@ public class BridgeLeftState extends State {
         motorControl.setFastSpeed();
     }
 
+    public int thingsDone = 0;
+
     @Override
     public void mainLoop() {
-        if (SensorUtils.getDistance() < BRIDGE_DISTANCE) {
+        if (SensorUtils.getDistance() < BridgeStartState.BRIDGE_DISTANCE) {
             requestNextState(BridgeRightState.getInstance());
+        } else if (SensorUtils.getDistance() < BridgeStartState.BRIDGE_DISTANCE &&
+                thingsDone > 12 && BridgeStartState.isGoingDown) {
+            requestNextState(BridgeEndState.getInstance());
+        }
+        if (Math.abs(SensorUtils.getGyroAngle()) >= 180 && !BridgeStartState.isGoingDown) {
+            BridgeStartState.isGoingDown = true;
+            thingsDone = 0;
+            Sound.playTone(500, 10);
         }
 
         checkEnterToMainMenu();

@@ -7,6 +7,7 @@ import lejos.hardware.sensor.EV3ColorSensor;
 import lejos.hardware.sensor.EV3GyroSensor;
 import lejos.hardware.sensor.EV3TouchSensor;
 import lejos.hardware.sensor.EV3UltrasonicSensor;
+import lejos.hardware.sensor.SensorMode;
 import lejos.hardware.sensor.SensorModes;
 import lejos.robotics.Color;
 import lejos.robotics.SampleProvider;
@@ -17,6 +18,7 @@ public class SensorUtils {
     private static EV3ColorSensor colorSensor = null;
     private static EV3TouchSensor touch = null;
     private static EV3GyroSensor gyro = null;
+    private static SampleProvider angleProvider = null;
 
     private SensorUtils() {
         // Utility classes should not be instantiated
@@ -35,6 +37,8 @@ public class SensorUtils {
               } catch (IllegalArgumentException e) {
                   gyro = new EV3GyroSensor(SensorPort.S1);
               }
+              gyro.setCurrentMode(1); // Angle
+              angleProvider = gyro.getAngleMode();
           }
         };
         t1.start();
@@ -72,9 +76,8 @@ public class SensorUtils {
     }
     
     public static float getGyroAngle() {
-        SampleProvider prov = gyro.getAngleMode();
-        float[] sample = new float[prov.sampleSize()];
-        prov.fetchSample(sample, 0);
+        float[] sample = new float[angleProvider.sampleSize()];
+        angleProvider.fetchSample(sample, 0);
         return sample[0];
     }
 

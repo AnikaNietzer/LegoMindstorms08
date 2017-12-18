@@ -33,12 +33,12 @@ public class MotorControl {
 
     public void steerRightBackward() {
         stop(true);
-        pilot.steerBackward(-130);
+        pilot.steerBackward(-110);
     }
 
     public void steerLeftBackward() {
         stop(true);
-        pilot.steerBackward(130);
+        pilot.steerBackward(200);
     }
     
     public void turnRight() {
