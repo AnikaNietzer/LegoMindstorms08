@@ -33,15 +33,15 @@ public class MazeFindState extends State {
     @Override
     public void onExit() {
         motorControl.stop(true);
-        motorControl.forwardDistance(10);
-        motorControl.turnLeftAndWait(90);
+        motorControl.forwardDistance(8);
+        motorControl.turnLeftAndWait(120);
         motorControl.setFastSpeed();
     }
 
     @Override
     public void mainLoop() {
         if (SensorUtils.getColor() == ColorEnum.LINE) {
-            requestNextState(MazeRightState.getInstance());
+            requestNextState(MazeLeftState.getInstance());
         }
         checkEnterToMainMenu();
     }
