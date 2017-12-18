@@ -107,3 +107,15 @@
 * Implementierung der Brückenüberquerung
   * Dazu erneuter Umbau des Roboters, Ultraschallsensor ist jetzt seitlich angebracht
 * Fertigstellung der Objektumfahrung bei der Linienverfolgung
+
+## Termin 8 (11.12.2017)
+* Verbesserung der Brückenüberquerung
+* Verbesserung der Motorsteuerung (Angabe von Distanzen)
+* Roboter spielt Jeopardy, solange die Sensoren initialisiert werden
+* Verbesserung der Linienverfolgung
+* Akkus laufen aus
+
+## Termin 9 (18.12.2017)
+* Verbesserung des Suchens von Objekten
+* Modus zum automatischen Ausführen von mehreren Zuständen (ohne Hauptmenü)
+* Roboter wendet automatisch, um verschiedene Zustände zu verbinden
