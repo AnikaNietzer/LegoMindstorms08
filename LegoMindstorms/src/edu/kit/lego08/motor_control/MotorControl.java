@@ -41,6 +41,11 @@ public class MotorControl {
         pilot.steerBackward(200);
     }
     
+    public void steer(int angle) {
+        stop(true);
+        pilot.steer(angle);
+    }
+    
     public void turnRight() {
         stop(true);
         pilot.rotateLeft();
