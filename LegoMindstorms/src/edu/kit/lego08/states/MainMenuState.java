@@ -69,6 +69,7 @@ public class MainMenuState extends State {
             Sound.playTone(700, 500);
             Sound.playTone(900, 500);
             requestNextState(menuEntries.get(autoModeState).y);
+            selectedState = autoModeState;
             autoModeState++;
         } else if (Config.AUTO_MODE) {
             Sound.playTone(800, 1000);
