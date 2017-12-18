@@ -6,7 +6,6 @@ import edu.kit.lego08.sensors.SensorUtils;
 import edu.kit.lego08.states.State;
 import edu.kit.lego08.utils.LedPattern;
 import lejos.hardware.Button;
-import lejos.hardware.lcd.LCD;
 
 public class MazeFindState extends State {
     private static MazeFindState instance = null;
@@ -34,12 +33,14 @@ public class MazeFindState extends State {
     @Override
     public void onExit() {
         motorControl.stop(true);
+        motorControl.forwardDistance(10);
+        motorControl.turnLeftAndWait(90);
         motorControl.setFastSpeed();
     }
 
     @Override
     public void mainLoop() {
-        if (SensorUtils.getColor() != ColorEnum.BACKGROUND) {
+        if (SensorUtils.getColor() == ColorEnum.LINE) {
             requestNextState(MazeRightState.getInstance());
         }
         checkEnterToMainMenu();
