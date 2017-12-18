@@ -24,7 +24,7 @@ public class MainMenuState extends State {
         
         // change later to BridgeGapState.getInstance()
         menuEntries.add(new Tuple<String, State>("Linienfolgen", LineFollowState.getInstance()));
-        menuEntries.add(new Tuple<String, State>("Test", TestState.getInstance()));
+        menuEntries.add(new Tuple<String, State>("Farbenfinden", ColorSearchState.getInstance()));
         menuEntries.add(new Tuple<String, State>("Labyrinth", MazeFindState.getInstance()));
         menuEntries.add(new Tuple<String, State>("Verschieben", MoveObjectsState.getInstance()));
         menuEntries.add(new Tuple<String, State>("Bruecke", BridgeStartState.getInstance()));
