@@ -85,7 +85,11 @@ public class MainMenuState extends State {
 
     private void redraw() {
         LCD.clear();
-        LCD.drawString("Hauptmenue", 0, 0);
+        if (Config.AUTO_MODE) {
+            LCD.drawString("Hauptmenue AUTO", 0, 0);
+        } else {
+            LCD.drawString("Hauptmenue", 0, 0);
+        }
         LCD.drawString("  (" + Config.USER+")", 0, 1);
 
         for (int i = 0; i < menuEntries.size(); i++) {
