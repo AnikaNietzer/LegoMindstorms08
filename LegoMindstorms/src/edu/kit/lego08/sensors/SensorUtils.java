@@ -2,6 +2,7 @@ package edu.kit.lego08.sensors;
 
 import lejos.hardware.Key;
 import lejos.hardware.Sound;
+import lejos.hardware.lcd.LCD;
 import lejos.hardware.port.SensorPort;
 import lejos.hardware.sensor.EV3ColorSensor;
 import lejos.hardware.sensor.EV3GyroSensor;
@@ -59,6 +60,7 @@ public class SensorUtils {
 
     public static boolean isTouchSonarPressed() {
         float[] sample = new float[touch.sampleSize()];
+        sample[0] = 0;
         touch.fetchSample(sample, 0);
         if(sample[0] == 1) {
             Sound.playTone(600, 20);

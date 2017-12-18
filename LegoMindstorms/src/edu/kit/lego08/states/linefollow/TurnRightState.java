@@ -12,6 +12,7 @@ public class TurnRightState extends State {
     private static TurnRightState instance = null;
     private MotorControl motorControl = new MotorControl();
     private State nextState;
+    private int counter;
 
     private TurnRightState() {
         // States shall be used as singleton
@@ -45,9 +46,9 @@ public class TurnRightState extends State {
             LineFollowState.getInstance()
                     .setLastSuccDir(TurnRightState.getInstance(TurnLeftState.getInstance(GapState.getInstance())));
             requestNextState(LineFollowState.getInstance());
-        } else if (color == ColorEnum.BACKGROUND && SensorUtils.getGyroAngle() >= 87) {
+        } else if (color == ColorEnum.BACKGROUND && SensorUtils.getGyroAngle() >= 75) {
             motorControl.turnLeft();
-            while (SensorUtils.getGyroAngle() > 0) {
+            while (SensorUtils.getGyroAngle() > 15) {
                 checkEnterToMainMenu();
                 if (getNextState() == MainMenuState.getInstance()) {
                     return;
@@ -55,11 +56,16 @@ public class TurnRightState extends State {
             }
             requestNextState(nextState);
         } else if (color == ColorEnum.MAZEMARKER) {
-            motorControl.stop(true);
-            requestNextState(MainMenuState.getInstance());
+            counter++;
+            if (counter > 500) {
+                motorControl.stop(true);
+                requestNextState(MainMenuState.getInstance());
+            }
         } else if (SensorUtils.isTouchSonarPressed()) {
             motorControl.stop(true);
             requestNextState(ObstacleState.getInstance());
+        } else {
+            counter = 0;
         }
         checkEnterToMainMenu();
     }

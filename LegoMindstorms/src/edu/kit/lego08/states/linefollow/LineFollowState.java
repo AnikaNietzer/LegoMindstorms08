@@ -9,7 +9,8 @@ import edu.kit.lego08.states.State;
 public class LineFollowState extends State {
     private static LineFollowState instance = null;
     private MotorControl motorControl = new MotorControl();
-    private State lastSuccState = TurnRightState.getInstance(TurnLeftState.getInstance(ObstacleState.getInstance()));
+    private State lastSuccState = TurnRightState.getInstance(TurnLeftState.getInstance(GapState.getInstance()));
+    private int counter;
 
     private LineFollowState() {
         // States shall be used as singleton
@@ -26,6 +27,7 @@ public class LineFollowState extends State {
     public void onEnter() {
         requestNextState(null);
         motorControl.forward();
+        counter = 0;
     }
 
     @Override
@@ -39,11 +41,16 @@ public class LineFollowState extends State {
         if (color == ColorEnum.BACKGROUND) {
             requestNextState(lastSuccState);
         } else if (color == ColorEnum.MAZEMARKER) {
-            motorControl.stop(true);
-            requestNextState(MainMenuState.getInstance());
+            counter++;
+            if (counter > 500) {
+                motorControl.stop(true);
+                requestNextState(MainMenuState.getInstance());
+            }
         } else if (SensorUtils.isTouchSonarPressed()) {
             motorControl.stop(true);
             requestNextState(ObstacleState.getInstance());
+        } else {
+            counter = 0;
         }
         checkEnterToMainMenu();
     }
