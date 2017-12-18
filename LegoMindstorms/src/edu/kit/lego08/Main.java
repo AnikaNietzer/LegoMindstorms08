@@ -13,24 +13,25 @@ public class Main {
     private static boolean initialized = false;
 
     private static final int [][] jeopardy = {
-            new int[] {392, 200},
-            new int[] {523, 200},
-            new int[] {392, 200},
-            new int[] {261, 100},
-            new int[] {261, 100},
-            new int[] {392, 200},
-            new int[] {523, 200},
-            new int[] {392, 500},
-            new int[] {392, 200},
-            new int[] {523, 200},
-            new int[] {392, 200},
-            new int[] {523, 200},
-            new int[] {659, 500},
-            new int[] {587, 100},
-            new int[] {523, 100},
-            new int[] {493, 100},
-            new int[] {440, 100},
-            new int[] {415, 100},
+            new int[] {392, 200, 100},
+            new int[] {523, 200, 80},
+            new int[] {392, 200, 100},
+            new int[] {261, 100, 70},
+            new int[] {261, 100, 70},
+            new int[] {392, 200, 100},
+            new int[] {523, 200, 80},
+            new int[] {392, 200, 100},
+            new int[] {392, 200, 0},
+            new int[] {392, 200, 100},
+            new int[] {523, 200, 80},
+            new int[] {392, 200, 100},
+            new int[] {523, 200, 80},
+            new int[] {659, 300, 100},
+            new int[] {587, 100, 80},
+            new int[] {523, 100, 90},
+            new int[] {493, 100, 80},
+            new int[] {440, 100, 75},
+            new int[] {415, 100, 70},
     };
 
     public static void main(String[] args) {
@@ -43,14 +44,14 @@ public class Main {
                 final float speed = 1.5f;
                 while (!initialized) {
                     int tone[] = jeopardy[i % jeopardy.length];
-                    Sound.playTone(tone[0], (int) (speed * tone[1]));
-                    Delay.msDelay((long) (speed * 100));
+                    Sound.playTone(tone[0], (int) (speed * tone[1]), tone[2]);
+                    Delay.msDelay((long) (speed * (tone[1] / 2)));
                     i++;
                 }
             }
         };
 
-        Sound.setVolume(4);
+        Sound.setVolume(6);
         musicThread.start();
         SensorUtils.init();
         initialized = true;
