@@ -11,6 +11,7 @@ import lejos.hardware.Button;
 public class ObstacleState extends State {
     private static ObstacleState instance = null;
     private static MotorControl motorControl;
+    private int counter;
 
     private ObstacleState() {
         // States shall be used as singleton
@@ -31,13 +32,28 @@ public class ObstacleState extends State {
         motorControl.backwardDistance(5);
         motorControl.resetGyro();
         motorControl.turnRight();
-        while (SensorUtils.getGyroAngle() < 50);
+        while (SensorUtils.getGyroAngle() < 50) {
+            checkEnterToMainMenu();
+            if (getNextState() == MainMenuState.getInstance()) {
+                return;
+            }
+        };
         motorControl.forwardDistance(25);
         motorControl.turnLeft();
-        while (SensorUtils.getGyroAngle() > 0);
-        motorControl.forwardDistance(50);
+        while (SensorUtils.getGyroAngle() > 10) {
+            checkEnterToMainMenu();
+            if (getNextState() == MainMenuState.getInstance()) {
+                return;
+            }
+        };
+        motorControl.forwardDistance(36);
         motorControl.turnLeft();
-        while (SensorUtils.getGyroAngle() > -90);
+        while (SensorUtils.getGyroAngle() > -70) {
+            checkEnterToMainMenu();
+            if (getNextState() == MainMenuState.getInstance()) {
+                return;
+            }
+        };
         motorControl.forward();
     }
 
@@ -54,10 +70,15 @@ public class ObstacleState extends State {
                     .setLastSuccDir(TurnRightState.getInstance(TurnLeftState.getInstance(GapState.getInstance())));
             requestNextState(LineFollowState.getInstance());
         } else if (color == ColorEnum.MAZEMARKER) {
-            motorControl.stop(true);
-            requestNextState(MainMenuState.getInstance());
+            counter++;
+            if (counter > 500) {
+                motorControl.stop(true);
+                requestNextState(MainMenuState.getInstance());
+            }
         } else if (SensorUtils.isTouchSonarPressed()) {
             requestNextState(ObstacleState.getInstance());
+        } else {
+            counter = 0;
         }
         checkEnterToMainMenu();
     }
