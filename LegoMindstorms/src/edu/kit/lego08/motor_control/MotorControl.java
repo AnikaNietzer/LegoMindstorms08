@@ -7,18 +7,19 @@ import lejos.utility.Delay;
 
 public class MotorControl {
 
-    private static DifferentialPilot pilot = new DifferentialPilot(3.5f, 12.0f, Motor.A, Motor.D);
+    private static DifferentialPilot pilot = new DifferentialPilot(6.88f, 12.0f, Motor.A, Motor.D);
+    private double speed = 0;
 
     public MotorControl() {
         setFastSpeed();
     }
-    
+
     public void setFastSpeed() {
-        pilot.setTravelSpeed(30);
+        pilot.setTravelSpeed(20);
     }
-    
+
     public void setSlowSpeed() {
-        pilot.setTravelSpeed(10);
+        pilot.setTravelSpeed(6);
     }
 
     public void steerRight() {
@@ -40,59 +41,78 @@ public class MotorControl {
         stop(true);
         pilot.steerBackward(200);
     }
-    
+
     public void steer(int angle) {
         stop(true);
         pilot.steer(angle);
     }
-    
+
     public void turnRight() {
         stop(true);
+        setSlowTurn();
         pilot.rotateLeft();
+        resetTurnSpeed();
+    }
+
+    private void setSlowTurn() {
+        // TODO Auto-generated method stub
+        speed = pilot.getTravelSpeed();
+        pilot.setTravelSpeed(10);
+    }
+
+    private void resetTurnSpeed() {
+        pilot.setTravelSpeed(speed);
     }
 
     public void turnRight(int angle) {
         stop(true);
-        pilot.rotate(2*angle, true);
-
+        setSlowTurn();
+        pilot.rotate(2 * angle, true);
+        resetTurnSpeed();
     }
-    
+
     public void turnLeft() {
         stop(true);
+        setSlowTurn();
         pilot.rotateRight();
+        resetTurnSpeed();
     }
-    
+
     public void resetGyro() {
         SensorUtils.resetGyro();
     }
-    
+
     public void turnLeft(int angle) {
         // 5.95 is factor for how much the motors have to rotate to rotate the
         // roboter 1 degree
         stop(true);
-        pilot.rotate(-2*angle, true);
-
+        setSlowTurn();
+        pilot.rotate(-2 * angle, true);
+        resetTurnSpeed();
     }
 
     public void turnLeftAndWait(int angle) {
         stop(true);
+        setSlowTurn();
         SensorUtils.resetGyro();
         pilot.rotateLeft();
         while (Math.abs(SensorUtils.getGyroAngle()) < angle) {
-            
+
         }
         stop(true);
-        
+        resetTurnSpeed();
     }
 
     public void turnRightAndWait(int angle) {
         stop(true);
+        setSlowTurn();
         SensorUtils.resetGyro();
         pilot.rotateRight();
         while (Math.abs(SensorUtils.getGyroAngle()) < angle) {
-            
+
         }
         stop(true);
+        resetTurnSpeed();
     }
 
     public void forward() {
