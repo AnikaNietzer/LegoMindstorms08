@@ -119,3 +119,7 @@
 * Verbesserung des Suchens von Objekten
 * Modus zum automatischen Ausführen von mehreren Zuständen (ohne Hauptmenü)
 * Roboter wendet automatisch, um verschiedene Zustände zu verbinden
+
+## Termin 10 (08.01.2018)
+
+<img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/2018-01-08.jpg" height="150">
