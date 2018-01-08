@@ -120,10 +120,11 @@
 * Modus zum automatischen Ausführen von mehreren Zuständen (ohne Hauptmenü)
 * Roboter wendet automatisch, um verschiedene Zustände zu verbinden
 
+<img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/2017-12-18.jpg" height="150">
+
 ## Termin 10 (08.01.2018)
 * Umbau des Roboters, um Räder statt Ketten zu benutzen
   * Stabilere Drehung (kein Wackeln)
   * Achsen werden weniger beansprucht
   * Räder drehen nicht mehr so stark durch
-
-<img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/2018-01-08.jpg" height="150">
+  * Problem: Roboter hat zu wenig Bodenhaftund für die Brücke
