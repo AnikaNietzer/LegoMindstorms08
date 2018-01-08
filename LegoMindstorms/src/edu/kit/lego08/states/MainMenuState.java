@@ -27,7 +27,7 @@ public class MainMenuState extends State {
         menuEntries.add(new Tuple<String, State>("Gerade", ForwardState.getInstance()));
         menuEntries.add(new Tuple<String, State>("Labyrinth", MazeFindState.getInstance()));
         menuEntries.add(new Tuple<String, State>("Bruecke", BridgeStartState.getInstance()));
-        menuEntries.add(new Tuple<String, State>("Farbenfinden", ColorSearchState.getInstance()));
+        menuEntries.add(new Tuple<String, State>("Farbenfinden", FindMiddleState.getInstance()));
     }
 
     public static MainMenuState getInstance() {

@@ -53,12 +53,45 @@ public class ColorSearchState extends State {
             first = false;
             motor.backward();
             long time = System.currentTimeMillis();
-            while (System.currentTimeMillis() - time < 800) {
+            while (System.currentTimeMillis() - time < 500) {
                 checkColor();
             }
             motor.forwardDistance(15);
-            while(motor.isMoving()) {
-                
+            while (motor.isMoving()) {
+
+            }
+
+            motor.turnLeft(30);
+            while (motor.isMoving()) {
+
+            }
+
+            motor.backward();
+            time = System.currentTimeMillis();
+            while (System.currentTimeMillis() - time < 500) {
+                checkColor();
+            }
+            motor.forwardDistance(15);
+            while (motor.isMoving()) {
+
+            }
+            motor.turnRight(60);
+            while (motor.isMoving()) {
+
+            }
+
+            motor.backward();
+            time = System.currentTimeMillis();
+            while (System.currentTimeMillis() - time < 500) {
+                checkColor();
+            }
+            motor.forwardDistance(15);
+            while (motor.isMoving()) {
+
+            }
+            motor.turnLeft(30);
+            while (motor.isMoving()) {
+
             }
         }
         // motor.forward();
@@ -106,17 +139,17 @@ public class ColorSearchState extends State {
             requestNextState(ColorSearchState.getInstance());
         } else if ((System.currentTimeMillis() - time) >= timeGap) {
             motor.stop(true);
-            timeGap = timeGap * 1.2;
-            angle = (int) ((float) angle * 0.95);
+            timeGap = timeGap * 1.17;
+            angle = (int) ((float) angle * 0.96);
             requestNextState(ColorSearchState.getInstance());
         }
         checkColor();
     }
 
     private void checkColor() {
-        if (SensorUtils.getColor() == ColorEnum.LINE && whiteCount < 20) {
+        if (SensorUtils.getColor() == ColorEnum.LINE && whiteCount < 100) {
             whiteCount++;
-        } else if (SensorUtils.getColor() == ColorEnum.LINE && whiteCount >= 20 && whiteFound == false) {
+        } else if (SensorUtils.getColor() == ColorEnum.LINE && whiteCount >= 100 && whiteFound == false) {
             whiteFound = true;
             if (redFound == true) {
                 requestNextState(MainMenuState.getInstance());
@@ -130,9 +163,9 @@ public class ColorSearchState extends State {
             Sound.playNote(PIANO, 523, 188);
             Sound.playNote(PIANO, 587, 376);
 
-        } else if (SensorUtils.getColor() == ColorEnum.BLUEMARKER && blueCount < 20) {
+        } else if (SensorUtils.getColor() == ColorEnum.BLUEMARKER && blueCount < 100) {
             blueCount++;
-        } else if (SensorUtils.getColor() == ColorEnum.BLUEMARKER && blueCount >= 20) {
+        } else if (SensorUtils.getColor() == ColorEnum.BLUEMARKER && blueCount >= 100) {
             blueCount = 0;
             motor.backwardDistance(10);
             motor.turnLeft(10);
@@ -140,9 +173,9 @@ public class ColorSearchState extends State {
 
             }
             requestNextState(ColorSearchState.getInstance());
-        } else if (SensorUtils.getColor() == ColorEnum.MAZEMARKER && redCount < 20) {
+        } else if (SensorUtils.getColor() == ColorEnum.MAZEMARKER && redCount < 100) {
             redCount++;
-        } else if (SensorUtils.getColor() == ColorEnum.MAZEMARKER && redCount >= 20 && redFound == false) {
+        } else if (SensorUtils.getColor() == ColorEnum.MAZEMARKER && redCount >= 100 && redFound == false) {
             redFound = true;
             if (whiteFound == true) {
                 requestNextState(MainMenuState.getInstance());
