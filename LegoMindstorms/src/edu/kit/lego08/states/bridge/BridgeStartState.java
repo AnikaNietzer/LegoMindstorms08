@@ -31,7 +31,6 @@ public class BridgeStartState extends State {
         Button.LEDPattern(LedPattern.STATIC_YELLOW);
         motorControl.turnRightAndWait(180);
         SensorUtils.resetGyro();
-        motorControl.backwardDistance(20);
         isGoingDown = false;
         BridgeLeftState.getInstance().thingsDone = 0;
     }
@@ -43,7 +42,7 @@ public class BridgeStartState extends State {
 
     @Override
     public void mainLoop() {
-        requestNextState(BridgeRightState.getInstance());
+        requestNextState(BridgeForwardState.getInstance());
         checkEnterToMainMenu();
     }
 }

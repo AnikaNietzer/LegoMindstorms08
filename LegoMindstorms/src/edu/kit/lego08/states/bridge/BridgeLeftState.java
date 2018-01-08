@@ -9,7 +9,7 @@ import lejos.hardware.Sound;
 import lejos.hardware.lcd.LCD;
 
 public class BridgeLeftState extends State {
-    private static final int THINGS_DONE_UNTIL_END = 5;
+    private static final int THINGS_DONE_UNTIL_END = 3;
     private static BridgeLeftState instance = null;
     private MotorControl motorControl = new MotorControl();
 
@@ -42,7 +42,7 @@ public class BridgeLeftState extends State {
 
     @Override
     public void mainLoop() {
-        LCD.drawString("" + Math.abs(SensorUtils.getGyroAngle()), 0, 0);
+        LCD.drawString("" + Math.abs(SensorUtils.getGyroAngle()) + " " + thingsDone, 0, 0);
 
         if (SensorUtils.getDistance() < BridgeStartState.BRIDGE_DISTANCE) {
             requestNextState(BridgeForwardState.getInstance());
