@@ -69,16 +69,16 @@ public class MainMenuState extends State {
 
         if (autoModeState != -1) {
             if (Config.AUTO_MODE && autoModeState < menuEntries.size()) {
-                Sound.playTone(500, 300);
-                Sound.playTone(700, 300);
-                Sound.playTone(500, 300);
-                Sound.playTone(700, 300);
+                Sound.playTone(500, 50);
+                Sound.playTone(700, 50);
+                Sound.playTone(500, 50);
+                Sound.playTone(700, 50);
                 requestNextState(menuEntries.get(autoModeState).y);
                 selectedState = autoModeState;
                 autoModeState++;
             } else if (Config.AUTO_MODE) {
-                Sound.playTone(800, 200);
-                Sound.playTone(500, 500);
+                Sound.playTone(800, 100);
+                Sound.playTone(500, 300);
                 autoModeState = -1;
             }
         }
