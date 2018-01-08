@@ -28,7 +28,7 @@ public class BridgeEndState extends State {
         requestNextState(null); // Stay in current state
         motorControl.setSlowSpeed();
         Button.LEDPattern(LedPattern.STATIC_YELLOW);
-        motorControl.turnRightAndWait(20);
+        motorControl.turnRightAndWait(30);
         motorControl.backward();
     }
 

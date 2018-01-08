@@ -38,7 +38,6 @@ public class SensorUtils {
               } catch (IllegalArgumentException e) {
                   gyro = new EV3GyroSensor(SensorPort.S1);
               }
-              gyro.setCurrentMode(1); // Angle
               angleProvider = gyro.getAngleMode();
           }
         };
