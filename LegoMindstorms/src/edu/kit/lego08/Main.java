@@ -7,10 +7,9 @@ import edu.kit.lego08.utils.LedPattern;
 import lejos.hardware.Button;
 import lejos.hardware.Sound;
 import lejos.hardware.lcd.LCD;
-import lejos.utility.Delay;
 
 public class Main {
-
+	
     public static void main(String[] args) {
         Button.LEDPattern(LedPattern.STATIC_YELLOW);
         LCD.drawString("Initializing...", 0, 0);

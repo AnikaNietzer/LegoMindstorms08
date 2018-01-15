@@ -2,13 +2,11 @@ package edu.kit.lego08.sensors;
 
 import lejos.hardware.Key;
 import lejos.hardware.Sound;
-import lejos.hardware.lcd.LCD;
 import lejos.hardware.port.SensorPort;
 import lejos.hardware.sensor.EV3ColorSensor;
 import lejos.hardware.sensor.EV3GyroSensor;
 import lejos.hardware.sensor.EV3TouchSensor;
 import lejos.hardware.sensor.EV3UltrasonicSensor;
-import lejos.hardware.sensor.SensorMode;
 import lejos.hardware.sensor.SensorModes;
 import lejos.robotics.Color;
 import lejos.robotics.SampleProvider;

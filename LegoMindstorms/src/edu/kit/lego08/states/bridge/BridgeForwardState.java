@@ -3,7 +3,6 @@ package edu.kit.lego08.states.bridge;
 import edu.kit.lego08.motor_control.MotorControl;
 import edu.kit.lego08.sensors.SensorUtils;
 import edu.kit.lego08.states.State;
-import lejos.hardware.Sound;
 
 public class BridgeForwardState extends State {
     private static final int TIME_FORWARD_MAX = 1500;
