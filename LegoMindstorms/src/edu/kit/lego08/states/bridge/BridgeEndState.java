@@ -34,7 +34,7 @@ public class BridgeEndState extends State {
 
     @Override
     public void onExit() {
-        motorControl.backwardDistance(15);
+        motorControl.backwardDistance(20);
         motorControl.turnRightAndWait(180);
         motorControl.setFastSpeed();
         motorControl.stop(true);

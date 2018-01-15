@@ -9,7 +9,8 @@ import lejos.hardware.Sound;
 import lejos.hardware.lcd.LCD;
 
 public class BridgeLeftState extends State {
-    private static final int THINGS_DONE_UNTIL_END = 10;
+    private static final int THINGS_DONE_UNTIL_END = 7;
+    private static final float BRIDGE_END_ANGLE = 170;
     private static BridgeLeftState instance = null;
     private MotorControl motorControl = new MotorControl();
 
@@ -42,7 +43,7 @@ public class BridgeLeftState extends State {
 
     @Override
     public void mainLoop() {
-        LCD.drawString("" + Math.abs(SensorUtils.getGyroAngle()), 0, 0);
+        LCD.drawString("" + Math.abs(SensorUtils.getGyroAngle()) + " " + thingsDone, 0, 0);
 
         if (SensorUtils.getDistance() < BridgeStartState.BRIDGE_DISTANCE) {
             requestNextState(BridgeForwardState.getInstance());
@@ -50,7 +51,8 @@ public class BridgeLeftState extends State {
                 thingsDone >= THINGS_DONE_UNTIL_END && BridgeStartState.isGoingDown) {
             requestNextState(BridgeEndState.getInstance());
         }
-        if (Math.abs(SensorUtils.getGyroAngle()) >= 180 && !BridgeStartState.isGoingDown) {
+        if (Math.abs(SensorUtils.getGyroAngle()) >= BRIDGE_END_ANGLE
+                && !BridgeStartState.isGoingDown) {
             BridgeStartState.isGoingDown = true;
             thingsDone = 0;
             Sound.playTone(500, 50);
