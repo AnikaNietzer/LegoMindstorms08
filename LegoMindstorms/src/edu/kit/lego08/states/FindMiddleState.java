@@ -1,7 +1,6 @@
 package edu.kit.lego08.states;
 
 import edu.kit.lego08.motor_control.MotorControl;
-import lejos.utility.Delay;
 
 public class FindMiddleState extends State {
 
@@ -24,7 +23,7 @@ public class FindMiddleState extends State {
 
     @Override
     public void onEnter() {
-        motor.turnRightAndWait(40);
+        motor.turnLeftAndWait(40);
         motor.forwardDistance(50);
         motor.stop(true);
         requestNextState(ColorSearchState.getInstance());

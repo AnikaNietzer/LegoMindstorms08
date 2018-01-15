@@ -28,14 +28,14 @@ public class BridgeEndState extends State {
         requestNextState(null); // Stay in current state
         motorControl.setSlowSpeed();
         Button.LEDPattern(LedPattern.STATIC_YELLOW);
-        motorControl.turnRightAndWait(30);
+        motorControl.turnLeftAndWait(30);
         motorControl.backward();
     }
 
     @Override
     public void onExit() {
         motorControl.backwardDistance(20);
-        motorControl.turnRightAndWait(180);
+        motorControl.turnLeftAndWait(180);
         motorControl.setFastSpeed();
         motorControl.stop(true);
     }

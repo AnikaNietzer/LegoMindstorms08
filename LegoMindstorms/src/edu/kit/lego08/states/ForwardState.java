@@ -25,7 +25,7 @@ public class ForwardState extends State {
     public void onEnter() {
         requestNextState(null); // Stay in current state
         Button.LEDPattern(LedPattern.STATIC_YELLOW);
-        motorControl.turnLeftAndWait(20);
+        motorControl.turnRightAndWait(20);
         motorControl.forward();
     }
 
@@ -39,7 +39,7 @@ public class ForwardState extends State {
         if (SensorUtils.getColor() == ColorEnum.BLUEMARKER) {
             requestNextState(MainMenuState.getInstance());
         } else if (SensorUtils.isTouchPressed()) {
-            motorControl.turnRightAndWait(30);
+            motorControl.turnLeftAndWait(30);
             motorControl.forward();
         }
         checkEnterToMainMenu();

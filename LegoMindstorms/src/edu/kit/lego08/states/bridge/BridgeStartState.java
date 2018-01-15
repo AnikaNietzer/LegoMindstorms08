@@ -5,7 +5,6 @@ import edu.kit.lego08.sensors.SensorUtils;
 import edu.kit.lego08.states.State;
 import edu.kit.lego08.utils.LedPattern;
 import lejos.hardware.Button;
-import lejos.hardware.Sound;
 
 public class BridgeStartState extends State {
     private static BridgeStartState instance = null;
@@ -29,7 +28,7 @@ public class BridgeStartState extends State {
         requestNextState(null); // Stay in current state
         motorControl.setSlowSpeed();
         Button.LEDPattern(LedPattern.STATIC_YELLOW);
-        motorControl.turnRightAndWait(190);
+        motorControl.turnLeftAndWait(190);
         SensorUtils.resetGyro();
         motorControl.backwardDistance(25);
         isGoingDown = false;

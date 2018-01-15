@@ -34,7 +34,7 @@ public class MazeFindState extends State {
     public void onExit() {
         motorControl.stop(true);
         motorControl.forwardDistance(8);
-        motorControl.turnLeftAndWait(120);
+        motorControl.turnRightAndWait(120);
         motorControl.setFastSpeed();
     }
 

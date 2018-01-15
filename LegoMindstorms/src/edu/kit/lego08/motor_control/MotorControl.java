@@ -92,7 +92,7 @@ public class MotorControl {
         resetTurnSpeed();
     }
 
-    public void turnLeftAndWait(int angle) {
+    public void turnRightAndWait(int angle) {
         stop(true);
         setSlowTurn();
         SensorUtils.resetGyro();
@@ -104,7 +104,7 @@ public class MotorControl {
         resetTurnSpeed();
     }
 
-    public void turnRightAndWait(int angle) {
+    public void turnLeftAndWait(int angle) {
         stop(true);
         setSlowTurn();
         SensorUtils.resetGyro();
