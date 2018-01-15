@@ -47,9 +47,9 @@ public class TurnLeftState extends State {
             LineFollowState.getInstance()
                     .setLastSuccDir(TurnLeftState.getInstance(TurnRightState.getInstance(GapState.getInstance())));
             requestNextState(LineFollowState.getInstance());
-        } else if (color == ColorEnum.BACKGROUND && SensorUtils.getGyroAngle() < -80) {
+        } else if (color == ColorEnum.BACKGROUND && SensorUtils.getGyroAngle() < -85) {
             motorControl.turnRight();
-            while (SensorUtils.getGyroAngle() < -15) {
+            while (SensorUtils.getGyroAngle() < -5) {
                 checkEnterToMainMenu();
                 if (getNextState() == MainMenuState.getInstance()) {
                     return;

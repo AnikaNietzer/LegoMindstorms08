@@ -1,9 +1,9 @@
 package edu.kit.lego08.states;
 
+import java.util.ArrayList;
+
 import edu.kit.lego08.Config;
 import edu.kit.lego08.sensors.SensorUtils;
-import edu.kit.lego08.states.bridge.BridgeLeftState;
-import edu.kit.lego08.states.bridge.BridgeRightState;
 import edu.kit.lego08.states.bridge.BridgeStartState;
 import edu.kit.lego08.states.linefollow.LineFollowState;
 import edu.kit.lego08.states.maze.MazeFindState;
@@ -12,8 +12,6 @@ import edu.kit.lego08.utils.Tuple;
 import lejos.hardware.Button;
 import lejos.hardware.Sound;
 import lejos.hardware.lcd.LCD;
-
-import java.util.ArrayList;
 
 public class MainMenuState extends State {
     private static MainMenuState instance = null;

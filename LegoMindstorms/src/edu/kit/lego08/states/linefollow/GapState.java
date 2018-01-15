@@ -7,6 +7,7 @@ import edu.kit.lego08.states.MainMenuState;
 import edu.kit.lego08.states.State;
 import edu.kit.lego08.utils.LedPattern;
 import lejos.hardware.Button;
+import lejos.hardware.lcd.LCD;
 
 public class GapState extends State {
     private static GapState instance = null;
@@ -32,7 +33,7 @@ public class GapState extends State {
         requestNextState(null);
         stateCount = 0;
         counter = 0;
-        distance = 5;
+        distance = 8;
         Button.LEDPattern(LedPattern.STATIC_YELLOW);
     }
 
@@ -44,12 +45,13 @@ public class GapState extends State {
     @Override
     public void mainLoop() {
         ColorEnum color = SensorUtils.getColor();
+        LCD.drawInt((int) SensorUtils.getGyroAngle(), 0, 5);
         if (color == ColorEnum.LINE) {
             requestNextState(LineFollowState.getInstance());
-        } else if (color == ColorEnum.BACKGROUND && (!motorControl.isMoving() || Math.abs(SensorUtils.getGyroAngle()) > 30)) {
+        } else if (color == ColorEnum.BACKGROUND && (!motorControl.isMoving() || Math.abs(SensorUtils.getGyroAngle()) > 70)) {
+        	motorControl.stop(true);
             motorControl.stop(true);
             newMove();
-            stateCount++;
         } else if (color == ColorEnum.MAZEMARKER) {
             counter++;
             if (counter > 500) {
@@ -65,36 +67,41 @@ public class GapState extends State {
     private void newMove() {
         switch (stateCount%5) {
         case 0:
+        	stateCount++;
             motorControl.forwardDistance(distance);
-            distance = 10;
+            distance = 14;
             break;
         case 1:
+        	stateCount++;
             motorControl.resetGyro();
             motorControl.turnLeft();
             break;
         case 2:
-            motorControl.resetGyro();
+        	stateCount++;
             motorControl.turnRight();
-            while(SensorUtils.getGyroAngle() > 50) {
+            while(SensorUtils.getGyroAngle() < 0) {
                 checkEnterToMainMenu();
                 if (getNextState() == MainMenuState.getInstance()) {
                     return;
                 }
             }
+            motorControl.stop(true);
             break;
         case 3:
+        	stateCount++;
             motorControl.resetGyro();
             motorControl.turnRight();
             break;
         case 4:
-            motorControl.resetGyro();
+        	stateCount++;
             motorControl.turnLeft();
-            while(SensorUtils.getGyroAngle() < -30) {
+            while(SensorUtils.getGyroAngle() > 0) {
                 checkEnterToMainMenu();
                 if (getNextState() == MainMenuState.getInstance()) {
                     return;
                 }
             }
+            motorControl.stop(true);
             break;
         }
     }
