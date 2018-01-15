@@ -128,3 +128,9 @@
   * Achsen werden weniger beansprucht
   * Räder drehen nicht mehr so stark durch
   * Problem: Roboter hat zu wenig Bodenhaftund für die Brücke
+
+## Termin 11 (15.01.2018)
+* Verbesserung des Umbaus zu Rädern, damit der Roboter auf der Brücke nicht aufsitzt
+* Anpassen des Codes an das neue Roboter-Design
+
+<img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/2018-01-15.jpg" height="150">
