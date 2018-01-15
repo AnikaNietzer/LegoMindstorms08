@@ -24,6 +24,12 @@ public class ColorSearchState extends State {
     public final static int[] PIANO = new int[] { 4, 25, 500, 7000, 5 };
 
     private ColorSearchState() {
+        reset();
+        motor = new MotorControl();
+        
+    }
+    
+    public void reset() {
         left = true;
         whiteCount = 0;
         redCount = 0;
@@ -32,7 +38,7 @@ public class ColorSearchState extends State {
         angle = -160;
         time = 0;
         timeGap = 1000;
-        motor = new MotorControl();
+        
         first = true;
     }
 
@@ -95,7 +101,7 @@ public class ColorSearchState extends State {
         // motor.forward();
         motor.steer(angle);
         time = System.currentTimeMillis();
-
+        SensorUtils.resetGyro();
         LCD.clear();
         LCD.drawString("State: Felder", 0, 5);
 
@@ -108,7 +114,7 @@ public class ColorSearchState extends State {
 
     @Override
     public void mainLoop() {
-        checkEnterToMainMenu();
+        
         /*
          * LCD.drawInt((int)timeGap, 10, 6);
          * LCD.drawInt((int)(System.currentTimeMillis() - time), 0, 6);
@@ -135,13 +141,15 @@ public class ColorSearchState extends State {
              * } left = true; }
              */
             requestNextState(ColorSearchState.getInstance());
-        } else if ((System.currentTimeMillis() - time) >= timeGap) {
+        //} else if ((System.currentTimeMillis() - time) >= timeGap) {
+        } else if (Math.abs(SensorUtils.getGyroAngle()) >= 360) {
             motor.stop(true);
             timeGap = timeGap * 1.17;
             angle = (int) ((float) angle * 0.96);
             requestNextState(ColorSearchState.getInstance());
         }
         checkColor();
+        checkEnterToMainMenu();
     }
 
     private void checkColor() {

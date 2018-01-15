@@ -12,6 +12,7 @@ public class MotorControl {
 
     public MotorControl() {
         setFastSpeed();
+        pilot.setAcceleration(60);
     }
 
     public void setFastSpeed() {

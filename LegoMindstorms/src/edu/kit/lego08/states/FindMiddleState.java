@@ -10,6 +10,7 @@ public class FindMiddleState extends State {
 
     private FindMiddleState() {
         motor = new MotorControl();
+        ColorSearchState.getInstance().reset();
     }
 
     public static FindMiddleState getInstance() {
@@ -23,8 +24,8 @@ public class FindMiddleState extends State {
 
     @Override
     public void onEnter() {
-        motor.steer(-67);
-        Delay.msDelay(4000);
+        motor.turnRightAndWait(40);
+        motor.forwardDistance(50);
         motor.stop(true);
         requestNextState(ColorSearchState.getInstance());
     }
