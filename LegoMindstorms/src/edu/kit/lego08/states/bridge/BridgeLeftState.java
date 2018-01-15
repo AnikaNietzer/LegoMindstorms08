@@ -9,7 +9,7 @@ import lejos.hardware.Sound;
 import lejos.hardware.lcd.LCD;
 
 public class BridgeLeftState extends State {
-    private static final int THINGS_DONE_UNTIL_END = 5;
+    private static final int THINGS_DONE_UNTIL_END = 10;
     private static BridgeLeftState instance = null;
     private MotorControl motorControl = new MotorControl();
 

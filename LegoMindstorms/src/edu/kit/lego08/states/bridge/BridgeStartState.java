@@ -10,7 +10,7 @@ import lejos.hardware.Sound;
 public class BridgeStartState extends State {
     private static BridgeStartState instance = null;
     private MotorControl motorControl = new MotorControl();
-    static final float BRIDGE_DISTANCE = 0.1f;
+    static final float BRIDGE_DISTANCE = 0.12f;
     public static boolean isGoingDown = false;
 
     private BridgeStartState() {
