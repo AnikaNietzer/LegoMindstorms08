@@ -5,6 +5,7 @@ import edu.kit.lego08.sensors.SensorUtils;
 import edu.kit.lego08.states.State;
 import edu.kit.lego08.utils.LedPattern;
 import lejos.hardware.Button;
+import lejos.utility.Delay;
 
 public class BridgeRightState extends State {
     private static BridgeRightState instance = null;
@@ -27,6 +28,7 @@ public class BridgeRightState extends State {
         motorControl.setSlowSpeed();
         motorControl.steerRightBackward();
         Button.LEDPattern(LedPattern.STATIC_GREEN);
+        Delay.msDelay(10);
     }
 
     @Override
