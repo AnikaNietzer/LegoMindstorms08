@@ -38,6 +38,8 @@ public class ForwardState extends State {
     public void mainLoop() {
         if (SensorUtils.getColor() == ColorEnum.BLUEMARKER) {
             requestNextState(MainMenuState.getInstance());
+        } else if (SensorUtils.isT) {
+
         }
         checkEnterToMainMenu();
     }

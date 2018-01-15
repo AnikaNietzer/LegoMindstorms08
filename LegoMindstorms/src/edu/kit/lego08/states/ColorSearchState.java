@@ -1,7 +1,5 @@
 package edu.kit.lego08.states;
 
-import java.io.File;
-
 import edu.kit.lego08.motor_control.MotorControl;
 import edu.kit.lego08.sensors.ColorEnum;
 import edu.kit.lego08.sensors.SensorUtils;
@@ -115,7 +113,7 @@ public class ColorSearchState extends State {
          * LCD.drawInt((int)timeGap, 10, 6);
          * LCD.drawInt((int)(System.currentTimeMillis() - time), 0, 6);
          */
-        if (SensorUtils.isTouchSonarPressed()) {
+        if (SensorUtils.isTouchPressed()) {
             motor.backwardDistance(10);
             motor.turnLeft(10);
             while (motor.isMoving()) {

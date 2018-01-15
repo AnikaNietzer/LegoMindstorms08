@@ -61,7 +61,7 @@ public class TurnRightState extends State {
                 motorControl.stop(true);
                 requestNextState(MainMenuState.getInstance());
             }
-        } else if (SensorUtils.isTouchSonarPressed()) {
+        } else if (SensorUtils.isTouchPressed()) {
             motorControl.stop(true);
             requestNextState(ObstacleState.getInstance());
         } else {

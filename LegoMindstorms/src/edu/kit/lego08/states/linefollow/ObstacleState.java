@@ -75,7 +75,7 @@ public class ObstacleState extends State {
                 motorControl.stop(true);
                 requestNextState(MainMenuState.getInstance());
             }
-        } else if (SensorUtils.isTouchSonarPressed()) {
+        } else if (SensorUtils.isTouchPressed()) {
             requestNextState(ObstacleState.getInstance());
         } else {
             counter = 0;

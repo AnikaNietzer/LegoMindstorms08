@@ -81,7 +81,7 @@ public class SensorUtils {
         return sample[0];
     }
 
-    public static boolean isTouchSonarPressed() {
+    public static boolean isTouchPressed() {
         float[] sample = new float[touch.sampleSize()];
         sample[0] = 0;
         touch.fetchSample(sample, 0);

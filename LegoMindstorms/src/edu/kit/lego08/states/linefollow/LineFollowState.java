@@ -46,7 +46,7 @@ public class LineFollowState extends State {
                 motorControl.stop(true);
                 requestNextState(MainMenuState.getInstance());
             }
-        } else if (SensorUtils.isTouchSonarPressed()) {
+        } else if (SensorUtils.isTouchPressed()) {
             motorControl.stop(true);
             requestNextState(ObstacleState.getInstance());
         } else {
