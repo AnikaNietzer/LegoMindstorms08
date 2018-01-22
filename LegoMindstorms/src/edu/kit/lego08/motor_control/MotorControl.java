@@ -19,6 +19,10 @@ public class MotorControl {
         pilot.setTravelSpeed(20);
     }
 
+    public void setColorSpeed() {
+        pilot.setTravelSpeed(30);
+    }
+    
     public void setSlowSpeed() {
         pilot.setTravelSpeed(6);
     }
@@ -44,7 +48,8 @@ public class MotorControl {
     }
 
     public void steer(int angle) {
-        stop(true);
+        //stop(true);
+        
         pilot.steer(angle);
     }
 
