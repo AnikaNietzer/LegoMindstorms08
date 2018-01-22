@@ -28,7 +28,7 @@ public class BridgeStartState extends State {
         requestNextState(null); // Stay in current state
         motorControl.setSlowSpeed();
         Button.LEDPattern(LedPattern.STATIC_YELLOW);
-        motorControl.turnLeftAndWait(190);
+        motorControl.turnLeftAndWait(180);
         SensorUtils.resetGyro();
         motorControl.backwardDistance(25);
         isGoingDown = false;
