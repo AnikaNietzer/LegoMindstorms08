@@ -38,7 +38,7 @@ public class ObstacleState extends State {
                 return;
             }
         };
-        motorControl.forwardDistance(25);
+        motorControl.forwardDistance(30);
         motorControl.turnLeft();
         while (SensorUtils.getGyroAngle() > 10) {
             checkEnterToMainMenu();

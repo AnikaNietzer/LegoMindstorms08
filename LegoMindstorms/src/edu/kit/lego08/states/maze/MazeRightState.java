@@ -7,6 +7,7 @@ import edu.kit.lego08.states.MainMenuState;
 import edu.kit.lego08.states.State;
 import edu.kit.lego08.utils.LedPattern;
 import lejos.hardware.Button;
+import lejos.hardware.lcd.LCD;
 import lejos.utility.Delay;
 
 public class MazeRightState extends State {
@@ -40,10 +41,11 @@ public class MazeRightState extends State {
 
     @Override
     public void mainLoop() {
+    	LCD.drawString(blueCount + " ", 0, 0);
         ColorEnum color = SensorUtils.getColor();
         if (color == ColorEnum.BLUEMARKER) {
             blueCount++;
-            if (blueCount > 20) {
+            if (blueCount > 300) {
                 requestNextState(MainMenuState.getInstance());
             }
         } else if (color == ColorEnum.BACKGROUND) {

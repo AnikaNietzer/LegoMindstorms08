@@ -33,7 +33,7 @@ public class GapState extends State {
         requestNextState(null);
         stateCount = 0;
         counter = 0;
-        distance = 8;
+        distance = 11;
         Button.LEDPattern(LedPattern.STATIC_YELLOW);
     }
 
@@ -79,7 +79,7 @@ public class GapState extends State {
         case 2:
         	stateCount++;
             motorControl.turnRight();
-            while(SensorUtils.getGyroAngle() < 0) {
+            while(SensorUtils.getGyroAngle() < -10) {
                 checkEnterToMainMenu();
                 if (getNextState() == MainMenuState.getInstance()) {
                     return;

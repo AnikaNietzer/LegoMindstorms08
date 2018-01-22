@@ -25,7 +25,7 @@ public class ForwardState extends State {
     public void onEnter() {
         requestNextState(null); // Stay in current state
         Button.LEDPattern(LedPattern.STATIC_YELLOW);
-        motorControl.turnRightAndWait(20);
+        motorControl.turnRightAndWait(30);
         motorControl.forward();
     }
 
