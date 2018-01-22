@@ -18,6 +18,7 @@ public class MainMenuState extends State {
     private ArrayList<Tuple<String, State>> menuEntries = new ArrayList<>();
     private int selectedState = 0;
     private int autoModeState = -1;
+    private boolean wasExitedManually = false;
 
     private MainMenuState() {
         // States shall be used as singleton
@@ -46,6 +47,7 @@ public class MainMenuState extends State {
     public void onExit() {
         LCD.clear();
         LCD.drawString(menuEntries.get(selectedState).x, 2, 2);
+        setExitedManually(false);
     }
 
     @Override
@@ -65,8 +67,12 @@ public class MainMenuState extends State {
             System.exit(0);
         }
 
-        if (autoModeState != -1) {
-            if (Config.AUTO_MODE && autoModeState < menuEntries.size()) {
+        if (Config.AUTO_MODE && autoModeState != -1) {
+            if (autoModeState >= menuEntries.size() || wasExitedManually) {
+                Sound.playTone(800, 100);
+                Sound.playTone(500, 300);
+                autoModeState = -1;
+            } else {
                 Sound.playTone(500, 50);
                 Sound.playTone(700, 50);
                 Sound.playTone(500, 50);
@@ -74,10 +80,6 @@ public class MainMenuState extends State {
                 requestNextState(menuEntries.get(autoModeState).y);
                 selectedState = autoModeState;
                 autoModeState++;
-            } else if (Config.AUTO_MODE) {
-                Sound.playTone(800, 100);
-                Sound.playTone(500, 300);
-                autoModeState = -1;
             }
         }
     }
@@ -98,5 +100,9 @@ public class MainMenuState extends State {
                 LCD.drawString(" " + menuEntries.get(i).x, 0, i + 3);
             }
         }
+    }
+
+    public void setExitedManually(boolean wasExitedManually) {
+        this.wasExitedManually = wasExitedManually;
     }
 }
