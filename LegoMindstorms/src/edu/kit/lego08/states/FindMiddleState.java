@@ -9,7 +9,7 @@ public class FindMiddleState extends State {
 
     private FindMiddleState() {
         motor = new MotorControl();
-        ColorSearchState.getInstance().reset();
+        
     }
 
     public static FindMiddleState getInstance() {
@@ -26,6 +26,7 @@ public class FindMiddleState extends State {
         motor.turnLeftAndWait(40);
         motor.forwardDistance(50);
         motor.stop(true);
+        ColorSearchState.getInstance().reset();
         requestNextState(ColorSearchState.getInstance());
     }
 

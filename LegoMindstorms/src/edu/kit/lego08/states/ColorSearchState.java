@@ -26,9 +26,9 @@ public class ColorSearchState extends State {
     private ColorSearchState() {
         reset();
         motor = new MotorControl();
-        
+
     }
-    
+
     public void reset() {
         left = true;
         whiteCount = 0;
@@ -38,7 +38,7 @@ public class ColorSearchState extends State {
         angle = -160;
         time = 0;
         timeGap = 1000;
-        
+
         first = true;
     }
 
@@ -97,24 +97,30 @@ public class ColorSearchState extends State {
             while (motor.isMoving()) {
 
             }
+            motor.setColorSpeed();
         }
         // motor.forward();
         motor.steer(angle);
         time = System.currentTimeMillis();
-        SensorUtils.resetGyro();
+
         LCD.clear();
         LCD.drawString("State: Felder", 0, 5);
+        LCD.drawString("Angle: " + angle, 0, 3);
 
     }
 
     @Override
     public void onExit() {
-        motor.stop(true);
+        if (!getNextState().equals(ColorSearchState.getInstance())) {
+            motor.stop(true);
+            motor.setFastSpeed();
+        }
+        // motor.stop(true);
     }
 
     @Override
     public void mainLoop() {
-        
+
         /*
          * LCD.drawInt((int)timeGap, 10, 6);
          * LCD.drawInt((int)(System.currentTimeMillis() - time), 0, 6);
@@ -122,6 +128,7 @@ public class ColorSearchState extends State {
         if (SensorUtils.isTouchPressed()) {
             motor.backwardDistance(10);
             motor.turnLeft(10);
+
             while (motor.isMoving()) {
 
             }
@@ -141,11 +148,18 @@ public class ColorSearchState extends State {
              * } left = true; }
              */
             requestNextState(ColorSearchState.getInstance());
-        //} else if ((System.currentTimeMillis() - time) >= timeGap) {
-        } else if (Math.abs(SensorUtils.getGyroAngle()) >= 360) {
+            // } else if ((System.currentTimeMillis() - time) >= timeGap) {
+        } else if (Math.abs(SensorUtils.getGyroAngle()) >= 420) {
             motor.stop(true);
+            SensorUtils.resetGyro();
             timeGap = timeGap * 1.17;
-            angle = (int) ((float) angle * 0.96);
+            if (angle < -60) {
+                angle = (int) ((float) angle + 15);
+            } else if (angle < -20 && angle >= -60) {
+                angle = angle + 6;
+            } else if (angle <= 5 && angle >= -20) {
+                angle = angle + 4;
+            }
             requestNextState(ColorSearchState.getInstance());
         }
         checkColor();
@@ -153,9 +167,12 @@ public class ColorSearchState extends State {
     }
 
     private void checkColor() {
-        if (SensorUtils.getColor() == ColorEnum.LINE && whiteCount < 100) {
+        if (SensorUtils.getColor() == ColorEnum.LINE && whiteCount < 10) {
             whiteCount++;
-        } else if (SensorUtils.getColor() == ColorEnum.LINE && whiteCount >= 100 && whiteFound == false) {
+            redCount = 0;
+
+            blueCount = 0;
+        } else if (SensorUtils.getColor() == ColorEnum.LINE && whiteCount >= 10 && whiteFound == false) {
             whiteFound = true;
             if (redFound == true) {
                 requestNextState(MainMenuState.getInstance());
@@ -163,25 +180,33 @@ public class ColorSearchState extends State {
                 requestNextState(ColorSearchState.getInstance());
             }
             motor.stop(true);
+            LCD.drawString("White", 0, 6);
             Sound.playNote(PIANO, 659, 376);
             Sound.playNote(PIANO, 659, 376);
             Sound.playNote(PIANO, 494, 188);
             Sound.playNote(PIANO, 523, 188);
             Sound.playNote(PIANO, 587, 376);
 
-        } else if (SensorUtils.getColor() == ColorEnum.BLUEMARKER && blueCount < 100) {
+        } else if (SensorUtils.getColor() == ColorEnum.BLUEMARKER && blueCount < 10) {
+            redCount = 0;
+            whiteCount = 0;
+
             blueCount++;
-        } else if (SensorUtils.getColor() == ColorEnum.BLUEMARKER && blueCount >= 100) {
+        } else if (SensorUtils.getColor() == ColorEnum.BLUEMARKER && blueCount >= 10) {
             blueCount = 0;
+
+            LCD.drawString("blue", 0, 8);
             motor.backwardDistance(10);
             motor.turnLeft(10);
             while (motor.isMoving()) {
 
             }
             requestNextState(ColorSearchState.getInstance());
-        } else if (SensorUtils.getColor() == ColorEnum.MAZEMARKER && redCount < 100) {
+        } else if (SensorUtils.getColor() == ColorEnum.MAZEMARKER && redCount < 10) {
             redCount++;
-        } else if (SensorUtils.getColor() == ColorEnum.MAZEMARKER && redCount >= 100 && redFound == false) {
+            blueCount = 0;
+            whiteCount = 0;
+        } else if (SensorUtils.getColor() == ColorEnum.MAZEMARKER && redCount >= 10 && redFound == false) {
             redFound = true;
             if (whiteFound == true) {
                 requestNextState(MainMenuState.getInstance());
@@ -189,6 +214,8 @@ public class ColorSearchState extends State {
                 requestNextState(ColorSearchState.getInstance());
             }
             motor.stop(true);
+
+            LCD.drawString("Red", 0, 7);
             Sound.playNote(PIANO, 659, 376);
             Sound.playNote(PIANO, 659, 376);
             Sound.playNote(PIANO, 494, 188);
@@ -200,5 +227,8 @@ public class ColorSearchState extends State {
             whiteCount = 0;
             blueCount = 0;
         }
+        LCD.drawString("Weiﬂ: " + whiteCount, 0, 0);
+        LCD.drawString("Blau: " + blueCount, 0, 2);
+        LCD.drawString("Rot: " + redCount, 0, 1);
     }
 }
