@@ -47,7 +47,6 @@ public class MainMenuState extends State {
     public void onExit() {
         LCD.clear();
         LCD.drawString(menuEntries.get(selectedState).x, 2, 2);
-        setExitedManually(false);
     }
 
     @Override
@@ -59,6 +58,7 @@ public class MainMenuState extends State {
             selectedState = (selectedState + 1) % menuEntries.size();
             redraw();
         } else if (SensorUtils.isKeyPressedAndReleased(Button.ENTER)) {
+            setExitedManually(false);
             autoModeState = selectedState;
             if (!Config.AUTO_MODE) {
                 requestNextState(menuEntries.get(selectedState).y);
