@@ -45,7 +45,7 @@ public class MazeRightState extends State {
         ColorEnum color = SensorUtils.getColor();
         if (color == ColorEnum.BLUEMARKER) {
             blueCount++;
-            if (blueCount > 300) {
+            if (blueCount > 400) {
                 requestNextState(MainMenuState.getInstance());
             }
         } else if (color == ColorEnum.BACKGROUND) {
