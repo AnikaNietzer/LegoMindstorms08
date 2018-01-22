@@ -134,3 +134,7 @@
 * Anpassen des Codes an das neue Roboter-Design
 
 <img src="https://github.com/nicky992/LegoMindstorms08/raw/master/docs/2018-01-15.jpg" height="150">
+
+## Termin 12 (22.01.2018)
+* Suchen von Objekten funktioniert
+* Finetuning
