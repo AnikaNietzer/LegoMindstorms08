@@ -138,3 +138,7 @@
 ## Termin 12 (22.01.2018)
 * Suchen von Objekten funktioniert
 * Finetuning
+
+## Termin 13 (29.01.2018)
+* Finale Tests
+* Video aufgenommen
